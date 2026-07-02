@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="NEXRAI – KI-Automatisierungen, KI-Agenten, Chatbots und individuelle KI-Lösungen für Unternehmen. DSGVO-konform. Made in Germany."/>
+  <title>NEXRAI – KI-Automatisierung für Ihr Unternehmen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────────── */
+    :root {
+      --bg:       #050508;
+      --surface:  #0c0c14;
+      --card:     #0f0f1a;
+      --border:   rgba(255,255,255,0.07);
+      --border-h: rgba(255,255,255,0.14);
+      --a1: #4F6EF7;
+      --a2: #9B5CF6;
+      --grad: linear-gradient(135deg, var(--a1), var(--a2));
+      --text:  #EEEDF8;
+      --muted: #6B6A85;
+      --dim:   #3A3952;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    /* ── RESET ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ── NOISE OVERLAY ──────────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+    }
+
+    /* ── GLOW ORBS ──────────────────────────────────────────────── */
+    .orb { position: fixed; border-radius: 50%; filter: blur(140px); pointer-events: none; z-index: 0; }
+    .orb-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(79,110,247,.12), transparent 70%); top: -200px; right: -200px; animation: orbDrift 20s ease-in-out infinite alternate; }
+    .orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(155,92,246,.1), transparent 70%); bottom: -100px; left: -100px; animation: orbDrift 25s ease-in-out infinite alternate-reverse; }
+    @keyframes orbDrift { from { transform: translate(0,0); } to { transform: translate(40px,30px); } }
+
+    /* ── LAYOUT ─────────────────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    .section { padding: 120px 0; }
+
+    /* ── TYPOGRAPHY ─────────────────────────────────────────────── */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--a1); margin-bottom: 20px;
+    }
+    .eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--a1); }
+    h1, h2, h3 { line-height: 1.12; }
+    h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); font-weight: 700; letter-spacing: -0.03em; }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.025em; }
+    h3 { font-size: 1.15rem; font-weight: 600; }
+    .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .text-muted { color: var(--muted); }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* ── NAV ────────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s, backdrop-filter 0.3s;
+    }
+    nav.scrolled { border-color: var(--border); background: rgba(5,5,8,0.85); backdrop-filter: blur(20px); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 84px; }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo svg { height: 64px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a { font-size: 0.88rem; color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--grad); color: #fff; border: none;
+      padding: 10px 22px; border-radius: 8px;
+      font-size: 0.85rem; font-weight: 500;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    .nav-burger { display: none; background: none; border: 1px solid var(--border); border-radius: 8px; padding: 8px; color: var(--muted); }
+
+    /* ── HERO ───────────────────────────────────────────────────── */
+    #hero { padding: 190px 0 120px; text-align: center; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border); border-radius: 99px;
+      padding: 6px 16px; font-size: 0.75rem; color: var(--muted);
+      margin-bottom: 32px; background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(8px);
+    }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--grad); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+    .hero-headline { max-width: 860px; margin: 0 auto 24px; }
+    .hero-sub { max-width: 600px; margin: 0 auto 48px; font-size: 1.08rem; color: var(--muted); line-height: 1.75; }
+    .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+    .btn-primary {
+      background: var(--grad); color: #fff; border: none;
+      padding: 15px 30px; border-radius: 10px; font-size: 0.95rem; font-weight: 600;
+      transition: opacity 0.2s, transform 0.15s; position: relative; overflow: hidden;
+    }
+    .btn-primary::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,.1)); pointer-events: none; }
+    .btn-primary:hover { opacity: .9; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(79,110,247,.35); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border);
+      padding: 15px 30px; border-radius: 10px; font-size: 0.95rem; font-weight: 600;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--border-h); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+    .trust-row { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--muted); }
+    .trust-icon { width: 18px; height: 18px; border-radius: 50%; background: rgba(79,110,247,.15); display: flex; align-items: center; justify-content: center; font-size: 10px; }
+
+    /* Hero visual */
+    .hero-visual {
+      margin-top: 80px; position: relative;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2px; overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,.6);
+    }
+    .hero-visual-inner {
+      background: var(--card); border-radius: 18px; padding: 32px;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+    }
+    .hero-metric {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 16px; text-align: left;
+    }
+    .hero-metric-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 8px; }
+    .hero-metric-val { font-size: 1.8rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+    .hero-metric-val.green { color: #34d399; }
+    .hero-metric-val.blue { color: var(--a1); }
+    .hero-metric-val.purple { color: var(--a2); }
+    .hero-metric-sub { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+    .hero-visual-source { text-align: center; font-size: 0.68rem; color: var(--dim); padding: 14px 0 4px; }
+
+    /* ── PROBLEMS ───────────────────────────────────────────────── */
+    .problems-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 56px; }
+    .problem-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px; position: relative; overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .problem-card:hover { border-color: var(--border-h); transform: translateY(-2px); }
+    .problem-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--grad); opacity: 0; transition: opacity 0.2s; }
+    .problem-card:hover::before { opacity: 1; }
+    .problem-icon { font-size: 1.4rem; margin-bottom: 16px; }
+    .problem-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+    .problem-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── SOLUTIONS ──────────────────────────────────────────────── */
+    .solutions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media(max-width:900px) { .solutions-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:600px) { .solutions-grid { grid-template-columns: 1fr; } }
+    .sol-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px; display: flex; flex-direction: column; gap: 12px;
+      transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .sol-card:hover { border-color: rgba(79,110,247,.4); transform: translateY(-3px); box-shadow: 0 20px 60px rgba(79,110,247,.1); }
+    .sol-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(79,110,247,.1); border: 1px solid rgba(79,110,247,.2);
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .sol-title { font-size: 1rem; font-weight: 600; }
+    .sol-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; flex: 1; }
+
+    /* ── RECHNER ────────────────────────────────────────────────── */
+    .rc-wrap { margin-top: 56px; }
+    .rc-progress-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; }
+    .rc-progress-step { flex: 1; height: 3px; background: var(--border); border-radius: 99px; overflow: hidden; transition: background .4s; }
+    .rc-progress-step.done { background: var(--a1); }
+    .rc-progress-step.active { background: var(--grad); box-shadow: 0 0 8px rgba(79,110,247,.4); }
+    .rc-progress-label { font-size: 0.72rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .rc-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 44px 48px; }
+    @media(max-width:600px) { .rc-card { padding: 28px 20px; } }
+    .rc-step { display: none; }
+    .rc-step.active { display: block; animation: fadeUp .35s ease both; }
+    .rc-step-lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; color: var(--a1); text-transform: uppercase; margin-bottom: 6px; }
+    .rc-step-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+    .rc-step-sub { color: var(--muted); font-size: 0.86rem; margin-bottom: 28px; line-height: 1.65; }
+    .rc-range-wrap { margin-bottom: 24px; }
+    .rc-range-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+    .rc-range-header label { font-size: 0.83rem; color: var(--muted); }
+    .rc-range-val { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--a1); }
+    .rc-range-val small { font-size: 0.72rem; color: var(--muted); font-family: 'Inter', sans-serif; }
+    .rc-select { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.88rem; padding: 12px 14px; outline: none; cursor: pointer; -webkit-appearance: none; appearance: none; transition: border-color .2s; margin-bottom: 24px; }
+    .rc-select:focus { border-color: var(--a1); box-shadow: 0 0 0 3px rgba(79,110,247,.15); }
+    .rc-input-wrap { position: relative; margin-bottom: 24px; }
+    .rc-input-prefix { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.9rem; pointer-events: none; }
+    .rc-input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 1rem; padding: 12px 14px 12px 28px; outline: none; transition: border-color .2s; -moz-appearance: textfield; }
+    .rc-input::-webkit-outer-spin-button, .rc-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .rc-input:focus { border-color: var(--a1); box-shadow: 0 0 0 3px rgba(79,110,247,.15); }
+    .rc-check-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 16px; }
+    @media(max-width:480px) { .rc-check-grid { grid-template-columns: 1fr; } }
+    .rc-check-item { position: relative; cursor: pointer; }
+    .rc-check-item input { position: absolute; opacity: 0; width: 0; }
+    .rc-check-box { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; font-size: 0.82rem; transition: border-color .2s, background .2s; user-select: none; }
+    .rc-check-rate { margin-left: auto; font-size: 0.68rem; color: var(--muted); white-space: nowrap; font-family: 'JetBrains Mono', monospace; }
+    .rc-check-item input:checked + .rc-check-box { border-color: var(--a1); background: rgba(79,110,247,.07); }
+    .rc-check-item input:checked + .rc-check-box .rc-check-rate { color: var(--a1); }
+    .rc-hint { font-size: 0.75rem; color: var(--muted); margin-bottom: 20px; line-height: 1.6; padding: 10px 14px; border-left: 2px solid var(--a1); background: rgba(79,110,247,.04); border-radius: 0 8px 8px 0; }
+    .rc-btn-row { display: flex; gap: 12px; margin-top: 8px; }
+    .rc-btn-back { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 10px; padding: 12px 20px; font-size: 0.88rem; cursor: pointer; font-family: 'Inter', sans-serif; transition: border-color .2s, color .2s; }
+    .rc-btn-back:hover { border-color: var(--border-h); color: var(--text); }
+    .rc-btn-next { flex: 1; background: var(--grad); border: none; border-radius: 10px; color: #fff; font-size: 0.92rem; font-weight: 600; font-family: 'Inter', sans-serif; padding: 13px 24px; cursor: pointer; transition: opacity .2s, transform .15s; box-shadow: 0 4px 20px rgba(79,110,247,.3); }
+    .rc-btn-next:hover { opacity: .9; transform: translateY(-1px); }
+    /* Result */
+    .rc-scenario-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+    .rc-sc-tab { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; text-align: center; transition: all .2s; }
+    .rc-sc-tab.active { border-color: var(--a1); background: rgba(79,110,247,.08); }
+    .rc-sc-tab-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 4px; }
+    .rc-sc-tab.active .rc-sc-tab-label { color: var(--a1); }
+    .rc-sc-tab-val { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; }
+    .rc-result-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
+    @media(max-width:480px) { .rc-result-grid { grid-template-columns: 1fr 1fr; } }
+    .rc-rc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 12px; text-align: center; position: relative; overflow: hidden; }
+    .rc-rc::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--grad); }
+    .rc-rc-icon { font-size: 1.2rem; margin-bottom: 6px; }
+    .rc-rc-num { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; margin-bottom: 4px; }
+    .rc-rc-label { font-size: 0.68rem; color: var(--muted); line-height: 1.3; }
+    .rc-breakdown { background: rgba(255,255,255,.02); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .rc-bd-title { font-size: 0.7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin-bottom: 16px; }
+    .rc-bd-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .rc-bd-row:last-child { margin-bottom: 0; }
+    .rc-bd-left { display: flex; align-items: flex-start; gap: 10px; font-size: 0.83rem; flex: 1; }
+    .rc-bd-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .rc-bd-dot.d1 { background: #34d399; } .rc-bd-dot.d2 { background: var(--a1); } .rc-bd-dot.d3 { background: #f59e0b; }
+    .rc-bd-sub { font-size: 0.71rem; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+    .rc-bd-right { text-align: right; flex-shrink: 0; margin-left: 12px; }
+    .rc-bd-val { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 700; color: var(--text); }
+    .rc-bd-vsub { font-size: 0.7rem; color: var(--muted); }
+    .rc-sep { height: 1px; background: var(--border); margin: 12px 0; }
+    .rc-roi-wrap { margin-bottom: 20px; }
+    .rc-roi-label { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--muted); margin-bottom: 8px; }
+    .rc-bar-bg { background: var(--border); border-radius: 99px; height: 8px; overflow: hidden; }
+    .rc-bar { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #34d399, var(--a1)); transition: width 1.2s cubic-bezier(.16,1,.3,1); width: 0%; }
+    .rc-roi-text { text-align: center; font-size: 0.92rem; font-weight: 600; margin-top: 10px; }
+    .rc-roi-text span { color: var(--a1); }
+    .rc-disclaimer { background: rgba(245,158,11,.04); border: 1px solid rgba(245,158,11,.2); border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; font-size: 0.75rem; color: var(--muted); line-height: 1.65; }
+    .rc-disclaimer strong { color: #f59e0b; }
+    .rc-divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .rc-cta-label { font-size: 0.8rem; color: var(--muted); text-align: center; margin-bottom: 12px; }
+    .rc-btn-cta { display: block; width: 100%; background: var(--grad); border: none; border-radius: 12px; color: #fff; font-size: 0.95rem; font-weight: 600; font-family: 'Inter', sans-serif; padding: 16px 24px; cursor: pointer; box-shadow: 0 4px 24px rgba(79,110,247,.35); text-align: center; transition: opacity .2s, transform .15s; margin-bottom: 16px; }
+    .rc-btn-cta:hover { opacity: .9; transform: translateY(-2px); }
+    .rc-trust-row { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .rc-trust-item { display: flex; align-items: center; gap: 6px; font-size: 0.73rem; color: var(--muted); }
+    .rc-trust-item::before { content: '✓'; color: #34d399; font-weight: 700; }
+    .rc-method-box { background: rgba(79,110,247,.05); border: 1px solid rgba(79,110,247,.15); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; font-size: 0.76rem; color: var(--muted); line-height: 1.65; }
+    .rc-method-box strong { color: var(--a1); }
+
+    /* ── DSGVO ──────────────────────────────────────────────────── */
+    .dsgvo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 56px; }
+    @media(max-width:720px) { .dsgvo-grid { grid-template-columns: 1fr; } }
+    .dsgvo-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px; display: flex; gap: 20px; align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .dsgvo-card:hover { border-color: var(--border-h); }
+    .dsgvo-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .dsgvo-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+    .dsgvo-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── PROZESS ────────────────────────────────────────────────── */
+    .prozess-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 64px; position: relative; }
+    @media(max-width:800px) { .prozess-steps { grid-template-columns: 1fr 1fr; gap: 20px; } }
+    @media(max-width:480px) { .prozess-steps { grid-template-columns: 1fr; } }
+    .prozess-steps::before {
+      content: ''; position: absolute; top: 22px; left: 10%; right: 10%; height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), var(--a1), var(--a2), var(--border), transparent);
+    }
+    @media(max-width:800px) { .prozess-steps::before { display: none; } }
+    .p-step { text-align: center; padding: 0 16px; }
+    .p-num {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;
+      color: var(--a1); margin: 0 auto 20px; position: relative; z-index: 1;
+    }
+    .p-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; }
+    .p-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── FAQ ────────────────────────────────────────────────────── */
+    .faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      width: 100%; background: none; border: none; text-align: left;
+      padding: 22px 28px; display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.92rem; font-weight: 500; color: var(--text);
+      cursor: pointer; transition: background 0.2s;
+    }
+    .faq-q:hover { background: rgba(255,255,255,0.02); }
+    .faq-icon { font-size: 1.1rem; color: var(--muted); transition: transform 0.3s; flex-shrink: 0; margin-left: 16px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--a1); }
+    .faq-a {
+      padding: 0 28px; max-height: 0; overflow: hidden;
+      font-size: 0.85rem; color: var(--muted); line-height: 1.75;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 28px 22px; }
+
+    /* ── CONTACT ────────────────────────────────────────────────── */
+    .kontakt-wrap {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; margin-top: 56px;
+    }
+    @media(max-width:860px) { .kontakt-wrap { grid-template-columns: 1fr; } }
+    .kontakt-info h3 { font-size: 1.3rem; margin-bottom: 16px; }
+    .kontakt-info p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; margin-bottom: 32px; }
+    .kontakt-features { display: flex; flex-direction: column; gap: 16px; }
+    .k-feat { display: flex; align-items: center; gap: 12px; font-size: 0.85rem; color: var(--muted); }
+    .k-feat-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(79,110,247,.1); border: 1px solid rgba(79,110,247,.2); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+    .form-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:500px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .form-label { font-size: 0.78rem; font-weight: 500; color: var(--muted); }
+    .form-input, .form-select, .form-textarea {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      color: var(--text); font-family: inherit; font-size: 0.88rem; padding: 12px 14px;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--a1); box-shadow: 0 0 0 3px rgba(79,110,247,.15); }
+    .form-select { -webkit-appearance: none; appearance: none; cursor: pointer; }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .form-checkbox { display: flex; align-items: flex-start; gap: 10px; font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+    .form-checkbox input { margin-top: 3px; accent-color: var(--a1); flex-shrink: 0; }
+    .form-checkbox a { color: var(--a1); text-decoration: underline; }
+    .form-submit { width: 100%; margin-top: 20px; }
+    .form-success { display: none; text-align: center; padding: 32px; }
+    .form-success-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .form-success h4 { font-size: 1.1rem; margin-bottom: 8px; }
+    .form-success p { font-size: 0.85rem; color: var(--muted); }
+
+    /* ── FOOTER ─────────────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 60px 0 40px; }
+    .footer-inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    @media(max-width:860px) { .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; } }
+    @media(max-width:480px) { .footer-inner { grid-template-columns: 1fr; } }
+    .footer-brand svg { height: 52px; width: auto; }
+    .footer-brand p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; margin-top: 16px; max-width: 260px; }
+    .footer-col h4 { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); margin-bottom: 16px; }
+    .footer-col a, .footer-col button.flink { display: block; font-size: 0.83rem; color: var(--muted); margin-bottom: 10px; transition: color 0.2s; background: none; border: none; text-align: left; padding: 0; cursor: pointer; font-family: inherit; }
+    .footer-col a:hover, .footer-col button.flink:hover { color: var(--text); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 0.78rem; color: var(--dim); }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a { font-size: 0.78rem; color: var(--dim); transition: color 0.2s; }
+    .footer-legal a:hover { color: var(--muted); }
+
+    /* ── COOKIE BANNER ──────────────────────────────────────────── */
+    #cookie {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      width: min(560px, calc(100vw - 48px));
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px 24px;
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+      z-index: 999; box-shadow: 0 20px 60px rgba(0,0,0,.5);
+      backdrop-filter: blur(20px);
+      transition: opacity 0.4s, transform 0.4s;
+    }
+    #cookie.hidden { opacity: 0; transform: translateX(-50%) translateY(20px); pointer-events: none; }
+    #cookie p { font-size: 0.8rem; color: var(--muted); flex: 1; line-height: 1.5; }
+    #cookie p a { color: var(--a1); }
+    .cookie-btns { display: flex; gap: 10px; flex-shrink: 0; }
+    .btn-cookie-deny { background: none; border: 1px solid var(--border); color: var(--muted); padding: 8px 16px; border-radius: 8px; font-size: 0.78rem; transition: border-color .2s; }
+    .btn-cookie-deny:hover { border-color: var(--border-h); }
+    .btn-cookie-accept { background: var(--grad); border: none; color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 0.78rem; font-weight: 500; }
+
+    /* ── SCROLL ANIMATIONS ──────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────── */
+    @media(max-width:768px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .nav-logo svg { height: 52px; }
+      .hero-visual-inner { grid-template-columns: 1fr; }
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.7rem; }
+      .section { padding: 80px 0; }
+    }
+
+    /* ── SECTION HEADER ─────────────────────────────────────────── */
+    .section-header { max-width: 600px; }
+    .section-header p { font-size: 1rem; color: var(--muted); line-height: 1.7; margin-top: 16px; }
+  </style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <svg id="Ebene_6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="18 56 125 45" style="height:64px;width:auto">
+          <defs>
+            <style>.cls-1{fill:none}.cls-2{fill:url(#grad-nav)}.cls-3{clip-path:url(#clippath)}</style>
+            <clipPath id="clippath"><path class="cls-1" d="M32.75,92.98h1.18c.6,0,.86.29.86.69,0,.3-.18.5-.44.58.38.08.6.32.6.66,0,.42-.28.72-.92.72h-1.28v-2.65ZM33.83,94.11c.36,0,.54-.16.54-.39s-.13-.4-.52-.4h-.69v.79h.66ZM33.98,95.31c.38,0,.54-.18.54-.44s-.21-.43-.57-.43h-.78v.88h.81ZM37.07,94.73c0,.41.25.62.76.62s.76-.22.76-.64v-1.75h.4v1.75c0,.64-.4.98-1.16.98s-1.16-.34-1.16-.97v-1.76h.42v1.76ZM40.84,92.98h.42v2.65h-.42v-2.65ZM44.96,95.29l-.05.34h-1.76v-2.65h.42v2.32h1.4ZM46.64,92.98h.96c.94,0,1.4.42,1.4,1.32s-.46,1.33-1.4,1.33h-.96v-2.65ZM47.62,95.29c.64,0,.96-.3.96-1s-.31-.99-.95-.99h-.57v1.98h.57ZM50.77,92.98h.42v2.65h-.42v-2.65ZM55.42,92.98v2.65h-.6l-1.37-2.28v2.28h-.38v-2.65h.59l1.38,2.29v-2.29h.38ZM59.6,94.36v1.14c-.34.12-.62.19-1.01.19-.84,0-1.4-.5-1.4-1.4s.59-1.39,1.42-1.39c.33,0,.57.05.87.15l.06.4c-.28-.11-.56-.2-.94-.2-.58,0-.99.32-.99,1.04s.4,1.08.98,1.08c.22,0,.38-.03.6-.09v-.92h.4ZM63.4,92.98h.96c.94,0,1.4.42,1.4,1.32s-.46,1.33-1.4,1.33h-.96v-2.65ZM64.38,95.29c.64,0,.96-.3.96-1s-.31-.99-.95-.99h-.57v1.98h.57ZM67.54,92.98h.42v2.65h-.42v-2.65ZM72.13,94.36v1.14c-.34.12-.62.19-1.01.19-.84,0-1.4-.5-1.4-1.4s.59-1.39,1.42-1.39c.33,0,.57.05.87.15l.06.4c-.28-.11-.56-.2-.94-.2-.58,0-.99.32-.99,1.04s.4,1.08.98,1.08c.22,0,.38-.03.6-.09v-.92h.4ZM73.92,92.98h.42v2.65h-.42v-2.65ZM77.32,93.31v2.32h-.41v-2.32h-.9l.05-.34h2.11l.05.34h-.9ZM81.21,95.03h-1.31l-.24.6h-.42l1.14-2.65h.42l1.11,2.65h-.44l-.24-.6ZM81.08,94.71l-.52-1.3-.53,1.3h1.06ZM85.33,95.29l-.05.34h-1.76v-2.65h.42v2.32h1.4ZM89.2,92.98l.64,2.23.64-2.23h.45l.62,2.23.64-2.23h.4l-.8,2.65h-.49l-.6-2.14-.62,2.14h-.48l-.81-2.65h.43ZM94.02,94.3c0-.86.54-1.4,1.3-1.4s1.3.54,1.3,1.4-.55,1.41-1.3,1.41-1.3-.54-1.3-1.41ZM96.21,94.3c0-.7-.38-1.06-.88-1.06s-.88.36-.88,1.06.37,1.07.88,1.07.88-.37.88-1.07ZM100.17,95.63l-.78-1.05h-.57v1.05h-.42v-2.65h1.15c.63,0,.95.3.95.79,0,.38-.24.66-.69.76l.86,1.1h-.5ZM99.47,94.25c.4,0,.62-.17.62-.48s-.2-.46-.59-.46h-.69v.94h.66ZM102.32,92.98h.42v2.65h-.42v-2.65ZM104.01,92.98h.51l-1.22,1.25,1.29,1.4h-.52l-1.25-1.38,1.2-1.27ZM106.57,94.28h1.22v.33h-1.22v1.02h-.41v-2.65h1.89l.05.34h-1.52v.97ZM109.53,94.3c0-.86.54-1.4,1.3-1.4s1.3.54,1.3,1.4-.55,1.41-1.3,1.41-1.3-.54-1.3-1.41ZM111.71,94.3c0-.7-.38-1.06-.88-1.06s-.88.36-.88,1.06.37,1.07.88,1.07.88-.37.88-1.07ZM115.67,95.63l-.78-1.05h-.57v1.05h-.42v-2.65h1.15c.63,0,.95.3.95.79,0,.38-.24.66-.69.76l.86,1.1h-.5ZM114.97,94.25c.4,0,.62-.17.62-.48s-.2-.46-.59-.46h-.69v.94h.66ZM119.05,92.9c.33,0,.57.06.78.15l.06.4c-.25-.12-.52-.2-.82-.2-.52,0-.95.32-.95,1.05s.4,1.07.94,1.07c.32,0,.59-.07.84-.19l-.06.35c-.24.12-.47.17-.81.17-.79,0-1.34-.5-1.34-1.4s.6-1.39,1.35-1.39ZM123.69,95.29l-.05.34h-1.94v-2.65h1.92l.05.34h-1.55v.79h1.18v.33h-1.18v.86h1.58ZM125.33,95.55l-.06-.4c.34.14.69.21,1,.21.45,0,.66-.14.66-.4s-.16-.37-.71-.51c-.68-.18-.93-.41-.93-.84s.35-.71,1.01-.71c.31,0,.58.04.91.14l.06.4c-.3-.12-.64-.2-.96-.2-.36,0-.59.12-.59.35s.14.35.68.5c.69.19.96.41.96.86s-.37.76-1.05.76c-.45,0-.76-.09-.98-.16ZM40.82,76.14c-.5-1.58-1.95-4.23-5.96-4.23h-5.39c-4.02,0-5.46,2.65-5.96,4.23-.18.57-.26,1.17-.26,1.78v8.93c0,.4.42.4.42.4h2.4c.46,0,.42-.41.42-.41v-8.95c0-3,3.53-3.03,3.53-3.03h4.3s3.53.03,3.53,3.03v8.95s-.03.41.42.41h2.4s.42,0,.42-.4v-8.93c0-.6-.07-1.2-.26-1.78ZM58.58,72.02h-6.7s-6,.01-6,5.54v4.26s.13,5.42,6.36,5.42h11.3s.4-.05.4-.53v-2.02s.02-.39-.4-.39h-11.46s-3.06.13-3.06-3.16h10.61s4.44-.34,4.44-3.86v-1.09s.14-4.17-5.49-4.17ZM61.12,76.83c0,1.39-2.35,1.54-2.35,1.54h-9.65v-1c0-2.23,2.01-2.54,2.95-2.54h6.44c2.56,0,2.61,1.58,2.61,1.58v.42ZM86.83,86.62l-6.97-6.88,7.12-7.05c.14-.25-.13-.26-.13-.26h-3.52c-.26,0-.4.15-.4.15l-5.16,5.1-5.16-5.1s-.15-.15-.4-.15h-3.52s-.26.02-.13.26l7.12,7.05-6.97,6.88c-.39.39-.06.63-.06.63h3.36c.28,0,.42-.13.42-.13l5.35-5.3,5.35,5.3s.14.13.42.13h3.36s.32-.24-.06-.63ZM104.04,71.91h-6.19c-4.02,0-5.46,2.65-5.96,4.23-.18.57-.26,1.17-.26,1.78v8.93c0,.4.42.4.42.4h2.4c.46,0,.42-.41.42-.41v-8.95c0-3,3.53-3.03,3.53-3.03h5.65s.44-.09.44-.55v-1.71s.03-.68-.45-.68ZM136.51,72.56c-.05-.08-.16-.15-.35-.15h-2.39s-.42,0-.42.4v14.03c0,.4.42.4.42.4h2.39c.2,0,.3-.07.36-.16.08-.12.07-.25.07-.25v-14.01s.01-.14-.08-.26ZM134.97,70.79c.99,0,1.79-.8,1.79-1.79s-.8-1.79-1.79-1.79-1.79.8-1.79,1.79.8,1.79,1.79,1.79ZM114.77,81.22c.84,0,1.52-.68,1.52-1.52s-.68-1.52-1.52-1.52-1.52.68-1.52,1.52.68,1.52,1.52,1.52ZM120.72,81.22c.84,0,1.52-.68,1.52-1.52s-.68-1.52-1.52-1.52-1.52.68-1.52,1.52.68,1.52,1.52,1.52ZM126.08,74.04s-.04-.05-.07-.07c-1.2-1.28-2.93-2.07-4.83-2.07h-2.55v-3.9c.76-.24,1.31-.96,1.31-1.81,0-1.05-.85-1.9-1.9-1.9s-1.91.85-1.91,1.9c0,.84.55,1.56,1.31,1.81v3.9h-3.33c-3.71,0-6.72,3.01-6.72,6.72v1.9c0,3.71,3.01,6.72,6.72,6.72h7.07c1.27,0,2.46-.35,3.47-.98v.51c0,.4.42.4.42.4h2.39c.46,0,.43-.41.43-.41v-8.36c-.05-1.68-.72-3.21-1.81-4.36ZM124.72,80.61c0,.25-.03.5-.07.74-.35,1.67-1.82,2.93-3.6,2.93h-6.77c-2.03,0-3.67-1.64-3.67-3.67v-2.09c0-2.03,1.64-3.67,3.67-3.67h6.77c1.78,0,3.25,1.26,3.6,2.93h0c.05.24.07.49.07.74v2.09Z"/></clipPath>
+            <linearGradient id="grad-nav" x1="20.87" y1="79.57" x2="141.13" y2="79.57" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4F6EF7"/><stop offset="1" stop-color="#9B5CF6"/></linearGradient>
+          </defs>
+          <g class="cls-3"><rect class="cls-2" x="20.87" y="59.57" width="120.26" height="40"/></g>
+        </svg>
+      </a>
+      <div class="nav-links">
+        <a href="#loesungen">Leistungen</a>
+        <a href="#rechner">Potenzial-Rechner</a>
+        <a href="#faq">FAQ</a>
+        <button class="nav-cta" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Kostenlos starten</button>
+      </div>
+      <button class="nav-burger" aria-label="Menu">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      DSGVO-konform · Made in Germany · KI-Automatisierung
+    </div>
+    <h1 class="hero-headline">
+      Schluss mit manueller Arbeit.<br>
+      <span class="grad-text">Mehr Zeit. Mehr Umsatz. Mehr Wachstum.</span>
+    </h1>
+    <p class="hero-sub">NEXRAI verbindet künstliche Intelligenz, Automatisierung und smarte Workflows zu digitalen Mitarbeitern, die rund um die Uhr für Ihr Unternehmen arbeiten – ohne Wartezeiten, ohne Fehlerquote, ohne Pause. Finden Sie in 60 Sekunden heraus, wie viel Potenzial in Ihrem Unternehmen steckt.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Kostenlose Analyse anfragen</button>
+      <button class="btn-secondary" onclick="document.getElementById('rechner').scrollIntoView({behavior:'smooth'})">Mein Potenzial berechnen →</button>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item"><span class="trust-icon">🔒</span> DSGVO-konform</div>
+      <div class="trust-item"><span class="trust-icon">🇩🇪</span> Made in Germany</div>
+      <div class="trust-item"><span class="trust-icon">⚡</span> Automatisierungsexperten</div>
+      <div class="trust-item"><span class="trust-icon">💬</span> Persönliche Beratung</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROBLEME -->
+<section id="probleme" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Das Problem</div>
+      <h2>Manuelle Prozesse kosten Sie täglich Geld und Zeit</h2>
+      <p>Während Ihre Mitarbeiter repetitive Aufgaben erledigen, verlieren Sie Wettbewerbsvorteile – Ihre Konkurrenz automatisiert bereits.</p>
+    </div>
+    <div class="problems-grid">
+      <div class="problem-card reveal reveal-d1"><div class="problem-icon">🔁</div><div class="problem-title">Zu viele manuelle Prozesse</div><div class="problem-desc">Dateneingaben, Weiterleitungen und Routineaufgaben binden täglich wertvolle Arbeitszeit Ihrer besten Mitarbeiter.</div></div>
+      <div class="problem-card reveal reveal-d2"><div class="problem-icon">💸</div><div class="problem-title">Hohe Personalkosten</div><div class="problem-desc">Wiederholende Tätigkeiten werden teuer bezahlt – dabei könnten KI-Agenten diese Aufgaben rund um die Uhr erledigen.</div></div>
+      <div class="problem-card reveal reveal-d1"><div class="problem-icon">🐌</div><div class="problem-title">Langsame Kundenkommunikation</div><div class="problem-desc">Kunden warten Stunden oder Tage auf Antworten. Automatisierte Chatbots antworten in Sekunden – 24/7, ohne Pausen.</div></div>
+      <div class="problem-card reveal reveal-d2"><div class="problem-icon">📋</div><div class="problem-title">Wiederkehrende Aufgaben</div><div class="problem-desc">Rechnungsverarbeitung, E-Mail-Routing, Terminplanung – alles Aufgaben, die KI schneller und fehlerfreier erledigt.</div></div>
+      <div class="problem-card reveal reveal-d1"><div class="problem-icon">🧩</div><div class="problem-title">Fehlende Systemintegration</div><div class="problem-desc">Ihre Tools sprechen nicht miteinander. Daten werden manuell übertragen – fehleranfällig, langsam, kostspielig.</div></div>
+      <div class="problem-card reveal reveal-d2"><div class="problem-icon">📉</div><div class="problem-title">Fehlende Digitalisierung</div><div class="problem-desc">Unternehmen ohne digitale Prozesse verlieren zunehmend an Wettbewerbsfähigkeit. Der Rückstand wächst täglich.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LÖSUNGEN -->
+<section id="loesungen" class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Unsere Leistungen</div>
+      <h2>KI-Lösungen, die echte Ergebnisse liefern</h2>
+      <p>Von der Strategie bis zur Implementierung – wir bauen maßgeschneiderte KI-Systeme, die messbare Wirkung erzielen.</p>
+    </div>
+    <div class="solutions-grid" style="margin-top:48px">
+      <div class="sol-card reveal reveal-d1">
+        <div class="sol-icon">⚡</div>
+        <div class="sol-title">KI-Automatisierungen</div>
+        <div class="sol-desc">Repetitive Prozesse werden durch intelligente Workflows automatisiert. Spart bis zu 80 % der bisherigen Arbeitszeit.</div>
+      </div>
+      <div class="sol-card reveal reveal-d2">
+        <div class="sol-icon">🤖</div>
+        <div class="sol-title">KI-Agenten</div>
+        <div class="sol-desc">Autonome KI-Systeme, die eigenständig Aufgaben übernehmen – von Recherche über Entscheidungen bis zur Ausführung.</div>
+      </div>
+      <div class="sol-card reveal reveal-d3">
+        <div class="sol-icon">💬</div>
+        <div class="sol-title">KI-Chatbots</div>
+        <div class="sol-desc">Intelligente Kundenservice-Bots, die 24/7 verfügbar sind und komplexe Anfragen verstehen und beantworten.</div>
+      </div>
+      <div class="sol-card reveal reveal-d1">
+        <div class="sol-icon">🌐</div>
+        <div class="sol-title">Webdesign & Entwicklung</div>
+        <div class="sol-desc">Premium-Websites und Web-Apps, die konvertieren. Technisch einwandfrei, SEO-optimiert, responsiv.</div>
+      </div>
+      <div class="sol-card reveal reveal-d2">
+        <div class="sol-icon">🔗</div>
+        <div class="sol-title">CRM & Systemintegration</div>
+        <div class="sol-desc">Wir verbinden Ihre bestehenden Tools und schaffen nahtlose Datenflüsse zwischen allen Systemen.</div>
+      </div>
+      <div class="sol-card reveal reveal-d3">
+        <div class="sol-icon">🔄</div>
+        <div class="sol-title">n8n Workflows</div>
+        <div class="sol-desc">Komplexe Automatisierungen mit n8n – selbst gehostet, DSGVO-konform, vollständig anpassbar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POTENZIAL-RECHNER (1:1 eingebettet) -->
+<section id="rechner" class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Potenzial-Rechner</div>
+      <h2>Was kann KI wirklich für Ihr Unternehmen leisten?</h2>
+      <p>Beantworten Sie 3 kurze Fragen und erhalten Sie eine ehrliche, konservative Einschätzung Ihres Einsparpotenzials – ganz ohne Marketing-Versprechen.</p>
+    </div>
+    <div class="rc-wrap reveal">
+      <!-- Progress -->
+      <div class="rc-progress-wrap">
+        <div class="rc-progress-step active" id="rps1"></div>
+        <div class="rc-progress-step" id="rps2"></div>
+        <div class="rc-progress-step" id="rps3"></div>
+        <div class="rc-progress-step" id="rps4"></div>
+        <div class="rc-progress-label" id="rProgressLabel">Schritt 1 / 4</div>
+      </div>
+
+      <div class="rc-card">
+
+        <!-- SCHRITT 1 -->
+        <div class="rc-step active" id="rstep1">
+          <div class="rc-step-lbl">Schritt 01</div>
+          <div class="rc-step-title">Ihr Unternehmen</div>
+          <div class="rc-step-sub">Die Branche beeinflusst, wie viele Prozesse tatsächlich automatisierbar sind.</div>
+          <div class="rc-range-wrap">
+            <div class="rc-range-header">
+              <label>Anzahl Mitarbeiter</label>
+              <div class="rc-range-val"><span id="rMaVal">5</span> <small>MA</small></div>
+            </div>
+            <input type="range" id="rMa" min="1" max="200" value="5" oninput="document.getElementById('rMaVal').textContent=this.value;rcUpdateFill(this)">
+          </div>
+          <label style="font-size:.83rem;color:var(--muted);display:block;margin-bottom:8px;">Branche</label>
+          <select class="rc-select" id="rBranche">
+            <option value="0.90">Agentur / Marketing</option>
+            <option value="1.00">E-Commerce / Onlinehandel</option>
+            <option value="0.55">Handwerk / Bau</option>
+            <option value="0.95">IT / Software / Tech</option>
+            <option value="0.85">Beratung / Consulting</option>
+            <option value="0.60">Gesundheit / Pflege</option>
+            <option value="0.80">Immobilien</option>
+            <option value="0.75">Sonstige</option>
+          </select>
+          <div class="rc-btn-row"><button class="rc-btn-next" onclick="rcGoStep(2)">Weiter →</button></div>
+        </div>
+
+        <!-- SCHRITT 2 -->
+        <div class="rc-step" id="rstep2">
+          <div class="rc-step-lbl">Schritt 02</div>
+          <div class="rc-step-title">Welche Prozesse laufen noch manuell?</div>
+          <div class="rc-step-sub">Jeder Bereich hat eine reale Automatisierungsrate (Quelle: McKinsey Global Institute 2024).</div>
+          <div class="rc-check-grid">
+            <label class="rc-check-item"><input type="checkbox" value="42" id="rc1"><div class="rc-check-box"><span>📧</span> E-Mails & Anfragen<span class="rc-check-rate">~42 %</span></div></label>
+            <label class="rc-check-item"><input type="checkbox" value="58" id="rc2"><div class="rc-check-box"><span>🧾</span> Rechnungen & Buchhaltung<span class="rc-check-rate">~58 %</span></div></label>
+            <label class="rc-check-item"><input type="checkbox" value="38" id="rc3"><div class="rc-check-box"><span>📊</span> Berichte & Auswertungen<span class="rc-check-rate">~38 %</span></div></label>
+            <label class="rc-check-item"><input type="checkbox" value="52" id="rc4"><div class="rc-check-box"><span>📁</span> Datenpflege & Ablage<span class="rc-check-rate">~52 %</span></div></label>
+            <label class="rc-check-item"><input type="checkbox" value="35" id="rc5"><div class="rc-check-box"><span>📱</span> Social Media & Content<span class="rc-check-rate">~35 %</span></div></label>
+            <label class="rc-check-item"><input type="checkbox" value="30" id="rc6"><div class="rc-check-box"><span>🤝</span> Kundenkommunikation<span class="rc-check-rate">~30 %</span></div></label>
+            <label class="rc-check-item"><input type="checkbox" value="48" id="rc7"><div class="rc-check-box"><span>📦</span> Bestellungen & Logistik<span class="rc-check-rate">~48 %</span></div></label>
+            <label class="rc-check-item"><input type="checkbox" value="50" id="rc8"><div class="rc-check-box"><span>📅</span> Terminplanung<span class="rc-check-rate">~50 %</span></div></label>
+          </div>
+          <div class="rc-hint">Die Prozentwerte zeigen, wie viel dieses Aufgabentyps laut Forschung automatisierbar ist – nicht 100%, da menschliche Entscheidungen weiterhin gebraucht werden.</div>
+          <div class="rc-btn-row">
+            <button class="rc-btn-back" onclick="rcGoStep(1)">← Zurück</button>
+            <button class="rc-btn-next" onclick="rcValidateStep2()">Weiter →</button>
+          </div>
+        </div>
+
+        <!-- SCHRITT 3 -->
+        <div class="rc-step" id="rstep3">
+          <div class="rc-step-lbl">Schritt 03</div>
+          <div class="rc-step-title">Zeit & Kosten</div>
+          <div class="rc-step-sub">Wie viele Stunden verbringt ein Mitarbeiter pro Woche mit den gewählten manuellen Aufgaben?</div>
+          <div class="rc-range-wrap">
+            <div class="rc-range-header">
+              <label>Stunden / Woche pro Mitarbeiter</label>
+              <div class="rc-range-val"><span id="rHVal">8</span> <small>Std/Wo</small></div>
+            </div>
+            <input type="range" id="rHours" min="1" max="40" value="8" oninput="document.getElementById('rHVal').textContent=this.value;rcUpdateFill(this)">
+          </div>
+          <label style="font-size:.83rem;color:var(--muted);display:block;margin-bottom:8px;">Durchschnittlicher Bruttostundenlohn (€/Std.)</label>
+          <div class="rc-input-wrap">
+            <span class="rc-input-prefix">€</span>
+            <input type="number" class="rc-input" id="rLohn" value="30" min="10" max="300" placeholder="30">
+          </div>
+          <div class="rc-hint">Orientierung: Büro ~25–35 €/Std. | Fachkräfte ~35–55 €/Std. | Führungskräfte ~60–100 €/Std.</div>
+          <div class="rc-btn-row">
+            <button class="rc-btn-back" onclick="rcGoStep(2)">← Zurück</button>
+            <button class="rc-btn-next" onclick="rcGoStep(4)">Ergebnis berechnen ✦</button>
+          </div>
+        </div>
+
+        <!-- SCHRITT 4: ERGEBNIS -->
+        <div class="rc-step" id="rstep4">
+          <div class="rc-step-lbl">Ihr Ergebnis</div>
+          <div class="rc-step-title">🎯 Ihr realistisches KI-Potenzial</div>
+
+          <div class="rc-method-box"><strong>Methodik:</strong> Wir nutzen die Automatisierungsraten des McKinsey Global Institute (2024), gewichtet nach Branche. <strong>Direkte Einsparung</strong> = Kosten, die wirklich wegfallen (~28 %). <strong>Produktivitätsgewinn</strong> = Wert der Kapazität für höherwertige Aufgaben (~45 %). Der Rest bleibt bewusst unbewertet.</div>
+
+          <div class="rc-scenario-tabs">
+            <div class="rc-sc-tab active" id="rtab-kons" onclick="rcShowScenario('kons')">
+              <div class="rc-sc-tab-label">📉 Konservativ</div>
+              <div class="rc-sc-tab-val" id="rtab-kons-val">…</div>
+            </div>
+            <div class="rc-sc-tab" id="rtab-real" onclick="rcShowScenario('real')">
+              <div class="rc-sc-tab-label">📈 Realistisch</div>
+              <div class="rc-sc-tab-val" id="rtab-real-val">…</div>
+            </div>
+          </div>
+
+          <div class="rc-result-grid">
+            <div class="rc-rc"><div class="rc-rc-icon">⏱️</div><div class="rc-rc-num" id="rcHours">–</div><div class="rc-rc-label">Std. gespart<br>pro Monat</div></div>
+            <div class="rc-rc"><div class="rc-rc-icon">💶</div><div class="rc-rc-num" id="rcMonth">–</div><div class="rc-rc-label">Gesamtwert<br>pro Monat</div></div>
+            <div class="rc-rc"><div class="rc-rc-icon">📈</div><div class="rc-rc-num" id="rcYear">–</div><div class="rc-rc-label">Gesamtwert<br>pro Jahr</div></div>
+          </div>
+
+          <div class="rc-breakdown">
+            <div class="rc-bd-title">Aufschlüsselung – Woher kommt der Wert?</div>
+            <div class="rc-bd-row">
+              <div class="rc-bd-left"><div class="rc-bd-dot d1"></div><div><div>Direkte Kostenersparnis</div><div class="rc-bd-sub">Überstunden, Freelancer, Fehlerkosten die entfallen (~28 %)</div></div></div>
+              <div class="rc-bd-right"><div class="rc-bd-val" id="rcDirect">–</div><div class="rc-bd-vsub">pro Monat</div></div>
+            </div>
+            <div class="rc-sep"></div>
+            <div class="rc-bd-row">
+              <div class="rc-bd-left"><div class="rc-bd-dot d2"></div><div><div>Produktivitätsgewinn</div><div class="rc-bd-sub">Wert der frei werdenden Kapazität für höherwertige Arbeit (~45 %)</div></div></div>
+              <div class="rc-bd-right"><div class="rc-bd-val" id="rcOpport">–</div><div class="rc-bd-vsub">pro Monat</div></div>
+            </div>
+            <div class="rc-sep"></div>
+            <div class="rc-bd-row">
+              <div class="rc-bd-left"><div class="rc-bd-dot d3"></div><div><div>Geschätzte Implementierungskosten</div><div class="rc-bd-sub">Einmalige Investition je nach Umfang und Anzahl der Prozesse</div></div></div>
+              <div class="rc-bd-right"><div class="rc-bd-val" id="rcInvest">–</div><div class="rc-bd-vsub">einmalig</div></div>
+            </div>
+          </div>
+
+          <div class="rc-roi-wrap">
+            <div class="rc-roi-label"><span>Break-Even-Zeitraum</span><span id="rcRoiMonths">–</span></div>
+            <div class="rc-bar-bg"><div class="rc-bar" id="rcBar"></div></div>
+            <div class="rc-roi-text" id="rcRoiText">–</div>
+          </div>
+
+          <div class="rc-disclaimer"><strong>⚠️ Wichtiger Hinweis:</strong> Diese Berechnung ist eine Schätzung auf Basis von Branchenstudien. Die tatsächlichen Ergebnisse hängen von Ihren spezifischen Prozessen und der Qualität der Umsetzung ab. In einem kostenlosen Gespräch erstellen wir eine präzisere Analyse für Ihr Unternehmen.</div>
+
+          <div class="rc-divider"></div>
+          <div class="rc-cta-label">Lassen Sie uns gemeinsam herausfinden, was konkret für Ihr Unternehmen möglich ist.</div>
+          <button class="rc-btn-cta" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Kostenloses Erstgespräch anfragen →</button>
+          <div class="rc-trust-row">
+            <div class="rc-trust-item">Unverbindlich & kostenlos</div>
+            <div class="rc-trust-item">Kein Verkaufsdruck</div>
+            <div class="rc-trust-item">Antwort in 24h</div>
+          </div>
+          <div style="margin-top:20px;text-align:center;">
+            <button class="rc-btn-back" onclick="rcGoStep(1)" style="font-size:.78rem;">↺ Neu berechnen</button>
+          </div>
+        </div>
+
+      </div><!-- /rc-card -->
+    </div><!-- /rc-wrap -->
+  </div>
+</section>
+
+<!-- DSGVO -->
+<section id="dsgvo" class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Datenschutz & Sicherheit</div>
+      <h2>DSGVO-konform. Ohne Kompromisse.</h2>
+      <p>Als deutsches Unternehmen ist Datenschutz für uns keine Pflicht – sondern ein Versprechen.</p>
+    </div>
+    <div class="dsgvo-grid">
+      <div class="dsgvo-card reveal reveal-d1"><div class="dsgvo-icon">🇩🇪</div><div><div class="dsgvo-title">Serverstandort Deutschland / EU</div><div class="dsgvo-desc">Alle Daten werden ausschließlich auf Servern in Deutschland oder der EU verarbeitet und gespeichert.</div></div></div>
+      <div class="dsgvo-card reveal reveal-d2"><div class="dsgvo-icon">🔐</div><div><div class="dsgvo-title">Ende-zu-Ende-Verschlüsselung</div><div class="dsgvo-desc">Alle Datenübertragungen sind TLS-verschlüsselt. Sensible Daten werden zusätzlich at-rest verschlüsselt.</div></div></div>
+      <div class="dsgvo-card reveal reveal-d1"><div class="dsgvo-icon">📋</div><div><div class="dsgvo-title">Datenschutz als Standard</div><div class="dsgvo-desc">Privacy by Design und Privacy by Default sind feste Bestandteile unserer Entwicklungsprozesse.</div></div></div>
+      <div class="dsgvo-card reveal reveal-d2"><div class="dsgvo-icon">✅</div><div><div class="dsgvo-title">Transparente Verarbeitung</div><div class="dsgvo-desc">Sie behalten jederzeit die volle Kontrolle und Übersicht über alle verarbeiteten Daten.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROZESS -->
+<section id="prozess" class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Unser Ablauf</div>
+      <h2>In 4 Schritten zur Automatisierung</h2>
+      <p>Von der ersten Analyse bis zum laufenden System – strukturiert, transparent, termingerecht.</p>
+    </div>
+    <div class="prozess-steps reveal">
+      <div class="p-step">
+        <div class="p-num">01</div>
+        <div class="p-title">Kostenlose Analyse</div>
+        <div class="p-desc">Wir analysieren Ihre Prozesse und identifizieren die größten Automatisierungspotenziale.</div>
+      </div>
+      <div class="p-step">
+        <div class="p-num">02</div>
+        <div class="p-title">Strategie & Konzept</div>
+        <div class="p-desc">Maßgeschneiderte Lösung, klarer Projektplan, transparente Kosten – bevor wir starten.</div>
+      </div>
+      <div class="p-step">
+        <div class="p-num">03</div>
+        <div class="p-title">Implementierung</div>
+        <div class="p-desc">Umsetzung durch unser Expertenteam mit regelmäßigen Updates und engem Austausch.</div>
+      </div>
+      <div class="p-step">
+        <div class="p-num">04</div>
+        <div class="p-title">Optimierung & Support</div>
+        <div class="p-desc">Kontinuierliche Verbesserung der Systeme und proaktiver Support nach dem Go-live.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">FAQ</div>
+      <h2>Häufige Fragen</h2>
+    </div>
+    <div class="faq-list reveal" style="max-width:720px;margin-top:48px">
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Ist KI DSGVO-konform?<span class="faq-icon">+</span></button><div class="faq-a">Ja – wenn sie richtig implementiert wird. Wir setzen ausschließlich auf Lösungen, die den Anforderungen der DSGVO entsprechen. Dazu gehören EU-Server, Datenschutzverträge (AVV), Verschlüsselung und datenschutzfreundliche Standardeinstellungen.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Wie lange dauert die Umsetzung?<span class="faq-icon">+</span></button><div class="faq-a">Je nach Umfang dauert ein Projekt 2 bis 8 Wochen. Ein einfacher KI-Chatbot kann bereits in 1-2 Wochen live gehen. Komplexe Multi-Agent-Systeme benötigen mehr Zeit – aber immer mit einem klaren Zeitplan.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Was kostet eine KI-Automatisierung?<span class="faq-icon">+</span></button><div class="faq-a">Die Investition hängt vom Umfang ab. Einfache Automatisierungen starten ab 1.500 €. Komplexe KI-Agenten-Systeme liegen zwischen 5.000 und 30.000 €. Der ROI ist in der Regel nach 3–6 Monaten erreicht.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Welche Systeme können angebunden werden?<span class="faq-icon">+</span></button><div class="faq-a">Nahezu alle gängigen Systeme: HubSpot, Salesforce, SAP, Shopify, WooCommerce, Slack, Microsoft Teams, Google Workspace, Outlook und viele mehr. Wenn eine API vorhanden ist, können wir es anbinden.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Brauchen wir eigene IT-Kenntnisse?<span class="faq-icon">+</span></button><div class="faq-a">Nein. Wir übernehmen die komplette technische Umsetzung. Nach der Implementierung schulen wir Ihr Team, damit Sie die Systeme eigenständig nutzen und einfache Anpassungen selbst vornehmen können.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Wie sieht der Support nach dem Projekt aus?<span class="faq-icon">+</span></button><div class="faq-a">Wir bieten flexible Support-Pakete an: von einer reinen Hotline bis hin zum vollständigen Managed Service, bei dem wir Ihre Systeme proaktiv überwachen und kontinuierlich optimieren.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Können wir mit einem kleinen Pilot-Projekt starten?<span class="faq-icon">+</span></button><div class="faq-a">Absolut – das empfehlen wir sogar. Ein klar abgegrenztes Pilotprojekt ermöglicht es, schnell Ergebnisse zu sehen, Vertrauen aufzubauen und das Potenzial vor einer größeren Investition zu validieren.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt" class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Kontakt</div>
+      <h2>Starten Sie jetzt – kostenlos</h2>
+    </div>
+    <div class="kontakt-wrap">
+      <div class="kontakt-info reveal">
+        <h3>Wir analysieren Ihr Potenzial – kostenlos und unverbindlich.</h3>
+        <p>In einem 30-minütigen Erstgespräch analysieren wir Ihre Prozesse, zeigen Ihnen konkrete Automatisierungsmöglichkeiten und berechnen Ihr persönliches Einsparpotenzial.</p>
+        <div class="kontakt-features">
+          <div class="k-feat"><div class="k-feat-icon">✓</div>Kostenlose Potenzialanalyse</div>
+          <div class="k-feat"><div class="k-feat-icon">✓</div>Antwort innerhalb von 24 Stunden</div>
+          <div class="k-feat"><div class="k-feat-icon">✓</div>Kein Risiko, keine Vorab-Kosten</div>
+          <div class="k-feat"><div class="k-feat-icon">✓</div>Persönliche Beratung auf Augenhöhe</div>
+          <div class="k-feat"><div class="k-feat-icon">✓</div>DSGVO-konform von Anfang an</div>
+        </div>
+      </div>
+      <div class="form-wrap reveal reveal-d1">
+        <div id="form-content">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Vorname *</label><input class="form-input" type="text" placeholder="Max" id="f-vorname"></div>
+            <div class="form-group"><label class="form-label">Nachname *</label><input class="form-input" type="text" placeholder="Mustermann" id="f-nachname"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Unternehmen *</label><input class="form-input" type="text" placeholder="Mustermann GmbH" id="f-firma"></div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">E-Mail *</label><input class="form-input" type="email" placeholder="max@firma.de" id="f-email"></div>
+            <div class="form-group"><label class="form-label">Telefon</label><input class="form-input" type="tel" placeholder="+49 123 456789" id="f-tel"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Mitarbeiteranzahl</label>
+              <select class="form-select" id="f-size">
+                <option value="">Bitte wählen</option>
+                <option>1–10</option><option>11–50</option><option>51–200</option><option>200+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ich interessiere mich für</label>
+              <select class="form-select" id="f-interest">
+                <option value="">Bitte wählen</option>
+                <option>KI-Automatisierung</option><option>KI-Chatbot</option><option>KI-Agent</option><option>Website</option><option>Sonstiges</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Ihre Nachricht</label><textarea class="form-textarea" placeholder="Beschreiben Sie kurz Ihre aktuelle Situation oder Herausforderung..." id="f-msg"></textarea></div>
+          <div class="form-group"><div class="form-checkbox"><input type="checkbox" id="f-dsgvo"><label for="f-dsgvo">Ich stimme der Verarbeitung meiner Daten gemäß der <a href="datenschutz.html">Datenschutzerklärung</a> zu. *</label></div></div>
+          <button class="btn-primary form-submit" onclick="submitForm()">Kostenlose Analyse anfragen →</button>
+        </div>
+        <div class="form-success" id="form-success">
+          <div class="form-success-icon">✅</div>
+          <h4>Anfrage gesendet!</h4>
+          <p>Vielen Dank. Wir melden uns innerhalb von 24 Stunden bei Ihnen mit einem Terminvorschlag für Ihre kostenlose Potenzialanalyse.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="18 56 125 45" style="height:52px;width:auto">
+          <defs><clipPath id="cp2"><path d="M32.75,92.98h1.18c.6,0,.86.29.86.69,0,.3-.18.5-.44.58.38.08.6.32.6.66,0,.42-.28.72-.92.72h-1.28v-2.65ZM33.83,94.11c.36,0,.54-.16.54-.39s-.13-.4-.52-.4h-.69v.79h.66ZM33.98,95.31c.38,0,.54-.18.54-.44s-.21-.43-.57-.43h-.78v.88h.81ZM37.07,94.73c0,.41.25.62.76.62s.76-.22.76-.64v-1.75h.4v1.75c0,.64-.4.98-1.16.98s-1.16-.34-1.16-.97v-1.76h.42v1.76ZM40.84,92.98h.42v2.65h-.42v-2.65ZM44.96,95.29l-.05.34h-1.76v-2.65h.42v2.32h1.4ZM46.64,92.98h.96c.94,0,1.4.42,1.4,1.32s-.46,1.33-1.4,1.33h-.96v-2.65ZM47.62,95.29c.64,0,.96-.3.96-1s-.31-.99-.95-.99h-.57v1.98h.57ZM50.77,92.98h.42v2.65h-.42v-2.65ZM55.42,92.98v2.65h-.6l-1.37-2.28v2.28h-.38v-2.65h.59l1.38,2.29v-2.29h.38ZM59.6,94.36v1.14c-.34.12-.62.19-1.01.19-.84,0-1.4-.5-1.4-1.4s.59-1.39,1.42-1.39c.33,0,.57.05.87.15l.06.4c-.28-.11-.56-.2-.94-.2-.58,0-.99.32-.99,1.04s.4,1.08.98,1.08c.22,0,.38-.03.6-.09v-.92h.4ZM63.4,92.98h.96c.94,0,1.4.42,1.4,1.32s-.46,1.33-1.4,1.33h-.96v-2.65ZM64.38,95.29c.64,0,.96-.3.96-1s-.31-.99-.95-.99h-.57v1.98h.57ZM67.54,92.98h.42v2.65h-.42v-2.65ZM72.13,94.36v1.14c-.34.12-.62.19-1.01.19-.84,0-1.4-.5-1.4-1.4s.59-1.39,1.42-1.39c.33,0,.57.05.87.15l.06.4c-.28-.11-.56-.2-.94-.2-.58,0-.99.32-.99,1.04s.4,1.08.98,1.08c.22,0,.38-.03.6-.09v-.92h.4ZM73.92,92.98h.42v2.65h-.42v-2.65ZM77.32,93.31v2.32h-.41v-2.32h-.9l.05-.34h2.11l.05.34h-.9ZM81.21,95.03h-1.31l-.24.6h-.42l1.14-2.65h.42l1.11,2.65h-.44l-.24-.6ZM81.08,94.71l-.52-1.3-.53,1.3h1.06ZM85.33,95.29l-.05.34h-1.76v-2.65h.42v2.32h1.4ZM89.2,92.98l.64,2.23.64-2.23h.45l.62,2.23.64-2.23h.4l-.8,2.65h-.49l-.6-2.14-.62,2.14h-.48l-.81-2.65h.43ZM94.02,94.3c0-.86.54-1.4,1.3-1.4s1.3.54,1.3,1.4-.55,1.41-1.3,1.41-1.3-.54-1.3-1.41ZM96.21,94.3c0-.7-.38-1.06-.88-1.06s-.88.36-.88,1.06.37,1.07.88,1.07.88-.37.88-1.07ZM100.17,95.63l-.78-1.05h-.57v1.05h-.42v-2.65h1.15c.63,0,.95.3.95.79,0,.38-.24.66-.69.76l.86,1.1h-.5ZM99.47,94.25c.4,0,.62-.17.62-.48s-.2-.46-.59-.46h-.69v.94h.66ZM102.32,92.98h.42v2.65h-.42v-2.65ZM104.01,92.98h.51l-1.22,1.25,1.29,1.4h-.52l-1.25-1.38,1.2-1.27ZM106.57,94.28h1.22v.33h-1.22v1.02h-.41v-2.65h1.89l.05.34h-1.52v.97ZM109.53,94.3c0-.86.54-1.4,1.3-1.4s1.3.54,1.3,1.4-.55,1.41-1.3,1.41-1.3-.54-1.3-1.41ZM111.71,94.3c0-.7-.38-1.06-.88-1.06s-.88.36-.88,1.06.37,1.07.88,1.07.88-.37.88-1.07ZM115.67,95.63l-.78-1.05h-.57v1.05h-.42v-2.65h1.15c.63,0,.95.3.95.79,0,.38-.24.66-.69.76l.86,1.1h-.5ZM114.97,94.25c.4,0,.62-.17.62-.48s-.2-.46-.59-.46h-.69v.94h.66ZM119.05,92.9c.33,0,.57.06.78.15l.06.4c-.25-.12-.52-.2-.82-.2-.52,0-.95.32-.95,1.05s.4,1.07.94,1.07c.32,0,.59-.07.84-.19l-.06.35c-.24.12-.47.17-.81.17-.79,0-1.34-.5-1.34-1.4s.6-1.39,1.35-1.39ZM123.69,95.29l-.05.34h-1.94v-2.65h1.92l.05.34h-1.55v.79h1.18v.33h-1.18v.86h1.58ZM125.33,95.55l-.06-.4c.34.14.69.21,1,.21.45,0,.66-.14.66-.4s-.16-.37-.71-.51c-.68-.18-.93-.41-.93-.84s.35-.71,1.01-.71c.31,0,.58.04.91.14l.06.4c-.3-.12-.64-.2-.96-.2-.36,0-.59.12-.59.35s.14.35.68.5c.69.19.96.41.96.86s-.37.76-1.05.76c-.45,0-.76-.09-.98-.16ZM40.82,76.14c-.5-1.58-1.95-4.23-5.96-4.23h-5.39c-4.02,0-5.46,2.65-5.96,4.23-.18.57-.26,1.17-.26,1.78v8.93c0,.4.42.4.42.4h2.4c.46,0,.42-.41.42-.41v-8.95c0-3,3.53-3.03,3.53-3.03h4.3s3.53.03,3.53,3.03v8.95s-.03.41.42.41h2.4s.42,0,.42-.4v-8.93c0-.6-.07-1.2-.26-1.78ZM58.58,72.02h-6.7s-6,.01-6,5.54v4.26s.13,5.42,6.36,5.42h11.3s.4-.05.4-.53v-2.02s.02-.39-.4-.39h-11.46s-3.06.13-3.06-3.16h10.61s4.44-.34,4.44-3.86v-1.09s.14-4.17-5.49-4.17ZM61.12,76.83c0,1.39-2.35,1.54-2.35,1.54h-9.65v-1c0-2.23,2.01-2.54,2.95-2.54h6.44c2.56,0,2.61,1.58,2.61,1.58v.42ZM86.83,86.62l-6.97-6.88,7.12-7.05c.14-.25-.13-.26-.13-.26h-3.52c-.26,0-.4.15-.4.15l-5.16,5.1-5.16-5.1s-.15-.15-.4-.15h-3.52s-.26.02-.13.26l7.12,7.05-6.97,6.88c-.39.39-.06.63-.06.63h3.36c.28,0,.42-.13.42-.13l5.35-5.3,5.35,5.3s.14.13.42.13h3.36s.32-.24-.06-.63ZM104.04,71.91h-6.19c-4.02,0-5.46,2.65-5.96,4.23-.18.57-.26,1.17-.26,1.78v8.93c0,.4.42.4.42.4h2.4c.46,0,.42-.41.42-.41v-8.95c0-3,3.53-3.03,3.53-3.03h5.65s.44-.09.44-.55v-1.71s.03-.68-.45-.68ZM136.51,72.56c-.05-.08-.16-.15-.35-.15h-2.39s-.42,0-.42.4v14.03c0,.4.42.4.42.4h2.39c.2,0,.3-.07.36-.16.08-.12.07-.25.07-.25v-14.01s.01-.14-.08-.26ZM134.97,70.79c.99,0,1.79-.8,1.79-1.79s-.8-1.79-1.79-1.79-1.79.8-1.79,1.79.8,1.79,1.79,1.79ZM114.77,81.22c.84,0,1.52-.68,1.52-1.52s-.68-1.52-1.52-1.52-1.52.68-1.52,1.52.68,1.52,1.52,1.52ZM120.72,81.22c.84,0,1.52-.68,1.52-1.52s-.68-1.52-1.52-1.52-1.52.68-1.52,1.52.68,1.52,1.52,1.52ZM126.08,74.04s-.04-.05-.07-.07c-1.2-1.28-2.93-2.07-4.83-2.07h-2.55v-3.9c.76-.24,1.31-.96,1.31-1.81,0-1.05-.85-1.9-1.9-1.9s-1.91.85-1.91,1.9c0,.84.55,1.56,1.31,1.81v3.9h-3.33c-3.71,0-6.72,3.01-6.72,6.72v1.9c0,3.71,3.01,6.72,6.72,6.72h7.07c1.27,0,2.46-.35,3.47-.98v.51c0,.4.42.4.42.4h2.39c.46,0,.43-.41.43-.41v-8.36c-.05-1.68-.72-3.21-1.81-4.36ZM124.72,80.61c0,.25-.03.5-.07.74-.35,1.67-1.82,2.93-3.6,2.93h-6.77c-2.03,0-3.67-1.64-3.67-3.67v-2.09c0-2.03,1.64-3.67,3.67-3.67h6.77c1.78,0,3.25,1.26,3.6,2.93h0c.05.24.07.49.07.74v2.09Z"/></clipPath>
+          <linearGradient id="grad-footer" x1="20.87" y1="79.57" x2="141.13" y2="79.57" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4F6EF7"/><stop offset="1" stop-color="#9B5CF6"/></linearGradient></defs>
+          <g style="clip-path:url(#cp2)"><rect fill="url(#grad-footer)" x="20.87" y="59.57" width="120.26" height="40"/></g>
+        </svg>
+        <p>Intelligente KI-Lösungen für Unternehmen, Selbstständige und Influencer. DSGVO-konform. Made in Germany.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <a href="#loesungen">KI-Automatisierung</a>
+        <a href="#loesungen">KI-Agenten</a>
+        <a href="#loesungen">KI-Chatbots</a>
+        <a href="#loesungen">Webdesign</a>
+        <a href="#loesungen">n8n Workflows</a>
+      </div>
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <a href="#hero">Über uns</a>
+        <a href="#prozess">Ablauf</a>
+        <a href="#faq">FAQ</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <button class="flink" onclick="document.getElementById('cookie').classList.remove('hidden')">Cookie-Einstellungen</button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 NEXRAI. Alle Rechte vorbehalten.</span>
+      <div class="footer-legal">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- COOKIE -->
+<div id="cookie" class="hidden">
+  <p>Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Mehr in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+  <div class="cookie-btns">
+    <button class="btn-cookie-deny" onclick="closeCookie()">Ablehnen</button>
+    <button class="btn-cookie-accept" onclick="closeCookie()">Akzeptieren</button>
+  </div>
+</div>
+
+<script>
+  // NAV scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // FAQ
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Cookie
+  function closeCookie() { document.getElementById('cookie').classList.add('hidden'); }
+  setTimeout(() => { document.getElementById('cookie').classList.remove('hidden'); }, 2000);
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => obs.observe(el));
+
+  // Count-up animation for hero metric
+  function animateCountUp(el) {
+    const target = parseInt(el.dataset.countup, 10);
+    const dur = 1400, start = performance.now();
+    function step(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target) + '%';
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const countEls = document.querySelectorAll('[data-countup]');
+  const countObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { animateCountUp(e.target); countObs.unobserve(e.target); } });
+  }, { threshold: 0.4 });
+  countEls.forEach(el => countObs.observe(el));
+
+  // Form submit
+  const N8N_WEBHOOK_URL = 'https://n8n.nexrai.de/webhook/nexrai-kontakt';
+
+  async function submitForm() {
+    const dsgvo = document.getElementById('f-dsgvo').checked;
+    const email = document.getElementById('f-email').value.trim();
+    const vorname = document.getElementById('f-vorname').value.trim();
+    if (!vorname || !email || !dsgvo) {
+      alert('Bitte füllen Sie alle Pflichtfelder aus und stimmen Sie der Datenschutzerklärung zu.');
+      return;
+    }
+
+    const payload = {
+      vorname: vorname,
+      nachname: document.getElementById('f-nachname').value.trim(),
+      firma: document.getElementById('f-firma').value.trim(),
+      email: email,
+      telefon: document.getElementById('f-tel').value.trim(),
+      mitarbeiterzahl: document.getElementById('f-size').value,
+      interesse: document.getElementById('f-interest').value,
+      nachricht: document.getElementById('f-msg').value.trim()
+    };
+
+    const submitBtn = document.querySelector('.form-submit');
+    const originalLabel = submitBtn.textContent;
+    submitBtn.textContent = 'Wird gesendet …';
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch(N8N_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('Webhook antwortete mit Status ' + res.status);
+      document.getElementById('form-content').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } catch (err) {
+      console.error('Fehler beim Senden des Formulars:', err);
+      alert('Es gab ein Problem beim Senden Ihrer Anfrage. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt eine E-Mail.');
+      submitBtn.textContent = originalLabel;
+      submitBtn.disabled = false;
+    }
+  }
+
+  // ── POTENZIALRECHNER ─────────────────────────────────────────
+  var rcTaskRates = {rc1:.42,rc2:.58,rc3:.38,rc4:.52,rc5:.35,rc6:.30,rc7:.48,rc8:.50};
+  var rcStored = {};
+
+  function rcGoStep(n){
+    document.querySelectorAll('.rc-step').forEach(function(s){s.classList.remove('active');});
+    document.getElementById('rstep'+n).classList.add('active');
+    for(var i=1;i<=4;i++){
+      var el=document.getElementById('rps'+i);
+      if(!el)continue;
+      el.classList.remove('active','done');
+      if(i<n)el.classList.add('done');
+      else if(i===n)el.classList.add('active');
+    }
+    document.getElementById('rProgressLabel').textContent='Schritt '+n+' / 4';
+    document.getElementById('rechner').scrollIntoView({behavior:'smooth',block:'start'});
+    if(n===4){rcCalculate();setTimeout(function(){rcShowScenario('kons');},120);}
+  }
+
+  function rcValidateStep2(){
+    var any=[].slice.call(document.querySelectorAll('.rc-check-item input')).some(function(c){return c.checked;});
+    if(!any){alert('Bitte wählen Sie mindestens einen Bereich aus.');return;}
+    rcGoStep(3);
+  }
+
+  function rcUpdateFill(el){
+    var pct=((el.value-el.min)/(el.max-el.min))*100;
+    el.style.background='linear-gradient(to right,#4F6EF7 '+pct+'%,rgba(255,255,255,0.07) '+pct+'%)';
+  }
+  setTimeout(function(){
+    document.querySelectorAll('#rechner input[type=range]').forEach(function(el){rcUpdateFill(el);});
+  },100);
+
+  function rcFmt(n){return n.toLocaleString('de-DE')+' €';}
+
+  function rcCalculate(){
+    var ma=parseInt(document.getElementById('rMa').value);
+    var branche=parseFloat(document.getElementById('rBranche').value);
+    var hrs=parseInt(document.getElementById('rHours').value);
+    var lohn=parseFloat(document.getElementById('rLohn').value)||30;
+    var checked=[].slice.call(document.querySelectorAll('.rc-check-item input:checked'));
+    if(!checked.length)return;
+    var avgRate=checked.reduce(function(s,el){return s+rcTaskRates[el.id];},0)/checked.length;
+    var totalHrsWeek=ma*hrs;
+    var rateKons=Math.min(avgRate*branche*0.70,0.42);
+    var rateReal=Math.min(avgRate*branche,0.58);
+    var savedMoKons=totalHrsWeek*rateKons*4.33;
+    var savedMoReal=totalHrsWeek*rateReal*4.33;
+    function vals(savedMo){
+      var direct=Math.round(savedMo*lohn*0.28);
+      var opport=Math.round(savedMo*lohn*0.45);
+      return {savedMo:Math.round(savedMo),direct:direct,opport:opport,total:direct+opport};
+    }
+    var implBase=ma<=3?2500:ma<=10?5000:ma<=30?10000:ma<=75?20000:35000;
+    var implCost=implBase+(checked.length*600);
+    var kons=vals(savedMoKons), real=vals(savedMoReal);
+    var beMo=kons.total>0?Math.ceil(implCost/kons.total):99;
+    rcStored={kons:kons,real:real,implCost:implCost,beMo:beMo};
+    document.getElementById('rtab-kons-val').textContent=rcFmt(kons.total)+'/Mo.';
+    document.getElementById('rtab-real-val').textContent=rcFmt(real.total)+'/Mo.';
+    document.getElementById('rcInvest').textContent=rcFmt(implCost);
+  }
+
+  function rcShowScenario(sc){
+    var d=rcStored;
+    if(!d||!d.kons)return;
+    var v=sc==='kons'?d.kons:d.real;
+    document.getElementById('rtab-kons').classList.toggle('active',sc==='kons');
+    document.getElementById('rtab-real').classList.toggle('active',sc==='real');
+    rcAnimNum('rcHours',v.savedMo,'','');
+    rcAnimNum('rcMonth',v.total,'','€');
+    rcAnimNum('rcYear',v.total*12,'','€');
+    document.getElementById('rcDirect').textContent=rcFmt(v.direct);
+    document.getElementById('rcOpport').textContent=rcFmt(v.opport);
+    var pct=Math.min((v.total/(v.total+d.implCost/12))*100,90);
+    setTimeout(function(){document.getElementById('rcBar').style.width=pct+'%';},200);
+    var be=d.beMo;
+    document.getElementById('rcRoiMonths').textContent=be<=36?'~'+be+' Monate':'> 36 Monate';
+    var txt;
+    if(be<=6)txt='Break-Even in <span>'+be+' Monaten</span> – sehr schnelle Amortisation';
+    else if(be<=18)txt='Break-Even in <span>~'+be+' Monaten</span> – solides Investment';
+    else if(be<=36)txt='Break-Even in <span>~'+be+' Monaten</span> – langfristig rentabel';
+    else txt='<span>Geringe Wirtschaftlichkeit</span> – Beratungsgespräch empfohlen';
+    document.getElementById('rcRoiText').innerHTML=txt;
+  }
+
+  function rcAnimNum(id,target,prefix,suffix){
+    var el=document.getElementById(id);
+    var dur=900,start=performance.now();
+    function step(now){
+      var p=Math.min((now-start)/dur,1);
+      var e=1-Math.pow(1-p,3);
+      var val=Math.round(e*target);
+      el.textContent=(prefix||'')+val.toLocaleString('de-DE')+(suffix?' '+suffix:'');
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  // ─────────────────────────────────────────────────────────────
+</script>
+</body>
+</html>
