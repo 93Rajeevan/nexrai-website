@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexrAI – KI-Potenzial Rechner</title>
+<style>
+  :root {
+    --bg:       #05070f;
+    --surface:  #0d1120;
+    --card:     #111827;
+    --border:   #1e2d4a;
+    --blue:     #2563eb;
+    --blue-lt:  #3b82f6;
+    --cyan:     #06b6d4;
+    --glow:     rgba(37,99,235,0.35);
+    --text:     #e2e8f0;
+    --muted:    #64748b;
+    --success:  #10b981;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    overflow-x: hidden;
+  }
+
+  /* ── Background grid ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(37,99,235,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,99,235,.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(37,99,235,.18) 0%, transparent 70%);
+    top: -200px; right: -200px;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ── Wrapper ── */
+  .wrapper {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 680px;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+    animation: fadeDown .6s ease both;
+  }
+  .logo {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 1.5rem; font-weight: 800;
+    letter-spacing: .04em;
+    margin-bottom: 20px;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .95rem;
+    box-shadow: 0 0 16px var(--glow);
+  }
+  .logo span { color: var(--cyan); }
+  .header h1 {
+    font-family: 'Oxanium', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .header h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--blue-lt), var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header p {
+    color: var(--muted); font-size: .95rem; line-height: 1.6;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(37,99,235,.12);
+    border: 1px solid rgba(37,99,235,.3);
+    color: var(--cyan);
+    font-size: .75rem; font-weight: 500;
+    padding: 4px 12px; border-radius: 99px;
+    margin-bottom: 16px;
+    letter-spacing: .05em;
+  }
+  .badge::before { content: '⏱'; }
+
+  /* ── Progress ── */
+  .progress-wrap {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 28px;
+    animation: fadeDown .6s .1s ease both;
+  }
+  .progress-step {
+    flex: 1; height: 3px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+    transition: background .4s;
+  }
+  .progress-step.done { background: var(--blue-lt); }
+  .progress-step.active {
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    box-shadow: 0 0 8px var(--glow);
+  }
+  .progress-label {
+    font-size: .75rem; color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ── Card ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px 40px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.5);
+    animation: fadeUp .5s ease both;
+  }
+  @media(max-width:560px){ .card { padding: 28px 20px; } }
+
+  /* ── Steps ── */
+  .step { display: none; }
+  .step.active { display: block; }
+
+  .step-label {
+    font-size: .7rem; font-weight: 600; letter-spacing: .12em;
+    color: var(--cyan); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .step-title {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 1.35rem; font-weight: 700;
+    margin-bottom: 8px; line-height: 1.3;
+  }
+  .step-sub { color: var(--muted); font-size: .88rem; margin-bottom: 28px; line-height: 1.5; }
+
+  /* ── Range Slider ── */
+  .range-wrap { margin-bottom: 24px; }
+  .range-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .range-header label { font-size: .88rem; color: var(--muted); }
+  .range-val {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--cyan);
+  }
+  .range-val small { font-size: .75rem; color: var(--muted); font-family: 'DM Sans', sans-serif; }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%; height: 4px;
+    background: var(--border);
+    border-radius: 99px; outline: none; cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--glow);
+    cursor: pointer;
+    transition: transform .15s;
+  }
+  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+  .range-track {
+    position: relative; width: 100%;
+    background: var(--border); height: 4px; border-radius: 99px; overflow: visible;
+    margin-bottom: 4px;
+  }
+  .range-fill {
+    position: absolute; left: 0; top: 0; height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    border-radius: 99px; pointer-events: none;
+  }
+
+  /* ── Checkbox Grid ── */
+  .check-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  @media(max-width:420px){ .check-grid { grid-template-columns: 1fr; } }
+
+  .check-item {
+    position: relative; cursor: pointer;
+  }
+  .check-item input { position: absolute; opacity: 0; width: 0; }
+  .check-box {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: .85rem;
+    transition: border-color .2s, background .2s, box-shadow .2s;
+    user-select: none;
+  }
+  .check-icon { font-size: 1.1rem; }
+  .check-item input:checked + .check-box {
+    border-color: var(--blue-lt);
+    background: rgba(37,99,235,.1);
+    box-shadow: 0 0 0 1px var(--blue-lt) inset;
+  }
+  .check-item input:checked + .check-box::after {
+    content: '✓';
+    margin-left: auto;
+    color: var(--cyan);
+    font-weight: 700;
+    font-size: .85rem;
+  }
+
+  /* ── Select ── */
+  select {
+    width: 100%;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: .9rem;
+    font-family: 'DM Sans', sans-serif;
+    padding: 14px 16px;
+    outline: none; cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    margin-bottom: 24px;
+    transition: border-color .2s;
+  }
+  select:focus { border-color: var(--blue-lt); }
+
+  /* ── Input field ── */
+  .input-wrap { position: relative; margin-bottom: 24px; }
+  .input-prefix {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--muted); font-size: .9rem; pointer-events: none;
+  }
+  input[type=number] {
+    width: 100%;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: 'Oxanium', sans-serif;
+    padding: 14px 16px 14px 30px;
+    outline: none;
+    transition: border-color .2s;
+    -moz-appearance: textfield;
+  }
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  input[type=number]:focus { border-color: var(--blue-lt); }
+
+  /* ── Email input ── */
+  input[type=email] {
+    width: 100%;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: .95rem;
+    font-family: 'DM Sans', sans-serif;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color .2s;
+    margin-bottom: 16px;
+  }
+  input[type=email]:focus { border-color: var(--blue-lt); }
+  input[type=email]::placeholder { color: var(--muted); }
+
+  /* ── Buttons ── */
+  .btn-row { display: flex; gap: 12px; margin-top: 8px; }
+  .btn-back {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: .9rem; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color .2s, color .2s;
+  }
+  .btn-back:hover { border-color: var(--blue-lt); color: var(--text); }
+  .btn-next {
+    flex: 1;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    border: none; border-radius: 12px;
+    color: #fff; font-size: .95rem; font-weight: 600;
+    font-family: 'Oxanium', sans-serif; letter-spacing: .05em;
+    padding: 14px 24px; cursor: pointer;
+    box-shadow: 0 4px 24px var(--glow);
+    transition: opacity .2s, transform .15s, box-shadow .2s;
+    position: relative; overflow: hidden;
+  }
+  .btn-next:hover { opacity: .92; transform: translateY(-1px); box-shadow: 0 8px 32px var(--glow); }
+  .btn-next:active { transform: translateY(0); }
+  .btn-next::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,.15));
+    pointer-events: none;
+  }
+
+  /* ── Result ── */
+  .result-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+    margin-bottom: 28px;
+  }
+  @media(max-width:480px){ .result-grid { grid-template-columns: 1fr 1fr; } }
+
+  .result-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 14px;
+    text-align: center;
+    position: relative; overflow: hidden;
+    animation: popIn .4s ease both;
+  }
+  .result-card:nth-child(1) { animation-delay: .05s; }
+  .result-card:nth-child(2) { animation-delay: .15s; }
+  .result-card:nth-child(3) { animation-delay: .25s; }
+  .result-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+  }
+  .result-icon { font-size: 1.4rem; margin-bottom: 6px; }
+  .result-num {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 1.5rem; font-weight: 800;
+    background: linear-gradient(90deg, var(--blue-lt), var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .result-label { font-size: .72rem; color: var(--muted); line-height: 1.3; }
+
+  .result-highlight {
+    background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(6,182,212,.08));
+    border: 1px solid rgba(37,99,235,.3);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 16px;
+    animation: popIn .5s .3s ease both;
+  }
+  .result-highlight-icon { font-size: 2rem; flex-shrink: 0; }
+  .result-highlight-text h3 {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 1.1rem; margin-bottom: 4px;
+  }
+  .result-highlight-text p { font-size: .85rem; color: var(--muted); line-height: 1.5; }
+
+  .divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+  .cta-label {
+    font-size: .8rem; color: var(--muted);
+    text-align: center; margin-bottom: 10px;
+  }
+  .btn-cta {
+    display: block; width: 100%;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    border: none; border-radius: 14px;
+    color: #fff; font-size: 1rem; font-weight: 700;
+    font-family: 'Oxanium', sans-serif; letter-spacing: .06em;
+    padding: 16px 24px; cursor: pointer;
+    box-shadow: 0 4px 30px var(--glow);
+    text-align: center; text-decoration: none;
+    transition: opacity .2s, transform .15s;
+    margin-bottom: 12px;
+  }
+  .btn-cta:hover { opacity: .9; transform: translateY(-2px); }
+
+  .trust-row {
+    display: flex; align-items: center; justify-content: center; gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 4px;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: .75rem; color: var(--muted);
+  }
+  .trust-item::before { content: '✓'; color: var(--success); font-weight: 700; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center; margin-top: 20px;
+    font-size: .75rem; color: #334155;
+    animation: fadeUp .5s .3s ease both;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(.92); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* ── Step transition ── */
+  .step.active { animation: fadeUp .35s ease both; }
+
+  /* ── Counter animation ── */
+  .counting { transition: all .5s ease; }
+
+  /* ── Glow accent bottom ── */
+  .glow-bottom {
+    position: fixed; bottom: -150px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, rgba(6,182,212,.1) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+</style>
+  <!-- Schriftarten lokal gehostet (DSGVO) -->
+  <link rel="stylesheet" href="fonts/fonts.css">
+</head>
+<body>
+
+<div class="glow-bottom"></div>
+
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <div class="logo-icon">⚡</div>
+      Nexr<span>AI</span>
+    </div>
+    <div class="badge">90-Sekunden Analyse</div>
+    <h1>Wie viel Potenzial<br>steckt in deinem <em>Unternehmen?</em></h1>
+    <p>Berechne kostenlos, wie viel Zeit &amp; Geld du mit KI-Automatisierung monatlich einsparst.</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-step active" id="ps1"></div>
+    <div class="progress-step" id="ps2"></div>
+    <div class="progress-step" id="ps3"></div>
+    <div class="progress-step" id="ps4"></div>
+    <div class="progress-label" id="progressLabel">Schritt 1 / 4</div>
+  </div>
+
+  <!-- Card -->
+  <div class="card">
+
+    <!-- Step 1: Mitarbeiter & Branche -->
+    <div class="step active" id="step1">
+      <div class="step-label">Schritt 01</div>
+      <div class="step-title">Dein Unternehmen</div>
+      <div class="step-sub">Damit wir dein Potenzial realistisch berechnen können.</div>
+
+      <div class="range-wrap">
+        <div class="range-header">
+          <label>Mitarbeiterzahl</label>
+          <div class="range-val"><span id="maVal">5</span> <small>MA</small></div>
+        </div>
+        <input type="range" id="ma" min="1" max="200" value="5"
+          oninput="document.getElementById('maVal').textContent=this.value; updateFill(this)">
+      </div>
+
+      <label style="font-size:.85rem;color:var(--muted);display:block;margin-bottom:8px;">Branche</label>
+      <select id="branche">
+        <option value="1.0">Agentur / Marketing</option>
+        <option value="1.1">E-Commerce / Onlinehandel</option>
+        <option value="0.9">Handwerk / Bau</option>
+        <option value="1.2">IT / Software</option>
+        <option value="1.0">Beratung / Consulting</option>
+        <option value="0.95">Gesundheit / Pflege</option>
+        <option value="1.05">Immobilien</option>
+        <option value="1.0">Sonstige</option>
+      </select>
+
+      <div class="btn-row">
+        <button class="btn-next" onclick="goStep(2)">Weiter →</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Manuelle Aufgaben -->
+    <div class="step" id="step2">
+      <div class="step-label">Schritt 02</div>
+      <div class="step-title">Manuelle Zeitfresser</div>
+      <div class="step-sub">Wähle alle Bereiche, in denen ihr noch manuell arbeitet.</div>
+
+      <div class="check-grid">
+        <label class="check-item">
+          <input type="checkbox" value="8" id="c1">
+          <div class="check-box"><span class="check-icon">📧</span> E-Mails &amp; Anfragen</div>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" value="6" id="c2">
+          <div class="check-box"><span class="check-icon">🧾</span> Rechnungen &amp; Buchhaltung</div>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" value="5" id="c3">
+          <div class="check-box"><span class="check-icon">📊</span> Berichte &amp; Auswertungen</div>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" value="7" id="c4">
+          <div class="check-box"><span class="check-icon">📁</span> Datenpflege &amp; Ablage</div>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" value="4" id="c5">
+          <div class="check-box"><span class="check-icon">📱</span> Social Media &amp; Content</div>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" value="5" id="c6">
+          <div class="check-box"><span class="check-icon">🤝</span> Kunden&shy;kommunikation</div>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" value="6" id="c7">
+          <div class="check-box"><span class="check-icon">📦</span> Bestellungen &amp; Logistik</div>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" value="4" id="c8">
+          <div class="check-box"><span class="check-icon">📅</span> Terminplanung</div>
+        </label>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(1)">← Zurück</button>
+        <button class="btn-next" onclick="goStep(3)">Weiter →</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Stunden & Lohn -->
+    <div class="step" id="step3">
+      <div class="step-label">Schritt 03</div>
+      <div class="step-title">Stunden &amp; Kosten</div>
+      <div class="step-sub">Wie viele Stunden pro Woche verbringt dein Team mit wiederholenden Aufgaben?</div>
+
+      <div class="range-wrap">
+        <div class="range-header">
+          <label>Wochenstunden für manuelle Arbeit</label>
+          <div class="range-val"><span id="hVal">20</span> <small>Std/Wo</small></div>
+        </div>
+        <input type="range" id="hours" min="2" max="80" value="20"
+          oninput="document.getElementById('hVal').textContent=this.value; updateFill(this)">
+      </div>
+
+      <label style="font-size:.85rem;color:var(--muted);display:block;margin-bottom:8px;">Durchschnittlicher Stundenlohn (€)</label>
+      <div class="input-wrap">
+        <span class="input-prefix">€</span>
+        <input type="number" id="lohn" value="35" min="10" max="500" placeholder="35">
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(2)">← Zurück</button>
+        <button class="btn-next" onclick="goStep(4)">Ergebnis berechnen ✦</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Result -->
+    <div class="step" id="step4">
+      <div class="step-label">Dein Ergebnis</div>
+      <div class="step-title">🎯 Dein KI-Potenzial</div>
+      <div class="step-sub">Basierend auf deinen Angaben – konservativ berechnet.</div>
+
+      <div class="result-grid">
+        <div class="result-card">
+          <div class="result-icon">⏰</div>
+          <div class="result-num" id="rHours">0</div>
+          <div class="result-label">Std. gespart<br>pro Monat</div>
+        </div>
+        <div class="result-card">
+          <div class="result-icon">💶</div>
+          <div class="result-num" id="rMonth">0</div>
+          <div class="result-label">Euro gespart<br>pro Monat</div>
+        </div>
+        <div class="result-card">
+          <div class="result-icon">📈</div>
+          <div class="result-num" id="rYear">0</div>
+          <div class="result-label">Euro gespart<br>pro Jahr</div>
+        </div>
+      </div>
+
+      <div class="result-highlight">
+        <div class="result-highlight-icon">🤖</div>
+        <div class="result-highlight-text">
+          <h3 id="rHighlight">Enormes Einsparpotenzial entdeckt!</h3>
+          <p id="rSub">Mit KI-Automatisierung könntest du bereits im ersten Quartal einen signifikanten ROI erzielen.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="cta-label">Kostenlose Erstberatung – wir zeigen dir genau, wie das für dein Unternehmen funktioniert.</div>
+
+      <a class="btn-cta" id="ctaBtn" href="mailto:info@nexrai.com?subject=KI-Potenzialrechner%20Anfrage&body=Hallo%20NexrAI-Team%2C%0A%0Aich%20habe%20den%20Potenzialrechner%20ausgef%C3%BCllt%20und%20m%C3%B6chte%20mehr%20erfahren.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen">
+        📩 Kostenloses Erstgespräch anfragen
+      </a>
+
+      <div class="trust-row">
+        <div class="trust-item">Kostenlos &amp; unverbindlich</div>
+        <div class="trust-item">Kein Spam</div>
+        <div class="trust-item">Antwort in 24h</div>
+      </div>
+
+      <div style="margin-top:20px;text-align:center;">
+        <button class="btn-back" onclick="goStep(1)" style="font-size:.8rem;">↺ Neu berechnen</button>
+      </div>
+    </div>
+
+  </div><!-- /card -->
+
+  <div class="footer">© 2025 NexrAI · Alle Angaben sind Schätzwerte auf Basis branchenüblicher Automatisierungsquoten.</div>
+</div>
+
+<script>
+  // ── Progress & Steps ──
+  const totalSteps = 4;
+
+  function goStep(n) {
+    // Validate step 2: at least one checkbox
+    if (n === 3) {
+      const anyChecked = [...document.querySelectorAll('.check-item input')].some(c => c.checked);
+      if (!anyChecked) {
+        alert('Bitte wähle mindestens einen Bereich aus.');
+        return;
+      }
+    }
+    // Calculate on step 4
+    if (n === 4) calculate();
+
+    // Hide all
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step' + n).classList.add('active');
+
+    // Progress
+    for (let i = 1; i <= totalSteps; i++) {
+      const el = document.getElementById('ps' + i);
+      if (!el) continue;
+      el.classList.remove('active','done');
+      if (i < n) el.classList.add('done');
+      else if (i === n) el.classList.add('active');
+    }
+    document.getElementById('progressLabel').textContent = `Schritt ${n} / ${totalSteps}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Fill slider track ──
+  function updateFill(el) {
+    const pct = ((el.value - el.min) / (el.max - el.min)) * 100;
+    el.style.background = `linear-gradient(to right, #2563eb ${pct}%, #1e2d4a ${pct}%)`;
+  }
+
+  // Init sliders
+  document.querySelectorAll('input[type=range]').forEach(el => updateFill(el));
+
+  // ── Calculate ──
+  function calculate() {
+    const ma      = parseInt(document.getElementById('ma').value);
+    const branche = parseFloat(document.getElementById('branche').value);
+    const hours   = parseInt(document.getElementById('hours').value);
+    const lohn    = parseFloat(document.getElementById('lohn').value) || 35;
+
+    // Task multiplier from checkboxes
+    const checks = document.querySelectorAll('.check-item input:checked');
+    const taskBonus = Math.min(checks.length * 0.05, 0.3); // max +30%
+
+    // Automation rate: 65–75% of manual hours can be automated
+    const autoRate = (0.65 + taskBonus) * branche;
+
+    const savedHoursWeek  = hours * autoRate;
+    const savedHoursMonth = Math.round(savedHoursWeek * 4.3);
+    const savedMonth      = Math.round(savedHoursMonth * lohn);
+    const savedYear       = savedMonth * 12;
+
+    // Animate numbers
+    animateNum('rHours', savedHoursMonth, '', 'Std.');
+    animateNum('rMonth', savedMonth, '€', '');
+    animateNum('rYear',  savedYear,  '€', '');
+
+    // Dynamic message
+    let highlight, sub;
+    if (savedYear >= 50000) {
+      highlight = `🚀 ${formatNum(savedYear)} € Einsparpotenzial pro Jahr!`;
+      sub = `Mit ${ma} Mitarbeitern und gezielter KI-Automatisierung erreichst du einen ROI schon im ersten Monat.`;
+    } else if (savedYear >= 15000) {
+      highlight = `💡 Starkes Potenzial: ${formatNum(savedYear)} € / Jahr`;
+      sub = `Das sind ${savedHoursMonth} Stunden pro Monat, die dein Team für wichtigere Aufgaben nutzen kann.`;
+    } else {
+      highlight = `✅ ${formatNum(savedYear)} € Einsparpotenzial erkannt`;
+      sub = `Auch bei kleinen Teams lohnt sich Automatisierung – und das Potenzial wächst mit deinem Unternehmen.`;
+    }
+
+    document.getElementById('rHighlight').textContent = highlight;
+    document.getElementById('rSub').textContent = sub;
+  }
+
+  function formatNum(n) {
+    return n.toLocaleString('de-DE');
+  }
+
+  function animateNum(id, target, prefix, suffix) {
+    const el = document.getElementById(id);
+    let start = 0;
+    const dur = 900;
+    const startTime = performance.now();
+    function step(now) {
+      const progress = Math.min((now - startTime) / dur, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const val = Math.round(eased * target);
+      el.textContent = (prefix || '') + formatNum(val) + (suffix ? ' ' + suffix : '');
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+</script>
+</body>
+</html>
