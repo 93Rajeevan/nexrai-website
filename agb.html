@@ -3,82 +3,303 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AGB – NEXRAI</title>
+<meta name="robots" content="noindex, follow"/>
+<title>Allgemeine Geschäftsbedingungen – NEXRAI</title>
+<!-- Schriftarten lokal gehostet, kein Aufruf externer Server (DSGVO) -->
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
-  :root{
-    --bg:#050508;--card:#0f0f1a;--border:rgba(255,255,255,.07);
-    --a1:#4F6EF7;--a2:#9B5CF6;--text:#EEEDF8;--muted:#9998b0;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.8}
-  .wrap{max-width:740px;margin:0 auto;padding:100px 24px 100px}
-  a.back{color:var(--a1);font-size:.85rem;display:inline-block;margin-bottom:48px;text-decoration:none;opacity:.85}
-  a.back:hover{opacity:1}
-  h1{font-size:2rem;font-weight:700;margin-bottom:12px;letter-spacing:-.02em}
-  .subtitle{color:var(--muted);font-size:.9rem;margin-bottom:48px}
-  section{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--border)}
-  section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-  h2{font-size:1.1rem;font-weight:600;margin-bottom:14px;color:var(--text)}
-  p{color:var(--muted);font-size:.92rem;margin-bottom:10px}
-  ul{color:var(--muted);font-size:.92rem;padding-left:20px;margin-bottom:10px}
-  li{margin-bottom:5px}
-  a{color:var(--a1);text-decoration:none}
-  a:hover{text-decoration:underline}
-  .ph,.placeholder{color:var(--a1);font-style:italic}
-  .info{background:rgba(79,110,247,.07);border:1px solid rgba(79,110,247,.2);border-radius:10px;padding:14px 18px;margin:14px 0;font-size:.88rem;color:#a5b4fc}
-  .stand{color:var(--muted);font-size:.82rem;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
+/* ═══ TOKENS — identisch zu index.html ════════════════════ */
+:root{
+  --bg:#07090B;
+  --bg-2:#0B0E11;
+  --surface:#11161B;
+  --surface-2:#161C22;
+  --ink:#F1F3F4;
+  --muted:#8B9296;
+  --dim:#5A6266;
+  --accent:#7FB1D4;
+  --accent-2:#A8CBE4;
+  --accent-deep:#4C7FA6;
+  --accent-soft:rgba(127,177,212,0.32);
+  --accent-glow:rgba(88,142,181,0.20);
+  --accent-tint:rgba(127,177,212,0.10);
+  --line:rgba(255,255,255,0.09);
+  --line-strong:rgba(255,255,255,0.18);
+  --radius:4px;
+}
+html[data-theme="light"]{
+  --bg:#F4F6F7;
+  --bg-2:#EDF0F2;
+  --surface:#FFFFFF;
+  --surface-2:#F7F9FA;
+  --ink:#101F2A;
+  --muted:#5B6A72;
+  --dim:#8A979E;
+  --accent:#2E6C93;
+  --accent-2:#1F5273;
+  --accent-deep:#173F59;
+  --accent-soft:rgba(46,108,147,0.26);
+  --accent-glow:rgba(46,108,147,0.12);
+  --accent-tint:rgba(46,108,147,0.07);
+  --line:rgba(16,31,42,0.11);
+  --line-strong:rgba(16,31,42,0.22);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;line-height:1.75;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  transition:background .5s ease,color .5s ease;
+}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;font-family:inherit;color:inherit;}
+
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-0.01em;line-height:1.1;}
+
+/* ═══ NAV ══════════════════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;
+  border-bottom:1px solid transparent;
+  transition:background .4s ease,border-color .4s ease,padding .4s ease;
+}
+#nav.scrolled{
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(14px);
+  border-bottom-color:var(--line);padding:11px 0;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.nav-logo svg{height:46px;width:auto;display:block;}
+.nav-right{display:flex;align-items:center;gap:22px;}
+.nav-back{
+  font-size:.78rem;letter-spacing:.04em;color:var(--muted);
+  display:inline-flex;align-items:center;gap:9px;
+  transition:color .25s ease;
+}
+.nav-back:hover{color:var(--accent);}
+.theme-toggle{
+  display:flex;align-items:center;border:1px solid var(--line-strong);
+  border-radius:999px;padding:3px;background:transparent;
+}
+.theme-toggle span{
+  font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 13px;border-radius:999px;color:var(--muted);
+  transition:background .3s ease,color .3s ease;user-select:none;
+}
+.theme-toggle span.active{background:var(--ink);color:var(--bg);}
+
+/* ═══ LAYOUT ═══════════════════════════════════════════════ */
+.container{max-width:860px;margin:0 auto;padding:0 40px;position:relative;z-index:2;}
+.page-head{padding:170px 0 56px;border-bottom:1px solid var(--line-strong);}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.68rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:22px;
+}
+.eyebrow::before{content:'';width:26px;height:1px;background:var(--accent);opacity:.7;}
+h1{font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:18px;}
+.subtitle{color:var(--muted);font-size:.98rem;max-width:58ch;}
+
+main{padding:0 0 110px;}
+section{padding:44px 0;border-bottom:1px solid var(--line);}
+section:last-of-type{border-bottom:none;}
+h2{font-size:1.38rem;margin-bottom:18px;}
+h3{font-size:1.02rem;font-family:'Inter',sans-serif;font-weight:600;margin:22px 0 10px;}
+p{color:var(--muted);font-size:.95rem;margin-bottom:12px;}
+p:last-child{margin-bottom:0;}
+strong{color:var(--ink);font-weight:600;}
+main a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+main a:hover{color:var(--accent-2);}
+ul,ol{color:var(--muted);font-size:.95rem;margin:0 0 12px 20px;}
+li{margin-bottom:7px;}
+li::marker{color:var(--accent);}
+
+/* Inhaltsverzeichnis */
+.toc{
+  background:var(--surface);border:1px solid var(--line);
+  padding:28px 32px;margin:44px 0 0;border-radius:var(--radius);
+}
+.toc-title{
+  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:18px;
+}
+.toc ol{margin:0 0 0 18px;font-size:.9rem;}
+.toc li{margin-bottom:9px;}
+.toc a{color:var(--muted);text-decoration:none;transition:color .25s ease;}
+.toc a:hover{color:var(--accent);}
+
+/* Hinweisbox — wie .flow-disclosure auf der Startseite */
+.info{
+  margin:18px 0;padding:18px 22px;
+  border-left:2px solid var(--accent);background:var(--accent-tint);
+  font-size:.88rem;color:var(--muted);line-height:1.7;border-radius:0 var(--radius) var(--radius) 0;
+}
+.info strong{color:var(--accent);font-weight:500;}
+
+/* Noch auszufüllende Angaben */
+.ph{
+  color:var(--accent);font-style:normal;
+  background:var(--accent-tint);padding:1px 7px;border-radius:3px;
+  font-size:.92em;
+}
+
+.stand{
+  margin-top:52px;padding-top:26px;border-top:1px solid var(--line);
+  font-size:.8rem;color:var(--dim);
+}
+
+/* ═══ FOOTER ═══════════════════════════════════════════════ */
+footer{border-top:1px solid var(--line);padding:56px 0 30px;background:var(--bg-2);}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;}
+.footer-brand svg{height:40px;width:auto;}
+.footer-tag{
+  margin-top:12px;font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dim);
+}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap;}
+.footer-links a{font-size:.82rem;color:var(--muted);transition:color .25s ease;padding:6px 0;}
+.footer-links a:hover{color:var(--accent);}
+.footer-bottom{
+  margin-top:34px;padding-top:22px;border-top:1px solid var(--line);
+  font-size:.78rem;color:var(--dim);
+}
+
+/* ═══ RESPONSIVE ═══════════════════════════════════════════ */
+@media (max-width:720px){
+  .container{padding:0 22px;}
+  .page-head{padding:132px 0 40px;}
+  .nav-logo svg{height:38px;}
+  .nav-right{gap:14px;}
+  .nav-back span{display:none;}
+  section{padding:34px 0;}
+  h2{font-size:1.2rem;}
+  .toc{padding:22px 20px;}
+  .footer-inner{flex-direction:column;align-items:flex-start;gap:22px;}
+  .footer-links{gap:16px;}
+  .footer-links a{padding:9px 0;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{transition:none!important;}
+}
 </style>
-  <!-- Schriftarten lokal gehostet (DSGVO) -->
-  <link rel="stylesheet" href="fonts/fonts.css">
 </head>
 <body>
-<div class="wrap">
-  <a class="back" href="index.html">← Zurück zur Startseite</a>
-  <h1>Allgemeine Geschäftsbedingungen</h1>
-  <p class="subtitle">Stand: August 2026</p>
 
-  
-  <section>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="nexrai-clip"><path d="M32.75,92.98h1.18c.6,0,.86.29.86.69,0,.3-.18.5-.44.58.38.08.6.32.6.66,0,.42-.28.72-.92.72h-1.28v-2.65ZM33.83,94.11c.36,0,.54-.16.54-.39s-.13-.4-.52-.4h-.69v.79h.66ZM33.98,95.31c.38,0,.54-.18.54-.44s-.21-.43-.57-.43h-.78v.88h.81ZM37.07,94.73c0,.41.25.62.76.62s.76-.22.76-.64v-1.75h.4v1.75c0,.64-.4.98-1.16.98s-1.16-.34-1.16-.97v-1.76h.42v1.76ZM40.84,92.98h.42v2.65h-.42v-2.65ZM44.96,95.29l-.05.34h-1.76v-2.65h.42v2.32h1.4ZM46.64,92.98h.96c.94,0,1.4.42,1.4,1.32s-.46,1.33-1.4,1.33h-.96v-2.65ZM47.62,95.29c.64,0,.96-.3.96-1s-.31-.99-.95-.99h-.57v1.98h.57ZM50.77,92.98h.42v2.65h-.42v-2.65ZM55.42,92.98v2.65h-.6l-1.37-2.28v2.28h-.38v-2.65h.59l1.38,2.29v-2.29h.38ZM59.6,94.36v1.14c-.34.12-.62.19-1.01.19-.84,0-1.4-.5-1.4-1.4s.59-1.39,1.42-1.39c.33,0,.57.05.87.15l.06.4c-.28-.11-.56-.2-.94-.2-.58,0-.99.32-.99,1.04s.4,1.08.98,1.08c.22,0,.38-.03.6-.09v-.92h.4ZM63.4,92.98h.96c.94,0,1.4.42,1.4,1.32s-.46,1.33-1.4,1.33h-.96v-2.65ZM64.38,95.29c.64,0,.96-.3.96-1s-.31-.99-.95-.99h-.57v1.98h.57ZM67.54,92.98h.42v2.65h-.42v-2.65ZM72.13,94.36v1.14c-.34.12-.62.19-1.01.19-.84,0-1.4-.5-1.4-1.4s.59-1.39,1.42-1.39c.33,0,.57.05.87.15l.06.4c-.28-.11-.56-.2-.94-.2-.58,0-.99.32-.99,1.04s.4,1.08.98,1.08c.22,0,.38-.03.6-.09v-.92h.4ZM73.92,92.98h.42v2.65h-.42v-2.65ZM77.32,93.31v2.32h-.41v-2.32h-.9l.05-.34h2.11l.05.34h-.9ZM81.21,95.03h-1.31l-.24.6h-.42l1.14-2.65h.42l1.11,2.65h-.44l-.24-.6ZM81.08,94.71l-.52-1.3-.53,1.3h1.06ZM85.33,95.29l-.05.34h-1.76v-2.65h.42v2.32h1.4ZM89.2,92.98l.64,2.23.64-2.23h.45l.62,2.23.64-2.23h.4l-.8,2.65h-.49l-.6-2.14-.62,2.14h-.48l-.81-2.65h.43ZM94.02,94.3c0-.86.54-1.4,1.3-1.4s1.3.54,1.3,1.4-.55,1.41-1.3,1.41-1.3-.54-1.3-1.41ZM96.21,94.3c0-.7-.38-1.06-.88-1.06s-.88.36-.88,1.06.37,1.07.88,1.07.88-.37.88-1.07ZM100.17,95.63l-.78-1.05h-.57v1.05h-.42v-2.65h1.15c.63,0,.95.3.95.79,0,.38-.24.66-.69.76l.86,1.1h-.5ZM99.47,94.25c.4,0,.62-.17.62-.48s-.2-.46-.59-.46h-.69v.94h.66ZM102.32,92.98h.42v2.65h-.42v-2.65ZM104.01,92.98h.51l-1.22,1.25,1.29,1.4h-.52l-1.25-1.38,1.2-1.27ZM106.57,94.28h1.22v.33h-1.22v1.02h-.41v-2.65h1.89l.05.34h-1.52v.97ZM109.53,94.3c0-.86.54-1.4,1.3-1.4s1.3.54,1.3,1.4-.55,1.41-1.3,1.41-1.3-.54-1.3-1.41ZM111.71,94.3c0-.7-.38-1.06-.88-1.06s-.88.36-.88,1.06.37,1.07.88,1.07.88-.37.88-1.07ZM115.67,95.63l-.78-1.05h-.57v1.05h-.42v-2.65h1.15c.63,0,.95.3.95.79,0,.38-.24.66-.69.76l.86,1.1h-.5ZM114.97,94.25c.4,0,.62-.17.62-.48s-.2-.46-.59-.46h-.69v.94h.66ZM119.05,92.9c.33,0,.57.06.78.15l.06.4c-.25-.12-.52-.2-.82-.2-.52,0-.95.32-.95,1.05s.4,1.07.94,1.07c.32,0,.59-.07.84-.19l-.06.35c-.24.12-.47.17-.81.17-.79,0-1.34-.5-1.34-1.4s.6-1.39,1.35-1.39ZM123.69,95.29l-.05.34h-1.94v-2.65h1.92l.05.34h-1.55v.79h1.18v.33h-1.18v.86h1.58ZM125.33,95.55l-.06-.4c.34.14.69.21,1,.21.45,0,.66-.14.66-.4s-.16-.37-.71-.51c-.68-.18-.93-.41-.93-.84s.35-.71,1.01-.71c.31,0,.58.04.91.14l.06.4c-.3-.12-.64-.2-.96-.2-.36,0-.59.12-.59.35s.14.35.68.5c.69.19.96.41.96.86s-.37.76-1.05.76c-.45,0-.76-.09-.98-.16ZM40.82,76.14c-.5-1.58-1.95-4.23-5.96-4.23h-5.39c-4.02,0-5.46,2.65-5.96,4.23-.18.57-.26,1.17-.26,1.78v8.93c0,.4.42.4.42.4h2.4c.46,0,.42-.41.42-.41v-8.95c0-3,3.53-3.03,3.53-3.03h4.3s3.53.03,3.53,3.03v8.95s-.03.41.42.41h2.4s.42,0,.42-.4v-8.93c0-.6-.07-1.2-.26-1.78ZM58.58,72.02h-6.7s-6,.01-6,5.54v4.26s.13,5.42,6.36,5.42h11.3s.4-.05.4-.53v-2.02s.02-.39-.4-.39h-11.46s-3.06.13-3.06-3.16h10.61s4.44-.34,4.44-3.86v-1.09s.14-4.17-5.49-4.17ZM61.12,76.83c0,1.39-2.35,1.54-2.35,1.54h-9.65v-1c0-2.23,2.01-2.54,2.95-2.54h6.44c2.56,0,2.61,1.58,2.61,1.58v.42ZM86.83,86.62l-6.97-6.88,7.12-7.05c.14-.25-.13-.26-.13-.26h-3.52c-.26,0-.4.15-.4.15l-5.16,5.1-5.16-5.1s-.15-.15-.4-.15h-3.52s-.26.02-.13.26l7.12,7.05-6.97,6.88c-.39.39-.06.63-.06.63h3.36c.28,0,.42-.13.42-.13l5.35-5.3,5.35,5.3s.14.13.42.13h3.36s.32-.24-.06-.63ZM104.04,71.91h-6.19c-4.02,0-5.46,2.65-5.96,4.23-.18.57-.26,1.17-.26,1.78v8.93c0,.4.42.4.42.4h2.4c.46,0,.42-.41.42-.41v-8.95c0-3,3.53-3.03,3.53-3.03h5.65s.44-.09.44-.55v-1.71s.03-.68-.45-.68ZM136.51,72.56c-.05-.08-.16-.15-.35-.15h-2.39s-.42,0-.42.4v14.03c0,.4.42.4.42.4h2.39c.2,0,.3-.07.36-.16.08-.12.07-.25.07-.25v-14.01s.01-.14-.08-.26ZM134.97,70.79c.99,0,1.79-.8,1.79-1.79s-.8-1.79-1.79-1.79-1.79.8-1.79,1.79.8,1.79,1.79,1.79ZM114.77,81.22c.84,0,1.52-.68,1.52-1.52s-.68-1.52-1.52-1.52-1.52.68-1.52,1.52.68,1.52,1.52,1.52ZM120.72,81.22c.84,0,1.52-.68,1.52-1.52s-.68-1.52-1.52-1.52-1.52.68-1.52,1.52.68,1.52,1.52,1.52ZM126.08,74.04s-.04-.05-.07-.07c-1.2-1.28-2.93-2.07-4.83-2.07h-2.55v-3.9c.76-.24,1.31-.96,1.31-1.81,0-1.05-.85-1.9-1.9-1.9s-1.91.85-1.91,1.9c0,.84.55,1.56,1.31,1.81v3.9h-3.33c-3.71,0-6.72,3.01-6.72,6.72v1.9c0,3.71,3.01,6.72,6.72,6.72h7.07c1.27,0,2.46-.35,3.47-.98v.51c0,.4.42.4.42.4h2.39c.46,0,.43-.41.43-.41v-8.36c-.05-1.68-.72-3.21-1.81-4.36ZM124.72,80.61c0,.25-.03.5-.07.74-.35,1.67-1.82,2.93-3.6,2.93h-6.77c-2.03,0-3.67-1.64-3.67-3.67v-2.09c0-2.03,1.64-3.67,3.67-3.67h6.77c1.78,0,3.25,1.26,3.6,2.93h0c.05.24.07.49.07.74v2.09Z"/></clipPath>
+    <linearGradient id="nexrai-grad" x1="20.87" y1="79.57" x2="141.13" y2="79.57" gradientUnits="userSpaceOnUse">
+      <stop offset="0" style="stop-color:var(--accent-2)"/><stop offset="1" style="stop-color:var(--accent)"/>
+    </linearGradient>
+  </defs>
+  <symbol id="nexrai-logo" viewBox="18 56 125 45">
+    <g clip-path="url(#nexrai-clip)"><rect fill="url(#nexrai-grad)" x="20.87" y="59.57" width="120.26" height="40"/></g>
+  </symbol>
+</svg>
+
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="NEXRAI Startseite"><svg viewBox="0 0 125 45"><use href="#nexrai-logo"/></svg></a>
+      <div class="nav-right">
+        <a class="nav-back" href="index.html">&larr; <span>Zurück zur Startseite</span></a>
+        <div class="theme-toggle" id="themeToggle" role="group" aria-label="Farbschema">
+          <span data-theme-btn="dark">Dunkel</span>
+          <span data-theme-btn="light">Hell</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <div class="eyebrow">Rechtliches</div>
+    <h1>Allgemeine Geschäftsbedingungen</h1>
+    <p class="subtitle">Bedingungen für die Zusammenarbeit mit NEXRAI.</p>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section>
     <h2>§ 1 Geltungsbereich</h2>
-  <p>Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge zwischen <span class="placeholder">[Firmenname]</span> ("NEXRAI") und ihren Kunden über die Erbringung von KI-Automatisierungen, KI-Agenten, Chatbots, Webdesign und verwandten Dienstleistungen.</p>
-  </section>
-
-  <section>
+    <p>Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge zwischen Rajeevan Rasaratnam ("NEXRAI") und ihren Kunden über die Erbringung von KI-Automatisierungen, KI-Agenten, Chatbots, Webdesign und verwandten Dienstleistungen.</p>
+    </section>
+    <section>
     <h2>§ 2 Vertragsschluss</h2>
-  <p>Ein Vertrag kommt durch die Bestätigung eines individuellen Angebots durch den Kunden zustande. Kostenlose Erstgespräche und Potenzialanalysen sind unverbindlich und begründen keine Vertragspflicht.</p>
-  </section>
-
-  <section>
+    <p>Ein Vertrag kommt durch die Bestätigung eines individuellen Angebots durch den Kunden zustande. Kostenlose Erstgespräche und Potenzialanalysen sind unverbindlich und begründen keine Vertragspflicht.</p>
+    </section>
+    <section>
     <h2>§ 3 Leistungsumfang</h2>
-  <p>Der konkrete Leistungsumfang ergibt sich aus dem jeweiligen Angebot bzw. der Leistungsbeschreibung. Änderungen des Leistungsumfangs bedürfen der schriftlichen Vereinbarung.</p>
-  </section>
-
-  <section>
+    <p>Der konkrete Leistungsumfang ergibt sich aus dem jeweiligen Angebot bzw. der Leistungsbeschreibung. Änderungen des Leistungsumfangs bedürfen der schriftlichen Vereinbarung.</p>
+    </section>
+    <section>
     <h2>§ 4 Vergütung und Zahlungsbedingungen</h2>
-  <p>Die Vergütung richtet sich nach dem individuellen Angebot. Sofern nicht anders vereinbart, ist die Rechnung innerhalb von <span class="placeholder">[14]</span> Tagen nach Rechnungsstellung fällig.</p>
-  </section>
-
-  <section>
+    <p>Die Vergütung richtet sich nach dem individuellen Angebot. Sofern nicht anders vereinbart, ist die Rechnung innerhalb von <span class="ph">[14]</span> Tagen nach Rechnungsstellung fällig.</p>
+    </section>
+    <section>
     <h2>§ 5 Mitwirkungspflichten des Kunden</h2>
-  <p>Der Kunde stellt die für die Leistungserbringung notwendigen Informationen, Zugänge und Daten rechtzeitig zur Verfügung. Verzögerungen durch unzureichende Mitwirkung gehen nicht zu Lasten von NEXRAI.</p>
-  </section>
-
-  <section>
+    <p>Der Kunde stellt die für die Leistungserbringung notwendigen Informationen, Zugänge und Daten rechtzeitig zur Verfügung. Verzögerungen durch unzureichende Mitwirkung gehen nicht zu Lasten von NEXRAI.</p>
+    </section>
+    <section>
     <h2>§ 6 Haftung</h2>
-  <p>NEXRAI haftet nur für Schäden, die auf vorsätzlichem oder grob fahrlässigem Verhalten beruhen, soweit gesetzlich zulässig. Für die Richtigkeit von durch KI-Systeme generierten Inhalten wird keine Gewähr übernommen, soweit menschliche Kontrolle vertraglich vorgesehen ist.</p>
-  </section>
-
-  <section>
+    <p>NEXRAI haftet nur für Schäden, die auf vorsätzlichem oder grob fahrlässigem Verhalten beruhen, soweit gesetzlich zulässig. Für die Richtigkeit von durch KI-Systeme generierten Inhalten wird keine Gewähr übernommen, soweit menschliche Kontrolle vertraglich vorgesehen ist.</p>
+    </section>
+    <section>
     <h2>§ 7 Datenschutz</h2>
-  <p>Die Verarbeitung personenbezogener Daten erfolgt gemäß unserer Datenschutzerklärung und – soweit erforderlich – auf Grundlage eines gesonderten Auftragsverarbeitungsvertrags (AVV).</p>
-  </section>
-
-  <section>
+    <p>Die Verarbeitung personenbezogener Daten erfolgt gemäß unserer Datenschutzerklärung und – soweit erforderlich – auf Grundlage eines gesonderten Auftragsverarbeitungsvertrags (AVV).</p>
+    </section>
+    <section>
     <h2>§ 8 Schlussbestimmungen</h2>
-  <p>Es gilt das Recht der Bundesrepublik Deutschland. Sollte eine Bestimmung dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
-  </section>
+    <p>Es gilt das Recht der Bundesrepublik Deutschland. Sollte eine Bestimmung dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
+    </section>
+    <p class="stand">Ergänzend gelten unsere <a href="datenschutz.html">Datenschutzerklärung</a> und die Angaben im <a href="impressum.html">Impressum</a>.</p>
+  </div>
+</main>
 
-  <p class="stand">Ergänzend gelten unsere <a href="datenschutz.html">Datenschutzerklärung</a> und die Angaben im <a href="impressum.html">Impressum</a>.</p>
-</div>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg viewBox="0 0 125 45"><use href="#nexrai-logo"/></svg>
+        <div class="footer-tag">NEXRAI AI System · Made in Germany</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Startseite</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 NEXRAI — Alle Rechte vorbehalten.</div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement;
+    var toggle=document.getElementById('themeToggle');
+    var btns=toggle.querySelectorAll('[data-theme-btn]');
+    function apply(theme){
+      if(theme==='light'){root.setAttribute('data-theme','light');}
+      else{root.removeAttribute('data-theme');}
+      btns.forEach(function(b){b.classList.toggle('active',b.dataset.themeBtn===theme);});
+      try{localStorage.setItem('nexrai-theme',theme);}catch(e){}
+    }
+    toggle.addEventListener('click',function(e){
+      var b=e.target.closest('[data-theme-btn]');
+      if(b)apply(b.dataset.themeBtn);
+    });
+    var saved='dark';
+    try{saved=localStorage.getItem('nexrai-theme')||'dark';}catch(e){}
+    apply(saved);
+  })();
+  window.addEventListener('scroll',function(){
+    document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);
+  },{passive:true});
+</script>
 </body>
 </html>
