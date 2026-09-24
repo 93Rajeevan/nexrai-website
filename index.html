@@ -65,11 +65,19 @@ button{cursor:pointer;font-family:inherit;color:inherit;}
 input,select,textarea{font-family:inherit;}
 
 /* ═══ TYPOGRAPHY ═══════════════════════════════════════════ */
-h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.06;letter-spacing:-0.01em;}
-h1{font-size:clamp(2.7rem,6vw,5.4rem);}
-h2{font-size:clamp(2rem,3.9vw,3.4rem);}
-h3{font-size:1.22rem;line-height:1.3;}
-h4{font-size:1rem;}
+/* Display: Instrument Serif. Titel und Labels: Inter. */
+h1,h2{
+  font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+  line-height:1.0;letter-spacing:-0.022em;text-wrap:balance;
+}
+h3,h4{
+  font-family:'Inter',system-ui,sans-serif;font-weight:600;
+  line-height:1.38;letter-spacing:-0.011em;
+}
+h1{font-size:clamp(3rem,6.4vw,5.6rem);}
+h2{font-size:clamp(2.2rem,4.2vw,3.6rem);line-height:1.04;}
+h3{font-size:1.06rem;}
+h4{font-size:.95rem;}
 .italic{font-style:italic;color:var(--accent);}
 
 .eyebrow{
@@ -154,13 +162,6 @@ html[data-theme="light"] .vignette{background:radial-gradient(circle at 50% 45%,
 /* Der Agent: drei Ebenen, damit sich die Bewegungen nicht überschreiben.
    .agent = Position/Größe (Scroll) · .agent-turn = Blickrichtung ·
    .agent-read = Lesebewegung (Dauerschleife) */
-.agent{
-  position:absolute;z-index:2;pointer-events:none;
-  width:min(330px,24vw,30svh);
-  aspect-ratio:896 / 788;
-  left:0;top:0;
-  will-change:transform,opacity;
-}
 .agent-turn,.agent-read{position:absolute;inset:0;will-change:transform;}
 .agent-read{transform-origin:50% 78%;}
 .agent.reading .agent-read{animation:reading 7.5s ease-in-out infinite;}
@@ -212,8 +213,8 @@ html[data-theme="light"] .vignette{background:radial-gradient(circle at 50% 45%,
 }
 .head-slot{width:min(330px,24vw,30svh);aspect-ratio:896 / 788;flex:none;margin-bottom:14px;}
 
-.sc h1{font-size:clamp(2rem,4.4vw,3.5rem);margin:10px 0 16px;line-height:1.06;}
-.sc h2{font-size:clamp(1.95rem,4vw,3.2rem);margin-bottom:20px;line-height:1.06;}
+.sc h1{font-size:clamp(2.2rem,4.8vw,3.8rem);margin:10px 0 18px;line-height:1.0;}
+.sc h2{font-size:clamp(2.1rem,4.3vw,3.4rem);margin-bottom:22px;line-height:1.04;}
 .sc p{color:var(--muted);font-size:1.06rem;line-height:1.8;}
 .sc.hero p{max-width:62ch;}
 .sc.hero p.hero-note{max-width:none;}
@@ -323,7 +324,7 @@ html[data-theme="light"] .vignette{background:radial-gradient(circle at 50% 45%,
   font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
   padding-top:8px;
 }
-.ed-title{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;line-height:1.2;margin-bottom:14px;}
+.ed-title{font-family:'Inter',sans-serif;font-size:1.06rem;font-weight:600;line-height:1.4;letter-spacing:-.011em;margin-bottom:12px;}
 .ed-desc{color:var(--muted);font-size:.97rem;line-height:1.8;max-width:640px;}
 
 /* ═══ PROZESS — DRAWN TIMELINE ═════════════════════════════ */
@@ -334,10 +335,11 @@ html[data-theme="light"] .vignette{background:radial-gradient(circle at 50% 45%,
 .prozess-card{background:var(--bg);padding:36px 28px;transition:background .35s ease;}
 .prozess-card:hover{background:var(--surface);}
 .t-num{
-  font-family:'Fraunces',serif;font-size:clamp(2rem,3vw,2.8rem);line-height:1;
-  color:var(--accent);margin-bottom:16px;font-variant-numeric:tabular-nums;
+  font-family:'Instrument Serif',serif;font-weight:400;
+  font-size:clamp(2.4rem,3.4vw,3.2rem);line-height:.95;letter-spacing:-.02em;
+  color:var(--accent);margin-bottom:14px;font-variant-numeric:lining-nums tabular-nums;
 }
-.t-title{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:500;margin-bottom:12px;}
+.t-title{font-family:'Inter',sans-serif;font-size:1.06rem;font-weight:600;line-height:1.4;letter-spacing:-.011em;margin-bottom:10px;}
 .t-desc{color:var(--muted);font-size:.97rem;line-height:1.8;max-width:560px;}
 
 /* ═══ AGENT-FLOW (Transparenz) ═════════════════════════════ */
@@ -482,8 +484,9 @@ html[data-theme="light"] .msg.user{color:#fff;}
 }
 .about-portrait figcaption::before{content:'';width:20px;height:1px;background:var(--accent);flex:none;}
 .about-lead{
-  font-family:'Fraunces',serif;font-size:clamp(1.5rem,2.4vw,2.1rem);line-height:1.28;
-  font-weight:500;margin-bottom:34px;
+  font-family:'Instrument Serif',serif;font-weight:400;
+  font-size:clamp(1.6rem,2.6vw,2.3rem);line-height:1.2;letter-spacing:-.018em;
+  text-wrap:balance;margin-bottom:34px;
 }
 .about-body p{color:var(--muted);font-size:1rem;line-height:1.85;margin-bottom:24px;max-width:640px;}
 .about-promises{border-top:1px solid var(--line-strong);margin:38px 0 0;}
@@ -506,8 +509,8 @@ html[data-theme="light"] .msg.user{color:#fff;}
 .faq-q{
   width:100%;background:none;border:none;text-align:left;
   padding:28px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;
-  font-family:'Fraunces',serif;font-size:1.14rem;font-weight:500;
-  transition:color .3s ease;
+  font-family:'Inter',sans-serif;font-size:1.02rem;font-weight:600;
+  letter-spacing:-.011em;line-height:1.45;transition:color .3s ease;
 }
 .faq-q:hover{color:var(--accent);}
 .faq-icon{
@@ -536,13 +539,13 @@ html[data-theme="light"] .msg.user{color:#fff;}
 .rc-step.active{display:block;animation:stepIn .55s cubic-bezier(.2,.7,.2,1) both;}
 @keyframes stepIn{from{opacity:0;transform:translateX(24px);}to{opacity:1;transform:none;}}
 .rc-step-lbl{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
-.rc-step-title{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:500;line-height:1.2;margin-bottom:12px;}
+.rc-step-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.85rem;line-height:1.1;letter-spacing:-.018em;margin-bottom:12px;}
 .rc-step-sub{color:var(--muted);font-size:.9rem;margin-bottom:34px;line-height:1.7;}
 
 .rc-range-wrap{margin-bottom:32px;}
 .rc-range-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;}
 .rc-range-header label{font-size:.83rem;color:var(--muted);}
-.rc-range-val{font-family:'Fraunces',serif;font-size:1.7rem;color:var(--accent);}
+.rc-range-val{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.95rem;letter-spacing:-.015em;color:var(--accent);font-variant-numeric:lining-nums tabular-nums;}
 .rc-range-val small{font-size:.7rem;color:var(--dim);font-family:'Inter',sans-serif;letter-spacing:.08em;}
 input[type=range]{
   -webkit-appearance:none;appearance:none;width:100%;height:3px;
@@ -614,12 +617,12 @@ input[type=range]::-moz-range-thumb{
 .rc-sc-tab.active{background:var(--accent-tint);}
 .rc-sc-tab-label{font-size:.74rem;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;}
 .rc-sc-tab.active .rc-sc-tab-label{color:var(--accent);}
-.rc-sc-tab-val{font-family:'Fraunces',serif;font-size:1.25rem;color:var(--ink);}
+.rc-sc-tab-val{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.42rem;letter-spacing:-.015em;color:var(--ink);font-variant-numeric:lining-nums tabular-nums;}
 
 .rc-result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:32px;}
 .rc-rc{background:var(--bg);padding:30px 20px;text-align:center;}
 .rc-rc-icon{font-size:1.1rem;margin-bottom:12px;opacity:.65;}
-.rc-rc-num{font-family:'Fraunces',serif;font-size:2rem;color:var(--accent);line-height:1.1;margin-bottom:8px;}
+.rc-rc-num{font-family:'Instrument Serif',serif;font-weight:400;font-size:2.35rem;letter-spacing:-.02em;color:var(--accent);line-height:1.05;margin-bottom:8px;font-variant-numeric:lining-nums tabular-nums;}
 .rc-rc-label{font-size:.72rem;color:var(--dim);line-height:1.5;letter-spacing:.04em;}
 
 .rc-breakdown{border:1px solid var(--line);padding:26px 28px;margin-bottom:28px;}
@@ -632,7 +635,7 @@ input[type=range]::-moz-range-thumb{
 .rc-bd-dot.d3{background:var(--dim);}
 .rc-bd-sub{font-size:.76rem;color:var(--dim);margin-top:4px;line-height:1.6;}
 .rc-bd-right{text-align:right;flex-shrink:0;}
-.rc-bd-val{font-family:'Fraunces',serif;font-size:1.15rem;}
+.rc-bd-val{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.32rem;letter-spacing:-.012em;font-variant-numeric:lining-nums tabular-nums;}
 .rc-bd-vsub{font-size:.68rem;color:var(--dim);}
 .rc-sep{height:1px;background:var(--line);margin:20px 0;}
 
@@ -779,6 +782,144 @@ html[data-theme="light"] .btn-primary{color:#fff;}
 .nav-panel a:hover{color:var(--accent);}
 .nav-panel .btn-primary{width:100%;margin:16px 0 6px;}
 
+
+/* ═══ WOW-EBENE — nur ab Live Demo abwaerts ═══════════════
+   Regel fuer alle Effekte hier: Der Ausgangszustand wird erst gesetzt,
+   wenn JavaScript die Klasse gesetzt hat. Faellt JS aus, ist alles sichtbar. */
+
+/* Live Demo faehrt hoch wie ein Geraet */
+.demo.boot{opacity:0;transform:scale(.965) translateY(30px);filter:blur(7px);}
+.demo.boot.go{
+  opacity:1;transform:none;filter:none;
+  transition:opacity .85s cubic-bezier(.16,.84,.24,1),
+             transform 1.15s cubic-bezier(.16,.84,.24,1),
+             filter .85s ease;
+}
+.demo-tabs.boot .tab{opacity:0;transform:translateY(14px);}
+.demo-tabs.boot.go .tab{
+  opacity:1;transform:none;
+  transition:opacity .5s ease,transform .6s cubic-bezier(.16,.84,.24,1);
+}
+.demo-tabs.boot.go .tab:nth-child(2){transition-delay:.07s;}
+.demo-tabs.boot.go .tab:nth-child(3){transition-delay:.14s;}
+.demo-tabs.boot.go .tab:nth-child(4){transition-delay:.21s;}
+
+/* Transparenz-Flow: Schritte leuchten scrollgekoppelt nacheinander auf */
+.agent-flow.track .flow-step{
+  opacity:.22;transform:translateY(10px) scale(.97);
+  transition:opacity .55s ease,transform .55s cubic-bezier(.16,.84,.24,1);
+}
+.agent-flow.track .flow-step.lit{opacity:1;transform:none;}
+.agent-flow.track .flow-step.lit .flow-icon{transform:scale(1);opacity:1;}
+.agent-flow.track .flow-icon{
+  display:inline-block;transform:scale(.8);opacity:.5;
+  transition:transform .5s cubic-bezier(.34,1.4,.5,1),opacity .5s ease;
+}
+.agent-flow.track .flow-arrow{
+  opacity:0;transform:translateX(-6px);
+  transition:opacity .45s ease,transform .45s ease;
+}
+.agent-flow.track .flow-arrow.lit{opacity:.6;transform:none;}
+
+/* Prozess-Karten kommen mit Tiefe, nicht flach von unten */
+.prozess-grid.deck{perspective:1200px;}
+.prozess-grid.deck .prozess-card{
+  opacity:0;transform:translateY(38px) rotateX(7deg);transform-origin:50% 0;
+}
+.prozess-grid.deck.go .prozess-card{
+  opacity:1;transform:none;
+  transition:opacity .7s ease,transform .95s cubic-bezier(.16,.84,.24,1);
+}
+.prozess-grid.deck.go .prozess-card:nth-child(2){transition-delay:.1s;}
+.prozess-grid.deck.go .prozess-card:nth-child(3){transition-delay:.2s;}
+.prozess-grid.deck.go .prozess-card:nth-child(4){transition-delay:.3s;}
+
+/* FAQ-Zeilen laufen nacheinander ein */
+.faq-list.cascade .faq-item{opacity:0;transform:translateY(16px);}
+.faq-list.cascade.go .faq-item{
+  opacity:1;transform:none;
+  transition:opacity .55s ease,transform .7s cubic-bezier(.16,.84,.24,1);
+}
+.faq-list.cascade.go .faq-item:nth-child(2){transition-delay:.06s;}
+.faq-list.cascade.go .faq-item:nth-child(3){transition-delay:.12s;}
+.faq-list.cascade.go .faq-item:nth-child(4){transition-delay:.18s;}
+.faq-list.cascade.go .faq-item:nth-child(5){transition-delay:.24s;}
+.faq-list.cascade.go .faq-item:nth-child(6){transition-delay:.3s;}
+
+/* Kontakt: Felder staffeln sich ein */
+.form-wrap.stagger .form-group,.form-wrap.stagger .form-row{opacity:0;transform:translateY(14px);}
+.form-wrap.stagger.go .form-group,.form-wrap.stagger.go .form-row{
+  opacity:1;transform:none;
+  transition:opacity .5s ease,transform .65s cubic-bezier(.16,.84,.24,1);
+}
+.form-wrap.stagger.go > div > *:nth-child(2){transition-delay:.06s;}
+.form-wrap.stagger.go > div > *:nth-child(3){transition-delay:.12s;}
+.form-wrap.stagger.go > div > *:nth-child(4){transition-delay:.18s;}
+.form-wrap.stagger.go > div > *:nth-child(5){transition-delay:.24s;}
+.form-wrap.stagger.go > div > *:nth-child(6){transition-delay:.3s;}
+
+/* Porträt zieht beim Scrollen leicht nach */
+.about-portrait.par{will-change:transform;}
+
+/* Akzentlinie der Sektionsmarke zeichnet sich */
+.eyebrow.draw::before{width:0;transition:width .8s cubic-bezier(.16,.84,.24,1) .15s;}
+.eyebrow.draw.go::before{width:26px;}
+
+@media (max-width:760px){
+  /* Auf dem Handy dezenter, damit nichts zappelt */
+  .demo.boot{transform:scale(.985) translateY(18px);filter:blur(4px);}
+  .prozess-grid.deck .prozess-card{transform:translateY(24px);}
+  .agent-flow.track .flow-step{transform:translateY(8px) scale(.99);}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .demo.boot,.demo-tabs.boot .tab,.prozess-grid.deck .prozess-card,
+  .faq-list.cascade .faq-item,.form-wrap.stagger .form-group,
+  .form-wrap.stagger .form-row,.agent-flow.track .flow-step{
+    opacity:1!important;transform:none!important;filter:none!important;
+  }
+  .agent-flow.track .flow-arrow{opacity:.6!important;transform:none!important;}
+  .eyebrow.draw::before{width:26px!important;}
+}
+
+
+/* ═══ TOUR-GUIDE ═══════════════════════════════════════════
+   Der Agent liegt in einer eigenen, fixierten Ebene und begleitet
+   den Besucher durch jede Sektion. Nie klickbar, nie im Weg. */
+.guide{
+  position:fixed;inset:0;z-index:40;pointer-events:none;
+  contain:layout style;
+}
+.guide .agent{
+  position:absolute;left:0;top:0;
+  width:min(330px,24vw,30svh);aspect-ratio:896 / 788;
+  will-change:transform,opacity;
+}
+.guide-say{
+  position:absolute;left:0;top:0;
+  max-width:min(230px,42vw);
+  padding:9px 15px;border-radius:999px;
+  background:color-mix(in srgb, var(--surface) 92%, transparent);
+  border:1px solid var(--line-strong);
+  backdrop-filter:blur(10px);
+  font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);line-height:1.4;text-align:center;
+  opacity:0;transform:translateY(6px) scale(.96);
+  transition:opacity .45s ease,transform .5s cubic-bezier(.16,.84,.24,1);
+  will-change:transform,opacity;
+}
+.guide-say.on{opacity:1;transform:none;}
+.guide-say{white-space:normal;}
+
+/* Auf der Buehne bleibt der Kopf gross und ohne Sprechblase */
+@media (max-width:1000px){
+  .guide .agent{width:min(178px,40vw,22svh);}
+  .guide-say{font-size:.6rem;letter-spacing:.1em;padding:7px 12px;max-width:44vw;}
+}
+@media (prefers-reduced-motion:reduce){
+  .guide-say{transition:none;}
+}
+
 /* ═══ RESPONSIVE ═══════════════════════════════════════════ */
 @media (max-width:1120px){
   .nav-right{gap:18px;}
@@ -825,7 +966,11 @@ html[data-theme="light"] .btn-primary{color:#fff;}
   .chat{max-height:340px;}
   .about{grid-template-columns:1fr;gap:38px;}
   .about-portrait{max-width:190px;}
-  .tab{padding:14px 18px;font-size:.8rem;}
+  .demo-tabs{display:grid;grid-template-columns:1fr 1fr;border-left:1px solid var(--line);}
+  .tab{padding:15px 14px;font-size:.78rem;justify-content:center;text-align:center;
+       border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .tab:nth-child(2n){border-right:none;}
+  .tab:nth-last-child(-n+2){border-bottom:none;}
   .hscroll-head{padding:0 22px;}
   .hscroll-meter{padding:0 22px;}
 }
@@ -864,8 +1009,8 @@ html[data-theme="light"] .btn-primary{color:#fff;}
 /* Laptops mit flachem Viewport (z.B. 1440x780, 1280x800):
    Die Szenen sind fix auf Bildschirmhoehe, also muss der Inhalt schrumpfen. */
 @media (min-width:1001px) and (max-height:870px){
-  .sc-lead{display:none;}
-  .sc h2{font-size:clamp(1.7rem,3vw,2.5rem);}
+  .sc-lead{font-size:.97rem;line-height:1.65;}
+  .sc h2{font-size:clamp(1.8rem,3.2vw,2.6rem);}
   .sc-point{padding:13px 0;font-size:.95rem;line-height:1.6;}
   .sc-points{margin-top:22px;}
   .agent,.head-slot{width:min(280px,20vw,26svh);}
@@ -873,6 +1018,11 @@ html[data-theme="light"] .btn-primary{color:#fff;}
   .sc h1{margin:8px 0 13px;}
   .hero-ctas{margin-top:22px;}
   .hero-oplabel{margin:-4px 0 10px;}
+}
+
+/* Sehr flache Desktop-Fenster: erst hier entfaellt der Intro-Satz. */
+@media (min-width:1001px) and (max-height:700px){
+  .sc-lead{display:none;}
 }
 
 /* Grosse Monitore: Zeilen bleiben lesbar statt ueberbreit zu laufen. */
@@ -961,6 +1111,21 @@ html[data-theme="light"] .btn-primary{color:#fff;}
 
 <div class="nav-scrim" id="navScrim" hidden></div>
 
+<!-- TOUR-GUIDE: begleitet den Besucher durch alle Sektionen -->
+<div class="guide" id="guide" aria-hidden="true">
+  <div class="guide-say" id="guideSay"></div>
+<div class="agent" id="agent">
+    <div class="agent-turn" id="agentTurn">
+      <div class="agent-read">
+        <div class="head-ring"></div>
+        <div class="head-ring r2"></div>
+        <picture><source srcset="assets/img/nexrai-agent-head-closed.webp" type="image/webp"><img class="is-closed" src="assets/img/nexrai-agent-head-closed.webp" alt="" fetchpriority="high"/></picture>
+        <picture><source srcset="assets/img/nexrai-agent-head.webp" type="image/webp"><img class="is-open" src="assets/img/nexrai-agent-head.webp" alt="NEXRAI KI-Agent" fetchpriority="high"/></picture>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="chapters" id="chapters"><i></i><i></i><i></i></div>
 
 <!-- BÜHNE: Hero + Problem + Leistungen, der Agent bleibt durchgehend stehen -->
@@ -971,16 +1136,6 @@ html[data-theme="light"] .btn-primary{color:#fff;}
     <div class="fog fog-c" data-fog="0.09"></div>
     <div class="vignette"></div>
 
-    <div class="agent" id="agent">
-      <div class="agent-turn" id="agentTurn">
-        <div class="agent-read">
-          <div class="head-ring"></div>
-          <div class="head-ring r2"></div>
-          <picture><source srcset="assets/img/nexrai-agent-head-closed.webp" type="image/webp"><img class="is-closed" src="assets/img/nexrai-agent-head-closed.webp" alt="" fetchpriority="high"/></picture>
-          <picture><source srcset="assets/img/nexrai-agent-head.webp" type="image/webp"><img class="is-open" src="assets/img/nexrai-agent-head.webp" alt="NEXRAI KI-Agent" fetchpriority="high"/></picture>
-        </div>
-      </div>
-    </div>
 
     <!-- 01 · Hero -->
     <section class="sc hero" id="hero" data-scene>
@@ -1001,30 +1156,30 @@ html[data-theme="light"] .btn-primary{color:#fff;}
     </section>
 
     <!-- 02 · Problem — Text links, Agent rechts, blickt nach links -->
-    <section class="sc" id="probleme" data-scene>
+    <section class="sc" id="probleme" data-scene data-guide="Wo Zeit verloren geht">
       <div class="sc-inner">
         <div class="eyebrow">Kommt dir das bekannt vor?</div>
-        <h2>Die Prozesse laufen. Nur nicht so wie sie könnten.</h2>
+        <h2>Die Arbeit stapelt sich. Die Lösungen versprechen viel.</h2>
         <div class="sc-points">
-          <div class="sc-point"><i>01</i><div><b>Du bist nicht erreichbar wenn Kunden da sind.</b> Anfragen kommen abends, am Wochenende, zwischen zwei Terminen. Wer nicht antwortet, verliert.</div></div>
-          <div class="sc-point"><i>02</i><div><b>Dieselben Aufgaben jeden Tag.</b> Termine bestätigen, Rechnungen weiterleiten, Daten eintippen. Das macht niemand gerne und KI macht es schneller.</div></div>
-          <div class="sc-point"><i>03</i><div><b>Deine Tools laufen nebeneinander, nicht miteinander.</b> CRM, Kalender, E-Mail, Shop. Daten wandern per Hand von A nach B.</div></div>
-          <div class="sc-point"><i>04</i><div><b>Fachkräfte die Routinearbeit erledigen.</b> Du bezahlst gute Leute für Aufgaben, die ein KI-Agent in Sekunden übernimmt.</div></div>
+          <div class="sc-point"><i>01</i><div><b>Routineaufgaben fressen Zeit.</b> Dein Team erledigt täglich dieselben manuellen Schritte, statt sich auf das Wesentliche zu konzentrieren.</div></div>
+          <div class="sc-point"><i>02</i><div><b>Tools die nicht zusammenarbeiten.</b> Daten wandern von System zu System. Per Hand. Per E-Mail. Per Zufall.</div></div>
+          <div class="sc-point"><i>03</i><div><b>Skalierung kostet immer mehr Personal.</b> Mehr Aufträge bedeuten mehr Köpfe. Wachstum ohne Automatisierung wird teuer.</div></div>
+          <div class="sc-point"><i>04</i><div><b>KI-Projekte starten nicht richtig.</b> Piloten starten, verlaufen sich, bringen keine messbaren Ergebnisse.</div></div>
         </div>
       </div>
     </section>
 
     <!-- 03 · Leistungen — Text rechts, Agent links, blickt nach rechts -->
-    <section class="sc right" id="loesungen" data-scene>
+    <section class="sc right" id="loesungen" data-scene data-guide="Was wir bauen">
       <div class="sc-inner">
         <div class="eyebrow">Was NEXRAI baut</div>
-        <h2>KI die arbeitet, nicht nur antwortet</h2>
+        <h2>Keine Demos. Kein Versprechen. Fertige Systeme die arbeiten.</h2>
         <p class="sc-lead">Kein pauschales KI-Paket. Erst Analyse, dann Umsetzung. Jede Lösung ist auf deinen Betrieb zugeschnitten.</p>
         <div class="sc-points">
-          <div class="sc-point"><i>01</i><div><b>KI-Automatisierung.</b> Was sich täglich wiederholt, läuft automatisch. Rechnungen, E-Mails, Datenpflege, Weiterleitungen. Der Agent übernimmt, du konzentrierst dich auf das was zählt.</div></div>
-          <div class="sc-point"><i>02</i><div><b>KI-Agenten.</b> Ein KI-Agent ist kein Chatbot der Fragen beantwortet. Er denkt mit, trifft Entscheidungen im definierten Rahmen und handelt. Rund um die Uhr, ohne Pause.</div></div>
-          <div class="sc-point"><i>03</i><div><b>KI-Chatbots und Telefonassistenten.</b> Dein Kundenservice läuft auch wenn du schläfst. Anfragen beantworten, Termine buchen, Informationen liefern. Und wenn ein Mensch gebraucht wird, übergibt der Agent sauber weiter.</div></div>
-          <div class="sc-point"><i>04</i><div><b>Websites und Webentwicklung.</b> Eine Website die aussieht wie dein Unternehmen, schnell lädt und Besucher zu Anfragen macht. Technisch sauber gebaut, von Anfang an mit KI-Integration gedacht.</div></div>
+          <div class="sc-point"><i>01</i><div><b>Automatisierung.</b> Wiederkehrende Prozesse laufen automatisch. Dein Team übernimmt die Ausnahmen, nicht die Routine.</div></div>
+          <div class="sc-point"><i>02</i><div><b>KI-Agenten.</b> Digitale Mitarbeiter, die Aufgaben selbstständig erledigen: recherchieren, entscheiden, weiterleiten, antworten.</div></div>
+          <div class="sc-point"><i>03</i><div><b>Chatbots und Telefonassistenten.</b> Dein Kundenservice läuft rund um die Uhr, auch wenn dein Team schläft.</div></div>
+          <div class="sc-point"><i>04</i><div><b>Websites.</b> Schnell, sauber, conversion-optimiert. Technisch und inhaltlich auf dein Business ausgerichtet.</div></div>
         </div>
       </div>
     </section>
@@ -1032,7 +1187,7 @@ html[data-theme="light"] .btn-primary{color:#fff;}
 </div>
 
 <!-- LIVE-DEMO -->
-<section id="demo" class="section stack-panel">
+<section id="demo" class="section stack-panel" data-guide="Sieh es in Aktion">
   <div class="container">
     <div class="section-header reveal">
       <div class="eyebrow">Live Demo</div>
@@ -1066,7 +1221,7 @@ html[data-theme="light"] .btn-primary{color:#fff;}
 </section>
 
 <!-- POTENZIAL-RECHNER -->
-<section id="rechner" class="section band stack-panel">
+<section id="rechner" class="section band stack-panel" data-guide="Dein Potenzial">
   <div class="container">
     <div class="section-header reveal">
       <div class="eyebrow">Was KI-Automatisierung bringt</div>
@@ -1204,7 +1359,7 @@ html[data-theme="light"] .btn-primary{color:#fff;}
 
           <div class="rc-divider"></div>
           <div class="rc-cta-label">Lass uns herausfinden, was bei dir konkret möglich ist.</div>
-          <button class="rc-btn-cta" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Analyse starten</button>
+          <button class="rc-btn-cta" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Prozess analysieren</button>
           <div class="rc-trust-row">
             <div class="rc-trust-item">Unverbindlich &amp; kostenlos</div>
             <div class="rc-trust-item">Kein Verkaufsdruck</div>
@@ -1221,7 +1376,7 @@ html[data-theme="light"] .btn-primary{color:#fff;}
 </section>
 
 <!-- DSGVO -->
-<section id="dsgvo" class="section stack-panel">
+<section id="dsgvo" class="section stack-panel" data-guide="So arbeite ich">
   <div class="container">
     <div class="section-header reveal">
       <div class="eyebrow">Transparenz</div>
@@ -1232,41 +1387,41 @@ html[data-theme="light"] .btn-primary{color:#fff;}
     <div class="agent-flow reveal" id="agentFlow">
       <div class="flow-step">
         <div class="flow-icon" aria-hidden="true">💬</div>
-        <div class="flow-title">Anfrage</div>
+        <div class="flow-title">Anfrage eingeht</div>
         <div class="flow-desc">Kunde schreibt über Formular oder Chat</div>
       </div>
       <div class="flow-arrow" aria-hidden="true">→</div>
       <div class="flow-step">
         <div class="flow-icon" aria-hidden="true">🧠</div>
-        <div class="flow-title">KI versteht</div>
+        <div class="flow-title">KI versteht den Kontext</div>
         <div class="flow-desc">Anliegen wird erkannt und eingeordnet</div>
       </div>
       <div class="flow-arrow" aria-hidden="true">→</div>
       <div class="flow-step">
         <div class="flow-icon" aria-hidden="true">⚙️</div>
-        <div class="flow-title">Automatisierung</div>
+        <div class="flow-title">Automatisierung greift</div>
         <div class="flow-desc">Prozess läuft, Systeme werden aktualisiert</div>
       </div>
       <div class="flow-arrow" aria-hidden="true">→</div>
       <div class="flow-step">
         <div class="flow-icon" aria-hidden="true">📋</div>
-        <div class="flow-title">KI antwortet</div>
+        <div class="flow-title">KI gibt Antwort</div>
         <div class="flow-desc">Rückmeldung, Angebot oder Termin durch den Agenten</div>
       </div>
       <div class="flow-arrow" aria-hidden="true">→</div>
       <div class="flow-step">
         <div class="flow-icon" aria-hidden="true">👤</div>
-        <div class="flow-title">Mensch auf Wunsch</div>
+        <div class="flow-title">Mensch übernimmt bei Bedarf</div>
         <div class="flow-desc">Du sagst Bescheid, wir übernehmen persönlich</div>
       </div>
     </div>
 
-    <div class="flow-disclosure reveal"><strong>Offenlegung:</strong> Wenn du mit einem NEXRAI-Agenten schreibst oder sprichst, kommunizierst du mit einem KI-System, nicht mit einem Menschen. Das ist an jedem Kontaktpunkt gekennzeichnet. Ich prüfe die Vorgänge im Hintergrund und greife ein, wenn es nötig ist. Und du kannst jederzeit auf ein Gespräch mit mir umstellen, ohne Begründung.</div>
+    <div class="flow-disclosure reveal">Jeder NEXRAI-Agent arbeitet nach einem definierten Regelwerk. Du weißt jederzeit, was er tut, warum er es tut, und wo er stoppt. Kein Black-Box-Versprechen.</div>
   </div>
 </section>
 
 <!-- PROZESS -->
-<section id="prozess" class="section band stack-panel">
+<section id="prozess" class="section band stack-panel" data-guide="In vier Schritten">
   <div class="container">
     <div class="section-header reveal">
       <div class="eyebrow">Ablauf</div>
@@ -1277,33 +1432,33 @@ html[data-theme="light"] .btn-primary{color:#fff;}
       <div class="prozess-card reveal">
         <div class="t-num">01</div>
         <h3 class="t-title">Kostenlose Analyse</h3>
-        <p class="t-desc">Wir sehen uns deine Prozesse an und identifizieren die größten Automatisierungspotenziale.</p>
+        <p class="t-desc">Wir schauen uns gemeinsam an, wo bei dir Zeit und Geld verloren gehen. Ohne Vorbereitung, ohne Pitch.</p>
       </div>
       <div class="prozess-card reveal reveal-d1">
         <div class="t-num">02</div>
-        <h3 class="t-title">Strategie &amp; Konzept</h3>
-        <p class="t-desc">Maßgeschneiderte Lösung, klarer Projektplan, transparente Kosten. Bevor wir starten.</p>
+        <h3 class="t-title">Strategie und Konzept</h3>
+        <p class="t-desc">Wir entwickeln einen konkreten Plan: welche Prozesse, welche Tools, welche Reihenfolge.</p>
       </div>
       <div class="prozess-card reveal reveal-d2">
         <div class="t-num">03</div>
         <h3 class="t-title">Implementierung</h3>
-        <p class="t-desc">Umsetzung mit regelmäßigen Updates und engem Austausch, statt monatelanger Funkstille.</p>
+        <p class="t-desc">Wir bauen. Du siehst Ergebnisse in Wochen, nicht Monaten.</p>
       </div>
       <div class="prozess-card reveal reveal-d3">
         <div class="t-num">04</div>
-        <h3 class="t-title">Optimierung &amp; Support</h3>
-        <p class="t-desc">Kontinuierliche Verbesserung und proaktiver Support nach dem Go-live.</p>
+        <h3 class="t-title">Optimierung und Support</h3>
+        <p class="t-desc">Nach dem Launch bleiben wir dabei. Systeme, die funktionieren, werden laufend besser.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ÜBER -->
-<section id="ueber" class="section stack-panel">
+<section id="ueber" class="section stack-panel" data-guide="Wer dahintersteckt">
   <div class="container">
     <div class="section-header reveal">
-      <div class="eyebrow">Wer dahinter steckt</div>
-      <h2><span class="rise"><span>Hi, ich bin Raji.</span></span></h2>
+      <div class="eyebrow">Über NEXRAI</div>
+      <h2><span class="rise"><span>Wir bauen nicht für Demos.</span></span><span class="rise rise-d1"><span>Wir bauen für den Alltag.</span></span></h2>
     </div>
 
     <div class="about">
@@ -1316,7 +1471,7 @@ html[data-theme="light"] .btn-primary{color:#fff;}
       </figure>
 
       <div class="about-text">
-        <p class="about-lead reveal reveal-d1">Ich habe NEXRAI gegründet, weil ich bei Unternehmen immer wieder dasselbe gesehen habe.</p>
+        <p class="about-lead reveal reveal-d1">NEXRAI ist ein KI-Systemhaus aus Deutschland. Wir entwickeln KI-Agenten, Automatisierungen und digitale Systeme, die in echten Unternehmen eingesetzt werden. Keine Präsentationen. Keine Piloten ohne Ziel. Messbare Ergebnisse.</p>
         <div class="about-body reveal reveal-d2">
           <p>Prozesse, die eigentlich klar sind, aber niemand hat sie digitalisiert. Termine, die verloren gehen. Anfragen, die niemand beantwortet, weil das Team ausgelastet ist.</p>
           <p>Ich analysiere zuerst. Dann entwickle ich Lösungen, die wirklich zu deinem Betrieb passen. Kein Paket von der Stange, keine leeren Versprechen.</p>
@@ -1335,38 +1490,34 @@ html[data-theme="light"] .btn-primary{color:#fff;}
 </section>
 
 <!-- FAQ -->
-<section id="faq" class="section stack-panel">
+<section id="faq" class="section stack-panel" data-guide="Häufige Fragen">
   <div class="container">
     <div class="section-header reveal">
       <div class="eyebrow">Häufige Fragen</div>
       <h2><span class="rise"><span>Was du wissen willst,</span></span><span class="rise rise-d1"><span>bevor du anfragst</span></span></h2>
     </div>
     <div class="faq-list reveal">
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Für wen ist NEXRAI?<span class="faq-icon">+</span></button><div class="faq-a">Für kleine und mittelständische Unternehmen, die Prozesse automatisieren wollen, ohne eine interne IT-Abteilung zu haben.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Brauche ich technisches Know-how?<span class="faq-icon">+</span></button><div class="faq-a">Nein. Du erklärst mir, wie dein Betrieb funktioniert. Den Rest übernehme ich.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Was kostet das?<span class="faq-icon">+</span></button><div class="faq-a">Das hängt davon ab, was gebaut wird. Eine erste Einschätzung bekommst du nach der Analyse, kostenlos. Typische Projekte starten ab 1.500 Euro.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Wie lange dauert die Umsetzung?<span class="faq-icon">+</span></button><div class="faq-a">Einfache Lösungen sind in 2 bis 4 Wochen fertig. Komplexere Systeme können 6 bis 8 Wochen dauern.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Was passiert, wenn der Agent einen Fehler macht?<span class="faq-icon">+</span></button><div class="faq-a">Du siehst jede Interaktion. Du kannst jederzeit eingreifen und Regeln anpassen. Kein System läuft unkontrolliert.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Kann ich das auch ohne Abo nutzen?<span class="faq-icon">+</span></button><div class="faq-a">Ja. Es gibt Projektpauschalen ohne laufende Bindung. Sprich mich an.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Wie ist das mit dem Datenschutz?<span class="faq-icon">+</span></button><div class="faq-a">Alle Systeme werden in Deutschland betrieben. Daten verlassen nicht ohne Grund die EU. DSGVO wird von Anfang an mitgedacht.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Gibt es eine Garantie?<span class="faq-icon">+</span></button><div class="faq-a">Keine Umsatzgarantie. Aber wenn etwas nicht funktioniert, wird es behoben, bis es funktioniert.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Was wenn ich die Lösung später erweitern will?<span class="faq-icon">+</span></button><div class="faq-a">Das ist der Normalfall. KI-Systeme wachsen mit dem Betrieb. Weiterentwicklung ist eingeplant.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Wie fange ich an?<span class="faq-icon">+</span></button><div class="faq-a">Mit einer kostenlosen Analyse. Ich stelle Fragen, schaue auf deine Prozesse und sage dir ehrlich, ob und was KI bringt.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Was genau baut NEXRAI?<span class="faq-icon">+</span></button><div class="faq-a">Wir entwickeln KI-Agenten, Chatbots, Telefonassistenten, Automatisierungen und Websites. Alles mit dem Ziel, dass dein Unternehmen mit weniger Aufwand mehr schafft.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Für welche Unternehmen ist NEXRAI geeignet?<span class="faq-icon">+</span></button><div class="faq-a">Für Unternehmen ab ca. 5 Mitarbeiter, die manuelle Prozesse haben und skalieren wollen. Branche ist zweitrangig.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Wie lange dauert ein Projekt?<span class="faq-icon">+</span></button><div class="faq-a">Erste Ergebnisse in 2 bis 4 Wochen. Vollständige Implementierungen zwischen 4 und 12 Wochen.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Was kostet das?<span class="faq-icon">+</span></button><div class="faq-a">Das hängt von Umfang und Komplexität ab. Der erste Schritt ist kostenlos: eine ehrliche Analyse deines Potenzials.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Muss ich KI-Experte sein?<span class="faq-icon">+</span></button><div class="faq-a">Nein. Du kennst dein Business, wir kennen die Technologie. Zusammen finden wir das Richtige.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Was ist mit Datenschutz?<span class="faq-icon">+</span></button><div class="faq-a">Alle Systeme entsprechen der DSGVO und der EU-KI-Verordnung. Auf Wunsch vollständig on-premise.</div></div>
     </div>
   </div>
 </section>
 
 <!-- KONTAKT -->
-<section id="kontakt" class="section band stack-panel">
+<section id="kontakt" class="section band stack-panel" data-guide="Lass uns reden">
   <div class="container">
     <div class="section-header reveal">
-      <div class="eyebrow">Bereit loszulegen?</div>
-      <h2><span class="rise"><span>Starten wir jetzt</span></span><span class="rise rise-d1"><span>— kostenlos</span></span></h2>
+      <div class="eyebrow">Kontakt</div>
+      <h2><span class="rise"><span>30 Minuten.</span></span><span class="rise rise-d1"><span>Ein konkreter Prozess.</span></span><span class="rise rise-d2"><span>Kein Verkaufsgespräch.</span></span></h2>
     </div>
     <div class="kontakt-wrap">
       <div class="kontakt-info reveal">
         <h3>Wir analysieren dein Potenzial, unverbindlich.</h3>
-        <p>In einem 30-minütigen Erstgespräch sehen wir uns deine Prozesse an, zeigen konkrete Automatisierungsmöglichkeiten und rechnen dein Einsparpotenzial durch.</p>
+        <p>Zeig uns einen Prozess aus deinem Alltag. Wir zeigen dir, was KI konkret daran verändern würde. Kein Pitch, kein Overhead.</p>
         <div class="kontakt-features">
           <div class="k-feat"><div class="k-feat-icon">✓</div>Kostenlose Potenzialanalyse</div>
           <div class="k-feat"><div class="k-feat-icon">✓</div>Antwort innerhalb von 24 Stunden</div>
@@ -1405,7 +1556,7 @@ html[data-theme="light"] .btn-primary{color:#fff;}
           <div class="form-group"><label class="form-label" for="f-msg">Deine Nachricht</label><textarea class="form-textarea" placeholder="Beschreib kurz deine aktuelle Situation oder Herausforderung …" id="f-msg"></textarea></div>
           <div class="form-group"><div class="form-checkbox"><input type="checkbox" id="f-human"><label for="f-human">Ich möchte nach der ersten Antwort des KI-Agenten mit einem Menschen sprechen.</label></div></div>
           <div class="form-group"><div class="form-checkbox"><input type="checkbox" id="f-dsgvo" required><label for="f-dsgvo">Ich willige ein, dass meine Angaben zur Bearbeitung meiner Anfrage gespeichert und verarbeitet werden, einschließlich der automatisierten Bearbeitung und Beantwortung durch unser KI-Agenten-System. Die Einwilligung kann ich jederzeit formlos per E-Mail widerrufen. Weitere Informationen in der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>. *</label></div></div>
-          <button class="btn-primary form-submit" onclick="submitForm()">Kostenlose Analyse anfragen</button>
+          <button class="btn-primary form-submit" onclick="submitForm()">Prozess analysieren</button>
           <p class="form-foot">Kostenlos und unverbindlich. Ich melde mich persönlich.</p>
         </div>
         <div class="form-success" id="form-success">
@@ -1519,94 +1670,191 @@ html[data-theme="light"] .btn-primary{color:#fff;}
     });
   })();
 
-  // ── BÜHNEN-ENGINE ────────────────────────────────────────
-  // Der Agent bleibt über alle drei Szenen stehen. Im Hero parkt er exakt
-  // auf dem CSS-Platzhalter, danach wandert er zur Seite und blickt zum Text.
+  // ── TOUR-GUIDE-ENGINE ────────────────────────────────────
+  // Der Agent begleitet den Besucher durch die gesamte Seite. Auf der Buehne
+  // parkt er auf dem Hero-Platzhalter, danach wandert er als Guide von
+  // Sektion zu Sektion und nennt jeweils ein Stichwort.
   (function(){
     var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var root=document.getElementById('stageRoot');
-    var stage=root?root.querySelector('.stage'):null;
+    var guide=document.getElementById('guide');
     var agent=document.getElementById('agent');
     var turn=document.getElementById('agentTurn');
+    var say=document.getElementById('guideSay');
     var slot=document.getElementById('headSlot');
+    var root=document.getElementById('stageRoot');
     var scenes=[].slice.call(document.querySelectorAll('[data-scene]'));
     var fogs=[].slice.call(document.querySelectorAll('[data-fog]'));
     var chapters=[].slice.call(document.getElementById('chapters').children);
-    if(!root||!agent||!slot)return;
-    var N=scenes.length;
+    if(!guide||!agent||!slot||!root)return;
 
-    // Szene 2 und 3: Mitte des Kopfes in Prozent der Bühne, ry = Blickrichtung
-    var SIDE=[{x:78,y:50,s:0.74,ry:14,o:1},{x:22,y:50,s:0.74,ry:-14,o:1}];
-    // Auf dem Handy fuellt der Text den Bildschirm – der Agent tritt ab,
-    // statt sich mit der Ueberschrift zu ueberlagern.
-    var SIDE_M=[{x:50,y:16,s:0.55,ry:0,o:0},{x:50,y:16,s:0.55,ry:0,o:0}];
+    // Stationen: x/y in Prozent des Viewports, s = Groesse, ry = Blickrichtung
+    var STOPS=[
+      {sel:'#probleme', x:80, y:50, s:0.70, ry:14},
+      {sel:'#loesungen',x:20, y:50, s:0.70, ry:-14},
+      {sel:'#demo',     x:91, y:24, s:0.40, ry:16},
+      {sel:'#rechner',  x:9,  y:24, s:0.40, ry:-16},
+      {sel:'#dsgvo',    x:91, y:26, s:0.40, ry:16},
+      {sel:'#prozess',  x:9,  y:26, s:0.40, ry:-16},
+      {sel:'#ueber',    x:91, y:24, s:0.36, ry:16},
+      {sel:'#faq',      x:9,  y:26, s:0.38, ry:-16},
+      {sel:'#kontakt',  x:91, y:26, s:0.40, ry:16}
+    ];
+    STOPS.forEach(function(st){
+      st.el=document.querySelector(st.sel);
+      st.label=st.el?st.el.getAttribute('data-guide'):null;
+    });
+    STOPS=STOPS.filter(function(st){return !!st.el;});
 
-    var eased=0,targetP=0,lastChapter=-1;
-    function clamp(v,a,b){return v<a?a:v>b?b:v;}
-    function lerp(a,b,n){return a+(b-a)*n;}
-    function smooth(t){return t*t*(3-2*t);}
-    function mobile(){return window.innerWidth<=1000;}
+    // Der Guide darf niemals ueber Text liegen. Deshalb wird seine Position
+    // aus dem tatsaechlich freien Rand neben der Inhaltsspalte berechnet,
+    // nicht aus festen Prozentwerten.
+    var probe=document.querySelector('#kontakt .container')||document.querySelector('.container');
+    // Die CSS-Breite des Agenten haengt vom Viewport ab, deshalb live messen.
+    function base(){return agent.offsetWidth||330;}
 
-    function measure(){
-      var r=root.getBoundingClientRect();
-      var total=r.height-window.innerHeight;
-      targetP=total>0?clamp(-r.top/total,0,1):0;
+    function freeMargin(){
+      if(!probe)return 0;
+      var r=probe.getBoundingClientRect();
+      return Math.min(r.left, window.innerWidth-r.right);
     }
 
-    function render(){
-      eased=reduce?targetP:lerp(eased,targetP,0.085);
-      var p=eased;
-      var f=p*(N-1);
-      var sb=stage.getBoundingClientRect();
-      var W=sb.width,H=sb.height;
+    function adjust(t){
+      var W=window.innerWidth, H=window.innerHeight;
+      var m=freeMargin();
+      var right=t.x>50;
 
-      // Startpunkt = gemessene Position des Hero-Platzhalters
-      var sr=slot.getBoundingClientRect();
-      var k0={x:(sr.left+sr.width/2-sb.left)/W*100, y:(sr.top+sr.height/2-sb.top)/H*100, s:1, ry:0, o:1};
-      var side=mobile()?SIDE_M:SIDE;
-      var KEYS=[k0,side[0],side[1]];
-
-      var i=Math.min(N-2,Math.floor(f));
-      var t=smooth(clamp(f-i,0,1));
-      var a=KEYS[i],b=KEYS[i+1];
-
-      var cx=lerp(a.x,b.x,t)/100*W;
-      var cy=lerp(a.y,b.y,t)/100*H;
-      var sc=lerp(a.s,b.s,t);
-      var aw=agent.offsetWidth,ah=agent.offsetHeight;
-      agent.style.transform=
-        'translate('+(cx-aw/2)+'px,'+(cy-ah/2)+'px) scale('+sc+')';
-      turn.style.transform='rotateY('+lerp(a.ry,b.ry,t)+'deg)';
-      agent.style.opacity=String(lerp(a.o,b.o,t));
-      agent.classList.toggle('reading',f>0.65);
-
-      scenes.forEach(function(el,idx){
-        var vis=clamp(1-Math.abs(f-idx)*1.5,0,1);
-        el.style.opacity=String(vis);
-        el.style.visibility=vis<0.02?'hidden':'visible';
-        // Der Hero darf nicht verschoben werden, sonst wandert der Platzhalter
-        if(idx>0)el.firstElementChild.style.transform='translateY('+((f-idx)*-42)+'px)';
-      });
-
-      fogs.forEach(function(el){
-        var k=parseFloat(el.dataset.fog);
-        el.style.transform='translate3d(0,'+(p*-H*k)+'px,0) scale('+(1+p*0.12)+')';
-      });
-
-      var ch=Math.round(f);
-      if(ch!==lastChapter){
-        lastChapter=ch;
-        chapters.forEach(function(c,idx){c.classList.toggle('on',idx===ch);});
+      // Seitenmodus nur, wenn Kopf UND lesbare Blase in den Rand passen.
+      // Darunter waere es Gedraenge, deshalb greift der Eckmodus.
+      if(W>1000&&m>=190){
+        var fit=Math.min(t.s,(m-30)/base());
+        return {x:(right?(W-m/2):(m/2))/W*100, y:t.y, s:fit, ry:t.ry,
+                corner:false, sayMax:Math.round(m-28)};
       }
 
-      requestAnimationFrame(render);
+      // Zu wenig Rand oder Handy: der Guide parkt als kleiner Begleiter
+      // unten rechts, wo er garantiert nichts verdeckt.
+      // Zielgroesse in echten Pixeln, unabhaengig von der CSS-Breite
+      var want=W<=1000?78:96;
+      var b=base();
+      var s2=want/b;
+      var pad=W<=1000?16:22;
+      return {
+        x:(W-pad-want/2)/W*100,
+        y:(H-pad-want*(788/896)/2)/H*100,
+        s:s2, ry:t.ry*0.4, corner:true
+      };
     }
 
-    document.addEventListener('scroll',measure,{passive:true});
-    window.addEventListener('resize',measure);
-    measure();
-    requestAnimationFrame(render);
+    var cur={x:50,y:38,s:1,ry:0},tgt={x:50,y:38,s:1,ry:0};
+    var lastLabel=null,lastChapter=-1;
+
+    function lerp(a,b,n){return a+(b-a)*n;}
+    function clamp(v,a,b){return v<a?a:v>b?b:v;}
+
+    function pickTarget(){
+      var vh=window.innerHeight, mid=vh*0.45;
+      var rr=root.getBoundingClientRect();
+
+      // Solange die Buehne laeuft: Hero-Platzhalter bzw. Szenen-Stationen
+      if(rr.bottom>vh*0.5){
+        var total=rr.height-vh;
+        var p=total>0?clamp(-rr.top/total,0,1):0;
+        var f=p*(scenes.length-1);
+        var i=Math.min(scenes.length-2,Math.floor(f));
+        var t=f-i;
+        t=t*t*(3-2*t);
+
+        var sr=slot.getBoundingClientRect();
+        var k0={x:(sr.left+sr.width/2)/window.innerWidth*100,
+                y:(sr.top+sr.height/2)/vh*100, s:1, ry:0};
+        var k1=adjust(STOPS[0]), k2=adjust(STOPS[1]);
+        var KEYS=[k0,k1,k2];
+        var a=KEYS[i],b=KEYS[i+1];
+
+        // Fortschrittsanzeige und Lesebewegung wie gehabt
+        var ch=Math.round(f);
+        if(ch!==lastChapter){
+          lastChapter=ch;
+          chapters.forEach(function(c,idx){c.classList.toggle('on',idx===ch);});
+        }
+        agent.classList.toggle('reading',f>0.65);
+
+        fogs.forEach(function(el){
+          var k=parseFloat(el.dataset.fog);
+          el.style.transform='translate3d(0,'+(p*-vh*k)+'px,0) scale('+(1+p*0.12)+')';
+        });
+        scenes.forEach(function(el,idx){
+          var vis=clamp(1-Math.abs(f-idx)*1.5,0,1);
+          el.style.opacity=String(vis);
+          el.style.visibility=vis<0.02?'hidden':'visible';
+          if(idx>0)el.firstElementChild.style.transform='translateY('+((f-idx)*-42)+'px)';
+        });
+
+        var label=f>1.5?STOPS[1].label:(f>0.55?STOPS[0].label:null);
+        return {x:lerp(a.x,b.x,t),y:lerp(a.y,b.y,t),
+                s:lerp(a.s,b.s,t),ry:lerp(a.ry,b.ry,t),label:label,op:1,corner:k1.corner,sayMax:k1.sayMax};
+      }
+
+      // Danach: die Sektion, die der Bildschirmmitte am naechsten ist
+      agent.classList.remove('reading');
+      var best=null,bestD=Infinity;
+      for(var j=2;j<STOPS.length;j++){
+        var r=STOPS[j].el.getBoundingClientRect();
+        if(r.bottom<0||r.top>vh)continue;
+        var d=Math.abs(r.top+r.height/2-mid);
+        if(d<bestD){bestD=d;best=STOPS[j];}
+      }
+      if(!best){
+        var last=STOPS[STOPS.length-1];
+        var lr=last.el.getBoundingClientRect();
+        best=lr.top>vh?STOPS[2]:last;
+      }
+      var adj=adjust(best);
+      return {x:adj.x,y:adj.y,s:adj.s,ry:adj.ry,label:best.label,op:1,corner:adj.corner,sayMax:adj.sayMax};
+    }
+
+    function frame(){
+      var t=pickTarget();
+      tgt=t;
+      var n=reduce?1:0.075;
+      cur.x=lerp(cur.x,tgt.x,n);
+      cur.y=lerp(cur.y,tgt.y,n);
+      cur.s=lerp(cur.s,tgt.s,n);
+      cur.ry=lerp(cur.ry,tgt.ry,n);
+
+      var W=window.innerWidth,H=window.innerHeight;
+      var aw=agent.offsetWidth,ah=agent.offsetHeight;
+      var cx=cur.x/100*W, cy=cur.y/100*H;
+      agent.style.transform='translate3d('+(cx-aw/2)+'px,'+(cy-ah/2)+'px,0) scale('+cur.s+')';
+      agent.style.opacity=String(tgt.op);
+      if(turn)turn.style.transform='rotateY('+cur.ry+'deg)';
+
+      // Sprechblase unter dem Kopf mitfuehren
+      if(say){
+        if(tgt.label!==lastLabel){
+          lastLabel=tgt.label;
+          if(tgt.label){say.textContent=tgt.label;say.classList.add('on');}
+          else say.classList.remove('on');
+        }
+        if(tgt.label){
+          say.style.maxWidth=(tgt.corner?230:(tgt.sayMax||160))+'px';
+          var sw=say.offsetWidth,sh=say.offsetHeight;
+          var bx,by;
+          if(tgt.corner){
+            // Im Eckmodus sitzt die Blase links neben dem Kopf
+            bx=cx-(aw*cur.s)/2-sw-10;
+            by=cy-sh/2;
+          }else{
+            bx=cx-sw/2;
+            by=cy+(ah*cur.s)/2-ah*cur.s*0.10;
+          }
+          say.style.transform='translate3d('+clamp(bx,10,W-sw-10)+'px,'+clamp(by,10,H-sh-10)+'px,0)';
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
   })();
 
 
@@ -1627,15 +1875,31 @@ html[data-theme="light"] .btn-primary{color:#fff;}
         ],
         flow:[
           {who:'user',text:'Guten Abend, ich hätte gern einen Termin zur Kontrolle.'},
-          {who:'bot',text:'Guten Abend. Sehr gern – ich bin der digitale Assistent der Praxis Dr. Weber und kann Ihnen direkt einen Termin geben. Waren Sie bereits bei uns?',step:0},
-          {who:'opt',options:['Ja, ich bin Bestandspatient','Nein, ich bin neu']},
-          {who:'bot',text:'Danke. Für eine Kontrolle brauche ich etwa 30 Minuten. Diese Zeiten sind diese Woche frei: Mittwoch 09:15, Donnerstag 14:30 oder Freitag 16:00.',step:1},
-          {who:'opt',options:['Donnerstag 14:30 passt','Freitag 16:00 wäre besser']},
-          {who:'bot',text:'Donnerstag, 14:30 Uhr ist für Sie reserviert. Ich schicke Ihnen gleich eine Bestätigung per E-Mail mit Kalendereintrag.',step:2},
+          {who:'bot',text:'Guten Abend. Sehr gern, ich bin der digitale Assistent der Praxis Dr. Weber und kann Ihnen direkt einen Termin geben. Waren Sie bereits bei uns?',step:0},
+          {who:'opt',options:[
+            {label:'Ja, ich bin Bestandspatient',
+             set:{dauer:'30 Minuten'},
+             reply:[{text:'Danke, ich habe Ihre Akte gefunden. Für eine Kontrolle plane ich {{dauer}} ein. Diese Zeiten sind diese Woche frei: Mittwoch 09:15, Donnerstag 14:30 oder Freitag 16:00.',step:1}]},
+            {label:'Nein, ich bin neu',
+             set:{dauer:'45 Minuten'},
+             reply:[{text:'Dann lege ich Sie als neuen Patienten an. Für die Erstkontrolle plane ich {{dauer}} ein, weil die Aufnahme dazukommt. Frei sind: Mittwoch 09:15, Donnerstag 14:30 oder Freitag 16:00.',step:1}]}
+          ]},
+          {who:'opt',options:[
+            {label:'Donnerstag 14:30 passt',
+             set:{termin:'Donnerstag, 14:30 Uhr'},
+             reply:[{text:'{{termin}} ist für Sie reserviert, {{dauer}} bei Dr. Weber. Die Bestätigung mit Kalendereintrag geht gleich per E-Mail raus.',step:2}]},
+            {label:'Freitag 16:00 wäre besser',
+             set:{termin:'Freitag, 16:00 Uhr'},
+             reply:[{text:'{{termin}} ist für Sie reserviert, {{dauer}} bei Dr. Weber. Die Bestätigung mit Kalendereintrag geht gleich per E-Mail raus.',step:2}]}
+          ]},
           {who:'bot',text:'Erledigt. Sie erhalten 24 Stunden vorher automatisch eine Erinnerung. Soll ich der Praxis noch etwas ausrichten?',step:3},
-          {who:'opt',options:['Nein, danke','Ja – ich habe leichte Schmerzen']},
-          {who:'bot',text:'Notiert und an die Praxis weitergeleitet. Falls die Beschwerden zunehmen, meldet sich das Team morgen früh direkt bei Ihnen. Gute Besserung.',step:4},
-          {who:'sys',text:'Zeit bis zur vollständigen Buchung: 41 Sekunden — um 21:47 Uhr, außerhalb der Öffnungszeiten.'}
+          {who:'opt',options:[
+            {label:'Nein, danke',
+             reply:[{text:'Dann ist alles erledigt. Wir sehen uns {{termin}}. Einen schönen Abend noch.',step:4}]},
+            {label:'Ja, ich habe leichte Schmerzen',
+             reply:[{text:'Notiert und an die Praxis weitergeleitet, damit das Team am {{termin}} darauf vorbereitet ist. Falls die Beschwerden vorher zunehmen, meldet sich die Praxis morgen früh bei Ihnen. Gute Besserung.',step:4}]}
+          ]},
+          {who:'sys',text:'Zeit bis zur vollständigen Buchung: 41 Sekunden, um 21:47 Uhr außerhalb der Öffnungszeiten.'}
         ]
       },
       {
@@ -1651,14 +1915,28 @@ html[data-theme="light"] .btn-primary{color:#fff;}
         flow:[
           {who:'user',text:'Ich brauche ein Angebot für ein Balkongeländer aus Edelstahl.'},
           {who:'bot',text:'Gern. Damit die Kalkulation stimmt, brauche ich drei Angaben: ungefähre Länge, Anzahl der Balkone und ob eine Glasfüllung gewünscht ist.',step:0},
-          {who:'opt',options:['Ca. 6 Meter, 1 Balkon, mit Glas','Ca. 12 Meter, 2 Balkone, ohne Glas']},
-          {who:'bot',text:'Danke. Ist der Balkon frei zugänglich oder wird ein Gerüst benötigt? Das beeinflusst die Montagekosten spürbar.',step:1},
-          {who:'opt',options:['Frei zugänglich','Gerüst nötig']},
-          {who:'bot',text:'Auf Basis dieser Angaben liegt die Preisspanne erfahrungsgemäß bei 2.400 – 3.100 € inkl. Montage. Der verbindliche Preis kommt nach dem Aufmaß.',step:2},
-          {who:'bot',text:'Ich habe einen Angebotsentwurf vorbereitet. Der Betrieb prüft ihn und gibt ihn frei – Sie erhalten ihn im Regelfall innerhalb eines Werktags.',step:3},
-          {who:'opt',options:['Passt – wann kann jemand messen?']},
-          {who:'bot',text:'Für das Aufmaß sind Dienstag 08:00 oder Donnerstag 13:00 frei. Welcher Termin passt Ihnen besser?',step:4},
-          {who:'sys',text:'Anfrage vollständig erfasst statt „Wir melden uns" – der Betrieb bekommt einen entscheidungsreifen Vorgang.'}
+          {who:'opt',options:[
+            {label:'Ca. 6 Meter, 1 Balkon, mit Glas',
+             set:{umfang:'6 Meter an einem Balkon, mit Glasfüllung',preis:'2.400 bis 3.100 €'},
+             reply:[{text:'Danke: {{umfang}}. Ist der Balkon frei zugänglich oder wird ein Gerüst benötigt? Das beeinflusst die Montagekosten spürbar.',step:1}]},
+            {label:'Ca. 12 Meter, 2 Balkone, ohne Glas',
+             set:{umfang:'12 Meter an zwei Balkonen, ohne Glasfüllung',preis:'3.900 bis 4.800 €'},
+             reply:[{text:'Danke: {{umfang}}. Sind beide Balkone frei zugänglich oder wird ein Gerüst benötigt? Das beeinflusst die Montagekosten spürbar.',step:1}]}
+          ]},
+          {who:'opt',options:[
+            {label:'Frei zugänglich',
+             set:{montage:'Ohne Gerüst bleibt die Montage im unteren Bereich dieser Spanne.'},
+             reply:[{text:'Für {{umfang}} liegt die Preisspanne erfahrungsgemäß bei {{preis}} inklusive Montage. {{montage}} Der verbindliche Preis kommt nach dem Aufmaß.',step:2}]},
+            {label:'Gerüst nötig',
+             set:{montage:'Für das Gerüst kommen rund 300 € dazu.'},
+             reply:[{text:'Für {{umfang}} liegt die Preisspanne erfahrungsgemäß bei {{preis}} inklusive Montage. {{montage}} Der verbindliche Preis kommt nach dem Aufmaß.',step:2}]}
+          ]},
+          {who:'bot',text:'Ich habe einen Angebotsentwurf vorbereitet. Der Betrieb prüft ihn und gibt ihn frei, Sie erhalten ihn im Regelfall innerhalb eines Werktags.',step:3},
+          {who:'opt',options:[
+            {label:'Passt, wann kann jemand messen?',
+             reply:[{text:'Für das Aufmaß sind Dienstag 08:00 oder Donnerstag 13:00 frei. Welcher Termin passt Ihnen besser?',step:4}]}
+          ]},
+          {who:'sys',text:'Anfrage vollständig erfasst statt „Wir melden uns", der Betrieb bekommt einen entscheidungsreifen Vorgang.'}
         ]
       },
       {
@@ -1673,13 +1951,24 @@ html[data-theme="light"] .btn-primary{color:#fff;}
         ],
         flow:[
           {who:'user',text:'Auf meiner Rechnung steht eine Position, die ich nie bestellt habe. Das ist jetzt das zweite Mal.'},
-          {who:'bot',text:'Das ärgert mich – ich schaue mir das sofort an. Ich bin ein KI-Assistent; wenn eine Entscheidung nötig ist, hole ich einen Kollegen dazu.',step:0},
+          {who:'bot',text:'Das ärgert mich, ich schaue mir das sofort an. Ich bin ein KI-Assistent; wenn eine Entscheidung nötig ist, hole ich einen Kollegen dazu.',step:0},
           {who:'bot',text:'Ich sehe Rechnung 2024-1180 mit der Position „Zusatzmodul Reporting", 29 € monatlich, seit März aktiv.',step:1},
-          {who:'opt',options:['Genau die meine ich','Nein, eine andere Position']},
-          {who:'bot',text:'Im Vertrag ist dieses Modul tatsächlich nicht enthalten. Die Buchung stammt aus einer Systemumstellung im März – das sieht nach einem Fehler auf unserer Seite aus.',step:2},
-          {who:'bot',text:'Eine Gutschrift darf ich nicht selbst auslösen. Ich habe den Vorgang mit allen Belegen an das Serviceteam übergeben und als bevorzugt markiert.',step:3},
-          {who:'opt',options:['Wann höre ich davon?']},
-          {who:'bot',text:'Ein Kollege meldet sich am nächsten Werktag bis 12 Uhr persönlich bei Ihnen. Ihre Ticketnummer lautet 4812-B. Entschuldigen Sie die Umstände.',step:4},
+          {who:'opt',options:[
+            {label:'Genau die meine ich',
+             set:{summe:'29 € monatlich seit März',pos:'Diese Position'},
+             reply:[{text:'{{pos}} ist im Vertrag nicht enthalten. Die Buchung stammt aus einer Systemumstellung im März, das sieht nach einem Fehler auf unserer Seite aus.',step:2}]},
+            {label:'Nein, eine andere Position',
+             set:{summe:'48 € monatlich seit März',pos:'Beide Positionen'},
+             reply:[
+               {text:'Dann suche ich weiter. Auf derselben Rechnung steht zusätzlich „Support Premium", 19 € monatlich, ebenfalls seit März.',step:1},
+               {text:'{{pos}} sind im Vertrag nicht enthalten. Beide Buchungen stammen aus einer Systemumstellung im März, das sieht nach einem Fehler auf unserer Seite aus.',step:2}
+             ]}
+          ]},
+          {who:'bot',text:'Eine Gutschrift darf ich nicht selbst auslösen. Ich habe den Vorgang über {{summe}} mit allen Belegen an das Serviceteam übergeben und als bevorzugt markiert.',step:3},
+          {who:'opt',options:[
+            {label:'Wann höre ich davon?',
+             reply:[{text:'Ein Kollege meldet sich am nächsten Werktag bis 12 Uhr persönlich bei Ihnen. Ihre Ticketnummer lautet 4812-B. Entschuldigen Sie die Umstände.',step:4}]}
+          ]},
           {who:'sys',text:'Der Agent hat vorbereitet, nicht entschieden. Geld-relevante Vorgänge bleiben beim Menschen.'}
         ]
       },
@@ -1696,14 +1985,27 @@ html[data-theme="light"] .btn-primary{color:#fff;}
         flow:[
           {who:'user',text:'Die Schuhe sind zu klein. Kann ich die zurückschicken?'},
           {who:'bot',text:'Selbstverständlich. Ich bin der digitale Assistent des Shops. Nennen Sie mir bitte die Bestellnummer oder die E-Mail-Adresse der Bestellung.',step:0},
-          {who:'opt',options:['Bestellnummer 20418']},
-          {who:'bot',text:'Gefunden: Modell „Trail 2", Größe 42, geliefert vor 9 Tagen. Die Rückgabe ist problemlos möglich.',step:1},
-          {who:'bot',text:'Ihr Retourenlabel ist unterwegs in Ihr Postfach. Einfach ausdrucken und aufkleben – die Erstattung erfolgt nach Wareneingang.',step:2},
-          {who:'opt',options:['Gibt es das Modell eine Nummer größer?','Nein, nur zurück bitte']},
-          {who:'bot',text:'Ja, Größe 43 ist auf Lager. Übrigens: Dieses Modell fällt erfahrungsgemäß klein aus, viele Kundinnen und Kunden nehmen eine halbe Nummer größer.',step:3},
-          {who:'opt',options:['Dann bitte direkt 43 als Austausch']},
-          {who:'bot',text:'Notiert. Das Austauschpaket geht heute noch raus, Lager und Buchhaltung sind informiert. Sie zahlen nichts doppelt.',step:4},
-          {who:'sys',text:'Retoure abgewickelt und gleichzeitig ein Umsatz gehalten – ohne dass jemand im Team eingreifen musste.'}
+          {who:'opt',options:[
+            {label:'Bestellnummer 20418',
+             reply:[{text:'Gefunden: Modell „Trail 2", Größe 42, geliefert vor 9 Tagen. Die Rückgabe ist problemlos möglich.',step:1}]}
+          ]},
+          {who:'bot',text:'Ihr Retourenlabel ist unterwegs in Ihr Postfach. Einfach ausdrucken und aufkleben, die Erstattung erfolgt nach Wareneingang.',step:2},
+          {who:'opt',options:[
+            {label:'Gibt es das Modell eine Nummer größer?',
+             reply:[{text:'Ja, Größe 43 ist auf Lager. Dieses Modell fällt erfahrungsgemäß klein aus, viele Kundinnen und Kunden nehmen eine halbe Nummer größer.',step:3}]},
+            {label:'Nein, nur zurück bitte',
+             jump:'end',
+             reply:[
+               {text:'Alles klar, dann bleibt es bei der reinen Rückgabe. Sobald das Paket im Lager eintrifft, wird der Betrag automatisch erstattet, in der Regel innerhalb von drei Werktagen.',step:3},
+               {text:'Die Retoure ist abgeschlossen, Lager und Buchhaltung sind informiert. Falls Sie später doch tauschen möchten, finden Sie Größe 43 jederzeit im Shop.',step:4},
+               {who:'sys',text:'Auch ohne Austausch sauber abgewickelt: kein Ticket, keine Rückfrage, niemand im Team musste eingreifen.'}
+             ]}
+          ]},
+          {who:'opt',options:[
+            {label:'Dann bitte direkt 43 als Austausch',
+             reply:[{text:'Notiert. Das Austauschpaket geht heute noch raus, Lager und Buchhaltung sind informiert. Sie zahlen nichts doppelt.',step:4}]}
+          ]},
+          {who:'sys',text:'Retoure abgewickelt und gleichzeitig ein Umsatz gehalten, ohne dass jemand im Team eingreifen musste.'}
         ]
       }
     ];
@@ -1716,7 +2018,8 @@ html[data-theme="light"] .btn-primary{color:#fff;}
     var sysScenEl=document.getElementById('sysScenario');
     if(!tabsEl)return;
 
-    var current=null,idx=0,timers=[];
+    var current=null,idx=0,timers=[],vars={};
+    function fill(t){return String(t).replace(/\{\{(\w+)\}\}/g,function(m,k){return vars[k]!==undefined?vars[k]:'';});}
 
     SCENARIOS.forEach(function(s,i){
       var b=document.createElement('button');
@@ -1757,6 +2060,7 @@ html[data-theme="light"] .btn-primary{color:#fff;}
     function lit(i){var e=document.getElementById('sys-'+i);if(e)e.classList.add('on');}
 
     function push(cls,text,cb){
+      text=fill(text);
       var b=document.createElement('div');
       b.className='msg '+cls;
       scrollEl.appendChild(b);
@@ -1774,11 +2078,25 @@ html[data-theme="light"] .btn-primary{color:#fff;}
     }
 
     function startScenario(s){
-      clearTimers();current=s;idx=0;
+      clearTimers();current=s;idx=0;vars={};
       scrollEl.innerHTML='';optsEl.innerHTML='';
       titleEl.textContent=s.title;
       renderSys(s);
       later(next,300);
+    }
+
+    // Spielt die Antwortkette einer gewaehlten Option ab, bevor der Flow weiterlaeuft.
+    function playReply(list,done){
+      var i=0;
+      (function step(){
+        if(i>=list.length){done();return;}
+        var m=list[i++];
+        if(m.who==='sys'){push('sys',m.text,function(){later(step,200);});return;}
+        think(560,function(){
+          if(typeof m.step==='number')lit(m.step);
+          push('bot',m.text,function(){later(step,420);});
+        });
+      })();
     }
 
     function next(){
@@ -1797,11 +2115,19 @@ html[data-theme="light"] .btn-primary{color:#fff;}
       if(m.who==='opt'){
         optsEl.innerHTML='';
         m.options.forEach(function(o){
+          var opt=(typeof o==='string')?{label:o}:o;
           var b=document.createElement('button');
-          b.className='opt';b.textContent=o;
+          b.className='opt';b.textContent=opt.label;
           b.addEventListener('click',function(){
             optsEl.innerHTML='';
-            push('user',o,function(){later(next,340);});
+            if(opt.set)for(var k in opt.set)vars[k]=opt.set[k];
+            push('user',opt.label,function(){
+              playReply(opt.reply||[],function(){
+                if(opt.jump==='end'){idx=current.flow.length;}
+                else if(typeof opt.jump==='number'){idx=opt.jump;}
+                later(next,340);
+              });
+            });
           });
           optsEl.appendChild(b);
         });
@@ -1855,6 +2181,101 @@ html[data-theme="light"] .btn-primary{color:#fff;}
       });
     },{threshold:0.2});
     fo.observe(flow);
+  })();
+
+
+  // ── WOW-EBENE ab Live Demo ───────────────────────────────
+  // Beruehrt die Buehne oberhalb der Demo bewusst nicht.
+  (function(){
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 1) Einmalige Auftritte: Klasse setzen, beim Sichtbarwerden starten
+    var once=[
+      ['.demo','boot'],
+      ['#demoTabs','boot'],
+      ['.prozess-grid','deck'],
+      ['.faq-list','cascade'],
+      ['.form-wrap','stagger']
+    ];
+    var entries=[];
+    once.forEach(function(pair){
+      var el=document.querySelector(pair[0]);
+      if(!el)return;
+      el.classList.add(pair[1]);
+      entries.push(el);
+    });
+    // Eyebrows ab der Demo abwaerts bekommen die gezeichnete Linie
+    var fromDemo=false;
+    [].slice.call(document.querySelectorAll('section')).forEach(function(sec){
+      if(sec.id==='demo')fromDemo=true;
+      if(!fromDemo)return;
+      var eb=sec.querySelector('.eyebrow');
+      if(eb){eb.classList.add('draw');entries.push(eb);}
+    });
+
+    if(reduce){
+      entries.forEach(function(el){el.classList.add('go');});
+    }else{
+      var io1=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(!e.isIntersecting)return;
+          e.target.classList.add('go');
+          io1.unobserve(e.target);
+        });
+      },{threshold:0.08,rootMargin:'0px 0px -6% 0px'});
+      entries.forEach(function(el){io1.observe(el);});
+
+      // Sicherheitsnetz: Unsichtbarer Inhalt ist der schlimmste Fehlerfall.
+      // Was nach kurzer Zeit im Viewport steht und trotzdem nicht ausgeloest
+      // wurde, wird hart eingeblendet.
+      setInterval(function(){
+        var vh=window.innerHeight;
+        entries.forEach(function(el){
+          if(el.classList.contains('go'))return;
+          var r=el.getBoundingClientRect();
+          if(r.top<vh&&r.bottom>0)el.classList.add('go');
+        });
+      },1200);
+    }
+
+    // 2) Scrollgekoppelt: Flow-Schritte und Portraet-Parallaxe
+    var flow=document.getElementById('agentFlow');
+    var steps=flow?[].slice.call(flow.querySelectorAll('.flow-step')):[];
+    var arrows=flow?[].slice.call(flow.querySelectorAll('.flow-arrow')):[];
+    var portrait=document.querySelector('.about-portrait');
+    if(flow&&!reduce)flow.classList.add('track');
+    if(portrait&&!reduce)portrait.classList.add('par');
+
+    if(reduce||(!flow&&!portrait))return;
+
+    var ticking=false,lastLit=-1;
+    function frame(){
+      ticking=false;
+      var vh=window.innerHeight;
+
+      if(flow){
+        var r=flow.getBoundingClientRect();
+        // Fortschritt, waehrend der Flow durch das untere Drittel wandert
+        var prog=(vh*0.82-r.top)/(r.height+vh*0.30);
+        prog=prog<0?0:prog>1?1:prog;
+        var lit=Math.round(prog*steps.length);
+        if(lit!==lastLit){
+          lastLit=lit;
+          steps.forEach(function(st,i){st.classList.toggle('lit',i<lit);});
+          arrows.forEach(function(a,i){a.classList.toggle('lit',i<lit-1);});
+        }
+      }
+
+      if(portrait){
+        var pr=portrait.getBoundingClientRect();
+        if(pr.bottom>0&&pr.top<vh){
+          var mid=(pr.top+pr.height/2-vh/2)/vh;
+          portrait.style.transform='translate3d(0,'+(mid*-26).toFixed(1)+'px,0)';
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
   })();
 
   // ── FORM ─────────────────────────────────────────────────
