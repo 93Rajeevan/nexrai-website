@@ -1,0 +1,4 @@
+:HL["/_next/static/chunks/1dt6r04mz66lv.css","style"]
+:HL["/fonts/inter-400.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/fonts/instrumentserif-latin-normal.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"agb","param":null,"prefetchHints":4160,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"E49tamSiSBK_fht0NQhqV"}

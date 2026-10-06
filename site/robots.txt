@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://nexrai.de
+Sitemap: https://nexrai.de/sitemap.xml

@@ -1,0 +1,66 @@
+1:"$Sreact.fragment"
+3:I[97367,["/_next/static/chunks/1bc5ra7pxtoxa.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+8:I[97367,["/_next/static/chunks/1bc5ra7pxtoxa.js"],"ViewportBoundary"]
+9:I[97367,["/_next/static/chunks/1bc5ra7pxtoxa.js"],"MetadataBoundary"]
+2:T96c,
+    <section>
+    <h2>§ 1 Geltungsbereich</h2>
+    <p>Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge zwischen Rajeevan Rasaratnam ("NEXRAI") und ihren Kunden über die Erbringung von KI-Automatisierungen, KI-Agenten, Chatbots, Webdesign und verwandten Dienstleistungen.</p>
+    </section>
+    <section>
+    <h2>§ 2 Vertragsschluss</h2>
+    <p>Ein Vertrag kommt durch die Bestätigung eines individuellen Angebots durch den Kunden zustande. Kostenlose Erstgespräche und Potenzialanalysen sind unverbindlich und begründen keine Vertragspflicht.</p>
+    </section>
+    <section>
+    <h2>§ 3 Leistungsumfang</h2>
+    <p>Der konkrete Leistungsumfang ergibt sich aus dem jeweiligen Angebot bzw. der Leistungsbeschreibung. Änderungen des Leistungsumfangs bedürfen der schriftlichen Vereinbarung.</p>
+    </section>
+    <section>
+    <h2>§ 4 Vergütung und Zahlungsbedingungen</h2>
+    <p>Die Vergütung richtet sich nach dem individuellen Angebot. Sofern nicht anders vereinbart, ist die Rechnung innerhalb von <span class="ph">[14]</span> Tagen nach Rechnungsstellung fällig.</p>
+    </section>
+    <section>
+    <h2>§ 5 Mitwirkungspflichten des Kunden</h2>
+    <p>Der Kunde stellt die für die Leistungserbringung notwendigen Informationen, Zugänge und Daten rechtzeitig zur Verfügung. Verzögerungen durch unzureichende Mitwirkung gehen nicht zu Lasten von NEXRAI.</p>
+    </section>
+    <section>
+    <h2>§ 6 Haftung</h2>
+    <p>NEXRAI haftet nur für Schäden, die auf vorsätzlichem oder grob fahrlässigem Verhalten beruhen, soweit gesetzlich zulässig. Für die Richtigkeit von durch KI-Systeme generierten Inhalten wird keine Gewähr übernommen, soweit menschliche Kontrolle vertraglich vorgesehen ist.</p>
+    </section>
+    <section>
+    <h2>§ 7 Datenschutz</h2>
+    <p>Die Verarbeitung personenbezogener Daten erfolgt gemäß unserer Datenschutzerklärung und – soweit erforderlich – auf Grundlage eines gesonderten Auftragsverarbeitungsvertrags (AVV).</p>
+    </section>
+    <section>
+    <h2>§ 8 Schlussbestimmungen</h2>
+    <p>Es gilt das Recht der Bundesrepublik Deutschland. Sollte eine Bestimmung dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
+    </section>
+    <p class="stand">Ergänzend gelten unsere <a href="/datenschutz">Datenschutzerklärung</a> und die Angaben im <a href="/impressum">Impressum</a>.</p>
+  7:X
+19:X
+19:C
+0:{"buildId":"E49tamSiSBK_fht0NQhqV","data":[{"rsc":["$","$1","c",{"children":[["$","article",null,{"className":"wrap legal","children":[["$","header",null,{"className":"legal-head","children":[["$","p",null,{"className":"label","children":"Rechtliches"}],["$","h1",null,{"className":"h1","children":"Allgemeine Geschäftsbedingungen"}],["$","p",null,{"className":"lead","dangerouslySetInnerHTML":{"__html":"Bedingungen für die Zusammenarbeit mit NEXRAI."}}]]}],["$","div",null,{"className":"legal-body","dangerouslySetInnerHTML":{"__html":"$2"}}]]}],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#07090B","media":"(prefers-color-scheme: dark)"}],["$","meta","3",{"name":"theme-color","content":"#F4F6F7","media":"(prefers-color-scheme: light)"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Allgemeine Geschäftsbedingungen | NEXRAI"}],"$La","$Lb","$Lc","$Ld","$Le","$Lf","$L10","$L11","$L12","$L13","$L14","$L15"]}]}]}],null]}],"isPartial":"$@16","staleTime":"$7","varyParams":null},{"rsc":"$L17","isPartial":"$@18","staleTime":"$7","varyParams":"$19"}],"isUpgradeableISRFallback":false,"a":"$@1a","rootVaryParams":null,"needsRuntimeRequest":"$@1b"}
+1c:I[39756,["/_next/static/chunks/1bc5ra7pxtoxa.js"],"default"]
+1d:I[37457,["/_next/static/chunks/1bc5ra7pxtoxa.js"],"default"]
+5:null
+a:["$","meta","1",{"name":"description","content":"NEXRAI · Allgemeine Geschäftsbedingungen"}]
+b:["$","meta","2",{"name":"robots","content":"noindex, follow"}]
+c:["$","link","3",{"rel":"canonical","href":"https://nexrai.de/agb"}]
+d:["$","meta","4",{"property":"og:title","content":"Allgemeine Geschäftsbedingungen"}]
+e:["$","meta","5",{"property":"og:description","content":"NEXRAI · Allgemeine Geschäftsbedingungen"}]
+f:["$","meta","6",{"property":"og:url","content":"https://nexrai.de/agb"}]
+10:["$","meta","7",{"property":"og:site_name","content":"NEXRAI"}]
+11:["$","meta","8",{"property":"og:locale","content":"de_DE"}]
+12:["$","meta","9",{"property":"og:type","content":"website"}]
+13:["$","meta","10",{"name":"twitter:card","content":"summary"}]
+14:["$","meta","11",{"name":"twitter:title","content":"Allgemeine Geschäftsbedingungen"}]
+15:["$","meta","12",{"name":"twitter:description","content":"NEXRAI · Allgemeine Geschäftsbedingungen"}]
+17:["$","$1","c",{"children":[null,["$","$L1c",null,{"parallelRouterKey":"children","template":["$","$L1d",null,{}]}]]}]
+1b:true
+7:300
+7:C
+1a:0
+16:"$undefined"
+18:"$undefined"
+6:"$undefined"

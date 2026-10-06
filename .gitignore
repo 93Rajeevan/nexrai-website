@@ -2,3 +2,8 @@
 **/.DS_Store
 *.zip
 Thumbs.db
+
+# Zugangsdaten niemals committen oder deployen
+.env
+.env.*
+*.key

@@ -3,31 +3,25 @@
 Statische Website, ausgeliefert über nginx im Container.
 Deploy läuft über Coolify: Push auf `main` löst den Build aus.
 
-## Inhalt
+Seit dem Master-Projekt (Oktober 2026) ist die Seite mit Next.js gebaut
+(statischer Export). Gebaut wird lokal, ins Repo kommt nur das Ergebnis:
 
-| Datei | Zweck |
+| Pfad | Zweck |
 |---|---|
-| `index.html` | Startseite |
-| `impressum.html` · `datenschutz.html` · `agb.html` | Rechtsseiten |
-| `nexrai-potenzialrechner.html` | eigenständiger Rechner |
-| `fonts/` | Inter, Fraunces, Oxanium, DM Sans — alle lokal (DSGVO) |
-| `assets/img/` | WebP-Bilder |
-| `Dockerfile` · `nginx.conf` | Build und Auslieferung |
+| `site/` | fertige Website (Ausgabe von `npm run build`, Ordner `out/`) |
+| `Dockerfile` · `nginx.conf` | Auslieferung, Cache- und Sicherheits-Header, Weiterleitungen |
+
+Quelle: `04_Website-Nexrai/Entwicklung/Master-Projekt/web/`.
+Neu einsetzen: `Entwicklung/Master-Projekt/deploy/live-vorbereiten.sh`.
 
 ## Wichtig
 
 Es werden **keine externen Ressourcen** geladen. Keine Google Fonts, keine CDNs,
 keine Tracker. Die Datenschutzerklärung sagt das ausdrücklich zu, also muss es
-so bleiben. Vor dem Einbinden einer externen Bibliothek erst die
-Datenschutzerklärung prüfen.
+so bleiben. Keine API-Schlüssel im Repo oder in `site/`.
 
-## Lokal ansehen
+## Rückweg
 
-```bash
-python3 -m http.server 8080
-```
-
-## Arbeitsweise
-
-Entwickelt wird in `../Entwicklung/Website-v6/`, dieser Ordner ist der
-Deploy-Stand. Ältere Versionen liegen in `../Archiv/`.
+Der letzte Stand der Single-File-Seite trägt den Git-Tag `v7-single-file`
+(Kopie zusätzlich in `Archiv/Live-v7-<Datum>`). Zurück:
+`git revert` des Umstellungs-Commits, pushen, Coolify baut neu.

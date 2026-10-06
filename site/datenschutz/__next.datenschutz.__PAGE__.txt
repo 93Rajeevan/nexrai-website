@@ -1,0 +1,250 @@
+1:"$Sreact.fragment"
+2:T4f56,
+    <!-- Inhaltsverzeichnis -->
+    <div class="toc">
+    <div class="toc-title">Inhalt</div>
+    <ol>
+    <li><a href="#verantwortlicher">Verantwortlicher</a></li>
+    <li><a href="#hosting">Hosting &amp; Server-Logs</a></li>
+    <li><a href="#schriftarten">Schriftarten (lokal gehostet)</a></li>
+    <li><a href="#cookies">Cookies &amp; lokale Speicherung</a></li>
+    <li><a href="#kontaktformular">Kontaktformular</a></li>
+    <li><a href="#ki-agent">Einsatz eines KI-Agenten</a></li>
+    <li><a href="#workflow">Automatisierter Workflow (n8n)</a></li>
+    <li><a href="#speicherung">Datenspeicherung &amp; Löschung</a></li>
+    <li><a href="#rechner">Potenzial-Rechner</a></li>
+    <li><a href="#empfaenger">Empfänger &amp; Auftragsverarbeiter</a></li>
+    <li><a href="#rechte">Ihre Rechte</a></li>
+    <li><a href="#beschwerde">Beschwerderecht</a></li>
+    <li><a href="#aenderungen">Änderungen dieser Erklärung</a></li>
+    </ol>
+    </div>
+    <!-- 1. Verantwortlicher -->
+    <section id="verantwortlicher">
+    <h2>1. Verantwortlicher</h2>
+    <p>Verantwortlicher für die Datenverarbeitung auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
+    <p>
+    Rajeevan Rasaratnam<br>
+    Einzelunternehmen, tätig unter der Marke NEXRAI<br>
+    Auf dem Toren 29<br>
+    44388 Dortmund<br>
+    Deutschland<br><br>
+    E-Mail: <a href="mailto:info@nexrai.de">info@nexrai.de</a>
+    </p>
+    <p>Bei Fragen zum Datenschutz erreichen Sie uns jederzeit unter der oben genannten E-Mail-Adresse.</p>
+    </section>
+    <!-- 2. Hosting -->
+    <section id="hosting">
+    <h2>2. Hosting &amp; Server-Logs</h2>
+    <p>Diese Website wird auf Servern der <strong>Hetzner Online GmbH</strong>, Industriestr. 25, 91710 Gunzenhausen, Deutschland, gehostet. Die Server befinden sich in Deutschland (EU).</p>
+    <p>Mit Hetzner besteht ein Auftragsverarbeitungsvertrag (AVV) gemäß Art. 28 DSGVO.</p>
+    <h3>Server-Logfiles</h3>
+    <p>Beim Aufruf unserer Website erfasst Hetzner automatisch folgende Informationen in Server-Logfiles:</p>
+    <ul>
+    <li>IP-Adresse des anfragenden Geräts (anonymisiert nach kurzer Zeit)</li>
+    <li>Datum und Uhrzeit der Anfrage</li>
+    <li>Aufgerufene URL</li>
+    <li>Browsertyp und -version</li>
+    <li>Betriebssystem</li>
+    <li>Referrer-URL (zuvor besuchte Seite)</li>
+    </ul>
+    <p>Diese Daten werden nicht mit anderen Datenquellen zusammengeführt und dienen ausschließlich der technischen Bereitstellung der Website sowie der Abwehr von Angriffen.</p>
+    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren Betrieb der Website).<br>
+    <strong>Speicherdauer:</strong> In der Regel 7 Tage, danach automatische Löschung.</p>
+    </section>
+    <!-- 3. Schriftarten -->
+    <section id="schriftarten">
+    <h2>3. Schriftarten (lokal gehostet)</h2>
+    <p>Diese Website verwendet die Schriftarten <strong>Inter</strong> und <strong>Instrument Serif</strong>, die Seite des Potenzial-Rechners zusätzlich <strong>DM Sans</strong> und <strong>Oxanium</strong>. Alle Schriftdateien werden <strong>lokal auf unserem eigenen Server</strong> (Hetzner, Deutschland) gehostet und ausgeliefert.</p>
+    <p>Es findet kein Aufruf externer Server statt. Insbesondere werden keine Verbindungen zu Google-Servern hergestellt. Es werden dabei keine personenbezogenen Daten an Dritte übermittelt.</p>
+    <div class="info">Anders als bei extern eingebundenen Google Fonts wird Ihre IP-Adresse nicht an Google übertragen.</div>
+    </section>
+    <!-- 4. Cookies -->
+    <section id="cookies">
+    <h2>4. Cookies &amp; lokale Speicherung</h2>
+    <p><strong>Diese Website setzt keine Cookies.</strong></p>
+    <p>Wir verwenden weder technisch notwendige noch optionale Cookies.</p>
+    <p><strong>Einzige Speicherung auf Ihrem Endgerät:</strong> Wenn Sie über den Schalter zwischen hellem und dunklem Design wechseln, speichert Ihr Browser diese Auswahl im lokalen Speicher (Local Storage, Eintrag <code>nexrai-theme</code>), damit sie beim nächsten Besuch erhalten bleibt. Der Eintrag enthält ausschließlich den Wert „hell“ oder „dunkel“, enthält keine personenbezogenen Daten und wird nicht an uns übertragen. Sie können ihn jederzeit in den Einstellungen Ihres Browsers löschen.</p>
+    <p><strong>Rechtsgrundlage:</strong> § 25 Abs. 2 Nr. 2 TDDDG (von Ihnen ausdrücklich gewünschte Einstellung); die weitere Verarbeitung beruht auf Art. 6 Abs. 1 lit. f DSGVO.</p>
+    <p>Da nur diese von Ihnen gewählte Einstellung gespeichert wird, zeigen wir Ihnen keinen Cookie-Banner.</p>
+    <p>Wir setzen keine Analyse-, Tracking- oder Marketing-Technologien ein. Es findet keine Reichweitenmessung, kein Profiling und keine Weitergabe von Nutzungsdaten an Werbepartner statt.</p>
+    <div class="info">Der einzige Zeitpunkt, zu dem wir personenbezogene Daten von Ihnen erhalten, ist das aktive Absenden des Kontaktformulars (siehe Abschnitt 5).</div>
+    </section>
+    <!-- 5. Kontaktformular -->
+    <section id="kontaktformular">
+    <h2>5. Kontaktformular</h2>
+    <p>Auf unserer Website bieten wir ein Kontaktformular an. Wenn Sie dieses nutzen, erheben wir folgende personenbezogene Daten:</p>
+    <table>
+    <thead><tr><th>Feld</th><th>Pflichtfeld</th><th>Zweck</th></tr></thead>
+    <tbody>
+    <tr><td>Vorname</td><td>Ja</td><td>Persönliche Ansprache</td></tr>
+    <tr><td>Nachname</td><td>Ja</td><td>Zuordnung und Bearbeitung der Anfrage</td></tr>
+    <tr><td>Firma</td><td>Nein</td><td>Einschätzung des Beratungsbedarfs</td></tr>
+    <tr><td>E-Mail-Adresse</td><td>Ja</td><td>Antwort auf Ihre Anfrage und Eingangsbestätigung</td></tr>
+    <tr><td>Telefonnummer</td><td>Nein</td><td>Optionale telefonische Kontaktaufnahme</td></tr>
+    <tr><td>Gewünschte Leistung (Auswahl)</td><td>Ja</td><td>Zuweisung zur passenden Beratung</td></tr>
+    <tr><td>Verbesserungsziel (Auswahl)</td><td>Ja</td><td>Einordnung des Anliegens</td></tr>
+    <tr><td>Kurzbeschreibung</td><td>Nein</td><td>Beschreibung des Anliegens</td></tr>
+    <tr><td>Wunsch, nach der ersten Antwort mit einem Menschen zu sprechen</td><td>Nein</td><td>Weiterleitung an eine Person</td></tr>
+    </tbody>
+    </table>
+    <p><strong>Nicht erhoben</strong> werden: IP-Adresse, Browserinformationen, Gerätedaten oder sonstige technische Metadaten aus dem Formular.</p>
+    <h3>Einwilligung</h3>
+    <p>Das Absenden des Formulars setzt das aktive Ankreuzen einer Einwilligungs-Checkbox voraus. Mit dieser Checkbox willigen Sie in die Verarbeitung der oben genannten Daten zur Bearbeitung Ihrer Anfrage ein, <strong>einschließlich der automatisierten Bearbeitung und Beantwortung durch unser KI-Agenten-System</strong> (siehe Abschnitt 6).</p>
+    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).</p>
+    <p>Zur Erfüllung unserer Nachweispflicht nach Art. 7 Abs. 1 DSGVO speichern wir zusätzlich den Zeitpunkt, zu dem Sie die Einwilligung erteilt haben.</p>
+    <p><strong>Widerruf:</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, formlos per E-Mail an <a href="mailto:info@nexrai.de">info@nexrai.de</a>. Im Falle eines Widerrufs löschen wir Ihre Daten unverzüglich, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+    <h3>Automatische Eingangsbestätigung</h3>
+    <p>Nach dem Absenden Ihrer Anfrage erhalten Sie automatisch eine Eingangsbestätigung an die angegebene E-Mail-Adresse. Die inhaltliche Antwort erhalten Sie von unserem KI-Agenten, nachdem sie von uns freigegeben wurde (siehe Abschnitt 6).</p>
+    </section>
+    <!-- 6. KI-Agent -->
+    <section id="ki-agent">
+    <h2>6. Einsatz eines KI-Agenten</h2>
+    <p>Anfragen über das Kontaktformular werden von einem KI-Agenten bearbeitet. Das heißt: Ein KI-System erkennt Ihr Anliegen, erstellt eine Analyse und entwirft die Antwort. Sie schreiben nicht mit einem Menschen, solange Sie nicht ausdrücklich darum bitten. Auf der Website und in der E-Mail weisen wir darauf hin, dass Sie mit einer KI kommunizieren.</p>
+    <h3>Menschliche Kontrolle</h3>
+    <p>Der Entwurf des KI-Agenten wird <strong>nicht automatisch versendet</strong>. Er wird intern von uns geprüft und freigegeben oder verworfen. Es findet keine Entscheidung mit rechtlicher Wirkung ausschließlich automatisiert statt (Art. 22 DSGVO). Wenn Sie im Formular angeben, mit einem Menschen sprechen zu wollen, leiten wir Ihre Anfrage an eine Person weiter.</p>
+    <h3>Welche Daten an den KI-Dienstleister gehen</h3>
+    <p>Zur Erstellung von Analyse und Antwort übermitteln wir an den KI-Dienst von <strong>OpenAI</strong> (Programmierschnittstelle / API) ausschließlich: Ihren <strong>Vornamen</strong>, die Angabe zur Firma (falls ausgefüllt), Ihre Auswahl zu Leistung und Ziel, Ihre Kurzbeschreibung sowie den Hinweis, ob Sie mit einem Menschen sprechen möchten. <strong>Nicht</strong> übermittelt werden Ihre E-Mail-Adresse, Ihre Telefonnummer und Ihr Nachname. Bitte geben Sie in der Kurzbeschreibung keine sensiblen Angaben (z. B. Gesundheitsdaten) ein.</p>
+    <p>Nach den Angaben von OpenAI werden über die API übermittelte Daten standardmäßig nicht zum Training der Modelle verwendet. Unser Vertragspartner ist die <strong>OpenAI Ireland Ltd.</strong>, Dublin. Mit ihr besteht ein Auftragsverarbeitungsvertrag (Data Processing Addendum). Die Verarbeitung findet nicht in einer EU-Region statt; Ihre Daten können dabei in die USA übermittelt werden. Grundlage sind nach dem Auftragsverarbeitungsvertrag die Standardvertragsklauseln der EU-Kommission oder ein Angemessenheitsbeschluss (Art. 45, 46 DSGVO). Zur Missbrauchserkennung speichert OpenAI die übermittelten Inhalte nach eigenen Angaben bis zu 30 Tage.</p>
+    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung über die Formular-Checkbox).</p>
+    <h3>Interne Benachrichtigung über Telegram</h3>
+    <p>Für die interne Freigabe senden wir Ihren Namen, Ihre E-Mail-Adresse, die Analyse und den Antwortentwurf an einen nur von uns genutzten Telegram-Bot. Wünschen Sie ein Gespräch mit einem Menschen, erhalten wir dort stattdessen Ihre Formularangaben einschließlich Telefonnummer (falls angegeben). Für die monatliche Löschübersicht (Abschnitt 8) sehen wir dort außerdem Ihren Namen und das Eingangsdatum. Telegram wird ausschließlich als internes Benachrichtigungs- und Freigabewerkzeug genutzt, nicht zur Kommunikation mit Ihnen. Anbieter ist die <strong>Telegram Messenger Inc.</strong> (Britische Jungferninseln); Vertreter in der EU ist das European Data Protection Office (EDPO). Daten von Konten aus dem EWR speichert Telegram nach eigenen Angaben in Rechenzentren in den Niederlanden; Übermittlungen an Konzerngesellschaften außerhalb des EWR erfolgen nach Angaben von Telegram auf Grundlage der Standardvertragsklauseln. Telegram verarbeitet die Daten als eigener Verantwortlicher, ein Auftragsverarbeitungsvertrag besteht nicht. Rechtsgrundlage ist unser berechtigtes Interesse an einer schnellen und kontrollierten internen Bearbeitung Ihrer Anfrage (Art. 6 Abs. 1 lit. f DSGVO).</p>
+    </section>
+    <!-- 7. n8n Workflow -->
+    <section id="workflow">
+    <h2>7. Automatisierter Workflow (n8n)</h2>
+    <p>Zur Verarbeitung von Kontaktanfragen setzen wir die Open-Source-Automatisierungssoftware <strong>n8n</strong> ein. n8n läuft ausschließlich auf unserem eigenen Server bei Hetzner in Deutschland.</p>
+    <p>Wenn Sie das Kontaktformular absenden, verarbeitet n8n Ihre Daten wie folgt:</p>
+    <ol>
+    <li>Empfang der Formulardaten über eine gesicherte Webhook-Verbindung (HTTPS/TLS)</li>
+    <li>Technische Bereinigung und Validierung der Eingaben</li>
+    <li>Übergabe an den KI-Agenten (Analyse und Antwortentwurf, siehe Abschnitt 6)</li>
+    <li>Interne Freigabe des Entwurfs durch uns</li>
+    <li>Versand einer Eingangsbestätigung an Ihre E-Mail-Adresse, nach Freigabe außerdem der Antwort</li>
+    <li>Speicherung der strukturierten Anfragedaten in unserer internen Datenbank (auf demselben Hetzner-Server)</li>
+    </ol>
+    <p><strong>Ausführungsprotokolle:</strong> n8n speichert Ausführungsdaten (sog. Execution Logs) nur, wenn ein Ablauf fehlschlägt, damit wir den Fehler beheben können. Erfolgreich abgeschlossene Abläufe werden nicht protokolliert. Fehlerprotokolle werden nach 14 Tagen automatisch gelöscht.</p>
+    <p>Da n8n selbst gehostet wird, findet keine Datenübertragung an den n8n-Anbieter statt. Eine Weitergabe an die in Abschnitt 6 und 10 genannten Dienste erfolgt nur im dort beschriebenen Umfang.</p>
+    <h3>E-Mail-Versand (Zoho Mail)</h3>
+    <p>Für den Versand der Eingangsbestätigung und interner Benachrichtigungen nutzen wir <strong>Zoho Mail</strong> der Zoho Corporation Pvt. Ltd. Unser Konto ist auf dem EU-Rechenzentrum (smtppro.zoho.eu) konfiguriert. Die Verarbeitung erfolgt innerhalb der EU/des EWR.</p>
+    <p>Mit Zoho besteht ein Auftragsverarbeitungsvertrag. Im Rahmen des E-Mail-Versands wird Ihre E-Mail-Adresse sowie Ihr Vorname (für die Anrede) an Zoho übermittelt.</p>
+    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung, die Sie über die Formular-Checkbox erteilt haben).</p>
+    </section>
+    <!-- 7. Speicherung & Löschung -->
+    <section id="speicherung">
+    <h2>8. Datenspeicherung &amp; Löschung</h2>
+    <p>Ihre Anfragedaten werden in einer internen, strukturierten Datenbank auf unserem Hetzner-Server gespeichert. Die Speicherung dient ausschließlich der Bearbeitung Ihrer Anfrage sowie der Nachvollziehbarkeit unserer Datenschutzpflichten.</p>
+    <h3>Speicherdauer</h3>
+    <table>
+    <thead><tr><th>Situation</th><th>Speicherdauer</th></tr></thead>
+    <tbody>
+    <tr><td>Anfrage ohne nachfolgendes Vertragsverhältnis</td><td>180 Tage ab Eingang der Anfrage</td></tr>
+    <tr><td>Anfrage mit nachfolgendem Vertrag</td><td>10 Jahre (handels- und steuerrechtliche Aufbewahrungspflicht gem. §§ 147 AO, 257 HGB)</td></tr>
+    <tr><td>Widerruf der Einwilligung</td><td>Unverzügliche Löschung (soweit keine gesetzliche Pflicht entgegensteht)</td></tr>
+    </tbody>
+    </table>
+    <h3>Löschprozess</h3>
+    <p>Wir betreiben einen monatlich automatisch ausgeführten Workflow, der uns über Einträge informiert, deren Aufbewahrungsfrist abgelaufen ist. Die tatsächliche Löschung erfolgt durch uns manuell, um Fehler zu vermeiden. Dabei löschen wir auch die Auszüge Ihrer Anfrage in unseren internen Protokollen. Wird aus Ihrer Anfrage ein Vertrag, gilt die oben genannte gesetzliche Aufbewahrungsfrist.</p>
+    <p>Sie können jederzeit formlos unter <a href="mailto:info@nexrai.de">info@nexrai.de</a> die sofortige Löschung verlangen.</p>
+    </section>
+    <!-- 8. Potenzial-Rechner -->
+    <section id="rechner">
+    <h2>9. Potenzial-Rechner</h2>
+    <p>Auf unserer Website befindet sich ein interaktiver Potenzial-Rechner. Dieser berechnet eine Schätzung Ihres möglichen KI-Automatisierungspotenzials auf Basis Ihrer Eingaben (Mitarbeiterzahl, Branche, Stunden, Stundenlohn).</p>
+    <div class="info">Die Berechnung findet <strong>ausschließlich lokal in Ihrem Browser</strong> statt. Ihre Eingaben werden nicht an unseren Server übertragen, nicht gespeichert und nicht ausgewertet. Es verlassen keine Daten Ihr Gerät.</div>
+    <p>Erst wenn Sie im Anschluss das Kontaktformular nutzen, gelten die Hinweise unter Abschnitt 5.</p>
+    <p><strong>Rechtsgrundlage:</strong> Keine — es findet keine Datenverarbeitung durch uns statt.</p>
+    </section>
+    <!-- 9. Empfänger -->
+    <section id="empfaenger">
+    <h2>10. Empfänger &amp; Auftragsverarbeiter</h2>
+    <p>Wir geben Ihre personenbezogenen Daten grundsätzlich nicht an Dritte weiter, es sei denn, dies ist zur Vertragserfüllung erforderlich oder Sie haben eingewilligt. Folgende Dienstleister verarbeiten in unserem Auftrag Daten (Auftragsverarbeitung gem. Art. 28 DSGVO):</p>
+    <table>
+    <thead><tr><th>Dienstleister</th><th>Zweck</th><th>Serverstandort</th><th>AVV</th></tr></thead>
+    <tbody>
+    <tr>
+    <td><strong>Hetzner Online GmbH</strong><br>Gunzenhausen, DE</td>
+    <td>Hosting der Website, n8n-Instanz und interner Datenbank</td>
+    <td>Deutschland (EU)</td>
+    <td>Ja</td>
+    </tr>
+    <tr>
+    <td><strong>Zoho Corporation Pvt. Ltd.</strong><br>EU-Rechenzentrum</td>
+    <td>E-Mail-Versand (Bestätigungen, interne Benachrichtigungen)</td>
+    <td>EU/EWR</td>
+    <td>Ja</td>
+    </tr>
+    <tr>
+    <td><strong>OpenAI Ireland Ltd.</strong><br>Dublin, Irland</td>
+    <td>KI-Verarbeitung der Anfrage (Analyse, Antwortentwurf)</td>
+    <td>USA möglich (Standardvertragsklauseln)</td>
+    <td>Ja</td>
+    </tr>
+    <tr>
+    <td><strong>Telegram Messenger Inc.</strong><br>Britische Jungferninseln</td>
+    <td>Interne Benachrichtigung und Freigabe</td>
+    <td>Niederlande (EWR-Konten); Konzernübermittlung außerhalb des EWR möglich</td>
+    <td>Nein (eigener Verantwortlicher)</td>
+    </tr>
+    </tbody>
+    </table>
+    <p>Eine Übermittlung personenbezogener Daten in Drittländer (außerhalb der EU/des EWR) kann bei den Diensten OpenAI und Telegram nicht ausgeschlossen werden. Bei OpenAI ist eine Übermittlung in die USA möglich, bei Telegram an Konzerngesellschaften außerhalb des EWR; beide stützen sich nach eigenen Angaben auf die Standardvertragsklauseln der EU-Kommission. Beim Hosting, bei n8n, der Datenbank und beim E-Mail-Versand (Hetzner, Zoho EU) findet keine Übermittlung in Drittländer statt.</p>
+    </section>
+    <!-- 10. Rechte -->
+    <section id="rechte">
+    <h2>11. Ihre Rechte</h2>
+    <p>Als betroffene Person stehen Ihnen folgende Rechte zu:</p>
+    <ul>
+    <li><strong>Auskunft (Art. 15 DSGVO):</strong> Sie können Auskunft über die bei uns gespeicherten personenbezogenen Daten verlangen.</li>
+    <li><strong>Berichtigung (Art. 16 DSGVO):</strong> Sie haben das Recht, unrichtige Daten berichtigen zu lassen.</li>
+    <li><strong>Löschung (Art. 17 DSGVO):</strong> Sie können die Löschung Ihrer Daten verlangen, sofern keine Aufbewahrungspflichten entgegenstehen.</li>
+    <li><strong>Einschränkung (Art. 18 DSGVO):</strong> Sie können die Einschränkung der Verarbeitung verlangen.</li>
+    <li><strong>Datenübertragbarkeit (Art. 20 DSGVO):</strong> Sie haben das Recht, Ihre Daten in einem gängigen, maschinenlesbaren Format zu erhalten.</li>
+    <li><strong>Widerspruch (Art. 21 DSGVO):</strong> Sie können der Verarbeitung auf Basis berechtigten Interesses (Art. 6 Abs. 1 lit. f) jederzeit widersprechen.</li>
+    <li><strong>Widerruf (Art. 7 Abs. 3 DSGVO):</strong> Einwilligungen können Sie jederzeit mit Wirkung für die Zukunft widerrufen.</li>
+    </ul>
+    <p>Zur Ausübung Ihrer Rechte wenden Sie sich formlos per E-Mail an: <a href="mailto:info@nexrai.de">info@nexrai.de</a><br>
+    Bitte nennen Sie dabei die E-Mail-Adresse, mit der Sie uns kontaktiert haben, damit wir Ihre Anfrage schnell zuordnen können.</p>
+    <p>Wir beantworten Ihre Anfrage innerhalb von 30 Tagen (Art. 12 Abs. 3 DSGVO).</p>
+    </section>
+    <!-- 11. Beschwerde -->
+    <section id="beschwerde">
+    <h2>12. Beschwerderecht</h2>
+    <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren.</p>
+    <p>Die zuständige Aufsichtsbehörde für Nordrhein-Westfalen ist:</p>
+    <p>
+    <strong>Landesbeauftragte für Datenschutz und Informationsfreiheit NRW</strong><br>
+    Kavalleriestraße 2–4<br>
+    40213 Düsseldorf<br>
+    <a href="https://www.ldi.nrw.de" target="_blank" rel="noopener">www.ldi.nrw.de</a>
+    </p>
+    <div class="info">Sie können sich auch an die Aufsichtsbehörde Ihres Wohnsitzes oder Arbeitsorts wenden.</div>
+    </section>
+    <!-- 12. Änderungen -->
+    <section id="aenderungen">
+    <h2>13. Änderungen dieser Erklärung</h2>
+    <p>Wir aktualisieren diese Datenschutzerklärung, wenn sich unsere Datenverarbeitungspraktiken oder die rechtlichen Anforderungen ändern. Das Datum der letzten Aktualisierung finden Sie oben unter dem Seitentitel.</p>
+    <p>Bei wesentlichen Änderungen informieren wir Sie, sofern wir eine Möglichkeit der Kontaktaufnahme haben, per E-Mail.</p>
+    </section>
+    <p class="stand">Letzte Aktualisierung: Oktober 2026 (Entwurf)</p>
+  5:X
+a:X
+a:C
+0:{"buildId":"E49tamSiSBK_fht0NQhqV","data":[{"rsc":["$","$1","c",{"children":[["$","article",null,{"className":"wrap legal","children":[["$","header",null,{"className":"legal-head","children":[["$","p",null,{"className":"label","children":"Rechtliches"}],["$","h1",null,{"className":"h1","children":"Datenschutzerklärung"}],["$","p",null,{"className":"lead","dangerouslySetInnerHTML":{"__html":"Wie NEXRAI personenbezogene Daten erhebt, verarbeitet und schützt."}}]]}],["$","div",null,{"className":"legal-body","dangerouslySetInnerHTML":{"__html":"$2"}}]]}],null,"$L3"]}],"isPartial":"$@4","staleTime":"$5","varyParams":null},{"rsc":"$L6","isPartial":"$@7","staleTime":"$5","varyParams":null},{"rsc":"$L8","isPartial":"$@9","staleTime":"$5","varyParams":"$a"}],"isUpgradeableISRFallback":false,"a":"$@b","rootVaryParams":null,"needsRuntimeRequest":"$@c"}
+d:I[97367,["/_next/static/chunks/1bc5ra7pxtoxa.js"],"OutletBoundary"]
+e:"$Sreact.suspense"
+10:I[97367,["/_next/static/chunks/1bc5ra7pxtoxa.js"],"ViewportBoundary"]
+11:I[97367,["/_next/static/chunks/1bc5ra7pxtoxa.js"],"MetadataBoundary"]
+12:I[39756,["/_next/static/chunks/1bc5ra7pxtoxa.js"],"default"]
+13:I[37457,["/_next/static/chunks/1bc5ra7pxtoxa.js"],"default"]
+3:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
+6:["$","$1","h",{"children":[null,["$","$L10",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#07090B","media":"(prefers-color-scheme: dark)"}],["$","meta","3",{"name":"theme-color","content":"#F4F6F7","media":"(prefers-color-scheme: light)"}]]}],["$","div",null,{"hidden":true,"children":["$","$L11",null,{"children":["$","$e",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Datenschutzerklärung | NEXRAI"}],["$","meta","1",{"name":"description","content":"NEXRAI · Datenschutzerklärung"}],["$","meta","2",{"name":"robots","content":"noindex, follow"}],["$","link","3",{"rel":"canonical","href":"https://nexrai.de/datenschutz"}],["$","meta","4",{"property":"og:title","content":"Datenschutzerklärung"}],["$","meta","5",{"property":"og:description","content":"NEXRAI · Datenschutzerklärung"}],["$","meta","6",{"property":"og:url","content":"https://nexrai.de/datenschutz"}],["$","meta","7",{"property":"og:site_name","content":"NEXRAI"}],["$","meta","8",{"property":"og:locale","content":"de_DE"}],["$","meta","9",{"property":"og:type","content":"website"}],["$","meta","10",{"name":"twitter:card","content":"summary"}],["$","meta","11",{"name":"twitter:title","content":"Datenschutzerklärung"}],["$","meta","12",{"name":"twitter:description","content":"NEXRAI · Datenschutzerklärung"}]]}]}]}],null]}]
+8:["$","$1","c",{"children":[null,["$","$L12",null,{"parallelRouterKey":"children","template":["$","$L13",null,{}]}]]}]
+c:true
+f:null
+5:300
+5:C
+b:0
+7:"$undefined"
+9:"$undefined"
+4:"$undefined"
